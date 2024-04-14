@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+/* Estilos para todos los hijos de gridContainer */
+.gridContainer > *{
+    padding: 10px;
+    text-align: center;
+    border: solid 1px black;
+    
+}
+
+/* Ajuste de las columnas y filas del body + Grid*/
+.gridContainer {
+    display: grid;
+    grid-template-rows: 250px 50px auto 50px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "header"
+        "navbar"
+        "contenido"
+        "footer";
+    height: 100vh; /* Opcional, ajusta la altura según sea necesario */
+}
+
+/* Ajuste del header y el logo*/
+.header {
+    grid-area: header;
+    background-image: url(/images/imgheader.jpg);
+    background-size: cover; /* Redimensiona para ajustar el fondo */
+    display: flex;
+    align-items: center; /* Alinea verticalmente*/
+}
+
+.header img {
+   margin-left: 60px;
+}
+
+/* Estilo para navbar y para los botones + efecto*/
+.navbar {
+    grid-area: navbar;
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: space-evenly; /* Mismo espacio entre elementos */
+    background-color: rgb(255, 0, 0);
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    background-color: #d9d9d9;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000000;
+    border-radius: 10px;
+    margin: 0 10px; /* Mantiene el espacio entre botones */
+    border: solid 1px #000000;
+    padding: 5px 15px;
+    width: 160px;
+}
+
+nav a:hover, .usu:hover, .pro:hover, .res:hover {
+    background-color: #999999;
+    color: black;
+}
+
+/* Estilo para contenido*/
+
+.contenido {
+    grid-area: contenido;
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    padding-top: 50px;
+    background-color: #fff9ec;
+    padding-bottom: 100px;
+}
+
+.usu, .pro, .res {
+    background-color: #d9d9d9;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000000;
+    border-radius: 10px;
+    margin: 0 10px; /* Mantiene el espacio entre botones */
+    border: solid 1px #000000;
+    padding: 5px 15px;
+    width: 220px;
+    height: 35px;
+}
+
+/* Estilos para el footer*/
+
+.footer {
+    grid-area: footer;
+    height: 60px;
+    display: flex;
+    align-items: center;/* Alinea verticalmente*/
+    justify-content: center; /* Alinea en eje principal*/
+    background-color: #333333;
+    justify-content: space-around; /* Mismo espacio entre elementos */
+}
+
+/* Consultas de medios para hacer el diseño responsive */
+
+@media screen and (max-width: 768px) {
+    .gridContainer {
+        grid-template-rows: 150px 50px auto 50px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .gridContainer {
+        grid-template-rows: 100px 50px auto 50px;
+    }
+}
+
+/* ------------------------------------------------------ */

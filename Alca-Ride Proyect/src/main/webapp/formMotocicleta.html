@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alca-Ride | Formulario motocicleta</title>
+    <link rel="stylesheet" href="styles/formularios.css">
+</head>
+
+  <!-- Creo una clase para el body, para la cual aplicaré 
+    en su página de estilos un grid y le daré forma responsive.
+    Divido el body en 4 apartados principales:
+        header
+        navbar
+        contenido
+        footer
+    -->
+<body class="gridContainer">
+
+    <header class="header">
+        <!--Pongo este div para que el enlace se ajuste exactamente al logo-->
+        <div>
+        <a href="index.html"><img src="images/logo1.jpg" alt="Logo Alca-Ride"></a>
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <a href="index.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="condic.html">Condiciones</a>
+        <a href="reserva.html">Reserva</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="login.html">Iniciar Sesión</a>
+    </nav>
+    
+    <article class="contenido">
+        <div class="formMoto">			
+            <h1>Formulario motocicleta</h1>  
+
+            <form action="#" method="post" enctype="multipart/form-data" >
+             <!--Menú desplegable para seleccionar carnet,
+            la primera opción está deshabilitada para que obligue
+            a elegir una de las otras dos antes de enviar--> 
+            <p>
+                <label for="tipo" class="colocar_tipo">Tipo
+                    <span class="obligatorio">*</span>
+                </label>
+                <select name="introducir_tipo" id="tipo" required="obligatorio">
+                    <option value="" disabled selected hidden>Selecciona una opción</option>
+                    <option value="Custom">Custom</option>
+                    <option value="Adventure">Adventure</option>
+                    <option value="Turismo">Turismo</option>
+                    <option value="Naked">Naked</option>
+                </select>
+            </p>
+
+            <p>
+                <label for="matricula" class="colocar_matricula">Matricula
+                <span class="obligatorio">*</span>
+                </label>
+                <input type="matricula" name="introducir_matricula" id="matricula" required="obligatorio" placeholder="Escribe la matricula del vehículo">
+            </p>
+
+            <p>
+                <label for="cilindrada" class="colocar_cilindrada">Cilindrada
+                <span class="obligatorio">*</span>
+                </label>
+                <input type="cilindrada" name="introducir_cilindrada" id="cilindrada" required="obligatorio" placeholder="Escribe la cilindrada del vehículo">
+            </p>
+
+            <!--Menú desplegable para seleccionar carnet,
+            la primera opción está deshabilitada para que obligue
+            a elegir una de las otras dos antes de enviar--> 
+            <p>
+                <label for="carnet" class="colocar_carnet">Tipo carnet
+                    <span class="obligatorio">*</span>
+                </label>
+                <select name="introducir_carnet" id="carnet" required="obligatorio">
+                    <option value="" disabled selected hidden>Selecciona una opción</option>
+                    <option value="A">A</option>
+                    <option value="A2">A2</option>
+                </select>
+            </p>
+                    
+            <p>
+                <label for="marca" class="colocar_marca">Marca
+                <span class="obligatorio">*</span>
+                </label>
+                <input type="marca" name="introducir_marca" id="marca" required="obligatorio" placeholder="Escribe la marca del vehículo">
+            </p>
+    
+            <p>
+                <label for="modelo" class="colocar_modelo">Modelo
+                <span class="obligatorio">*</span>
+                </label>
+                <input type="modelo" name="introducir_modelo" id="modelo" required="obligatorio" placeholder="Escribe el modelo del vehículo">
+            </p>
+
+            <p>
+                <label for="anio" class="colocar_anio">Año
+                <span class="obligatorio">*</span>
+                </label>
+                <input type="anio" name="introducir_anio" id="anio" required="obligatorio" placeholder="Escribe el año del vehículo">
+            </p>
+
+            <p>
+                <label for="precio" class="colocar_precio">Precio por día
+                <span class="obligatorio">*</span>
+                </label>
+                <input type="precio" name="introducir_precio" id="precio" required="obligatorio" placeholder="Escribe el precio por día del vehículo">
+            </p>
+
+            <div class="subir_archivo">
+                <p>
+                    <label for="foto" class="colocar_foto">Cargar Imagen
+                        <span class="obligatorio">*</span>
+                    </label>
+                    <input type="file" name="introducir_foto" id="foto" required="required" accept="image/*">
+                </p>
+            </div>
+
+            <button type="submit" name="enviar_formulario" id="enviar"><p>Enviar</p></button>
+				                            
+            </form>
+            </div>
+        </div>
+    </article>
+
+    <footer class="footer">
+        <a href="privacidad.html" style="color: white;">Política de privacidad</a>
+        <a href="legal.html" style="color: white;">Aviso legal</a>
+        <p style="color: white;">Copyright Alca-Ride 2024 - Developed by Daniel Fernández</p>
+    </footer>
+
+</body>
+
+</html>
