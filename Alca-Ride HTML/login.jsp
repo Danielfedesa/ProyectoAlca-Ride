@@ -30,7 +30,6 @@ pageEncoding="UTF-8"%>
         <a href="index.html">Inicio</a>
         <a href="catalogo.html">Catálogo</a>
         <a href="condic.html">Condiciones</a>
-        <a href="reserva.html">Reserva</a>
         <a href="contacto.html">Contacto</a>
         <a href="login.html">Iniciar Sesión</a>
     </nav>

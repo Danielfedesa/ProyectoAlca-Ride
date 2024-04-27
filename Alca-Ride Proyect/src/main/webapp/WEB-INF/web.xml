@@ -79,4 +79,34 @@
     <servlet-name>ServletListarUsuarios</servlet-name>
     <url-pattern>/ServletListarUsuarios</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletEliminarLogin</display-name>
+    <servlet-name>ServletEliminarLogin</servlet-name>
+    <servlet-class>controlador.ServletEliminarLogin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletEliminarLogin</servlet-name>
+    <url-pattern>/ServletEliminarLogin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletEliminarUsuario</display-name>
+    <servlet-name>ServletEliminarUsuario</servlet-name>
+    <servlet-class>controlador.ServletEliminarUsuario</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletEliminarUsuario</servlet-name>
+    <url-pattern>/ServletEliminarUsuario</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletModificarUsuario</display-name>
+    <servlet-name>ServletModificarUsuario</servlet-name>
+    <servlet-class>controlador.ServletModificarUsuario</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletModificarUsuario</servlet-name>
+    <url-pattern>/ServletModificarUsuario</url-pattern>
+  </servlet-mapping>
 </web-app>

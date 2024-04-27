@@ -1,7 +1,11 @@
 package modelo;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import com.google.gson.Gson;
+
+import DAO.DaoLogin;
 import DAO.DaoUsuario;
 
 public class Usuario {
@@ -137,10 +141,57 @@ public class Usuario {
 		int id_UsuarioInsertado = usu.insertar(this);
 		return id_UsuarioInsertado;
 	}
+
+	// Método listarUsuarios
+	//Hago un método que obtiene los elementos del Dao y los convierte en json
+	public String listarJson() throws SQLException {
+		String json = "";
+		Gson objetoGson = new Gson();
+		//Meto en el objeto json lo que genere el objetoGson con el método toJson (lo convierte a json)
+		DaoUsuario resultado= new DaoUsuario();
+		json = objetoGson.toJson(resultado.listar());
+		return json;
+	}
 	// Método leerUsuario
+	public void recuperarUsuario(int id_Usuario) throws SQLException {
+		//Genero un objeto dao
+		DaoUsuario dao = new DaoUsuario();
+		//Creo un usuario auxiliar en base al id_Usuario con todos los datos
+		Usuario u = dao.leer(id_Usuario);
+		
+		this.setId_Usuario(u.getId_Usuario());
+		this.setNombre(u.getNombre());
+		this.setApellido1(u.getApellido1());
+		this.setApellido2(u.getApellido2());
+		this.setTelefono(u.getTelefono());
+		this.setEmail(u.getEmail());
+		this.setDni(u.getDni());
+		this.setCarnet(u.getCarnet());
+		this.setDireccion(u.getDireccion());
+	}
 	
-	// Método actualizarUsuario
+	
+	//Método para hacer un json con los datos del método modificar.
+	public String dameJson() {
+		//Creo variable con cadena vacía
+		String json = "";
+		// Creo objeto Gson llamado gson
+		Gson gson = new Gson();
+		//En el json meto lo que devuelve el objeto Gson y le doy de parametro a mi mismo(Usuario)
+		json = gson.toJson(this);
+		//Nos devuelve el json
+		return json;
+	}
+	
+	//Metodo actualizar usuario
+		public boolean actualizarUsuario() throws SQLException {
+			DaoUsuario daoUsuario = new DaoUsuario();
+			return daoUsuario.actualizarUser(this);
+		}
 	
 	// Método eliminarUsuario
-
+		public void eliminarUsuario() throws SQLException {
+			DaoUsuario borrar = new DaoUsuario();
+			borrar.eliminarUser(this);
+		}
 }

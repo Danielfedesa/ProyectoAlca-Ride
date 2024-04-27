@@ -38,27 +38,37 @@ public class ServletLogin extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		//Le pasamos los parámetros por el formulario
 		String nombre_Usuario = request.getParameter("nombre_Usuario");
 		String pass = request.getParameter("pass");
 		
+		//Creamos objeto miLogin con los parámetros del formulario
 		Login milogin= new Login(nombre_Usuario, pass);
 		
+		//Variable respuesta que contiene el resultado devuelto de la clase Login
 		Login respuesta;
+		//Comprobamos los datos introducidos por respuesta a través de Login
 		try {
 			respuesta = milogin.leerLogin();
-			if(respuesta.isIs_Admin())
-			{
-				//es adminitrador? 
-				
-				//es cliente?
-				
-				//comprobamos si es Cliente o Admin
-				response.sendRedirect("adminArea.html");
+			//Comprobamos si el objeto está vacío por no haberse encontrado en la base de datos por el Dao.
+			if(respuesta.getNombre_Usuario()=="") {
+				response.sendRedirect("errorRegistro.html");
 			}
+			//Si el objeto trae parámetros es porque los ha encontrado correctamente en la BDD.
 			else
 			{
-				//le decimos que el login no es correcto
-				response.sendRedirect("clientArea.html");
+			
+				//Comprobamos el is_Admin para
+				if(respuesta.isIs_Admin()==true)
+				{
+					response.sendRedirect("adminArea.html");
+				}
+				else
+				{
+					//le decimos que el login no es correcto
+					response.sendRedirect("clientArea.html");
+				}
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

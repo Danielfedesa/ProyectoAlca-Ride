@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alca-Ride | Formulario modificación de usuarios</title>
+    <link rel="stylesheet" href="styles/formularios.css">
+    
+    <script>
+    
+    function llamada(id_Usuario) {
+        fetch('ServletModificarUsuario?id_Usuario=' + id_Usuario)
+        .then(response => response.json())
+        .then(data => pintarFormulario(data));
+    }
+    
+		/* Función para otener el valor de un parametro en el GET */
+ 
+	function getParameterByName(name) {
+		    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+		    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+		    results = regex.exec(location.search);
+		    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
+
+
+   		
+		
+		
+		function pintarFormulario(datos){
+			document.getElementById("id_Usuario").value = datos.id_Usuario;
+			document.getElementById("nombre").value = datos.nombre;
+			document.getElementById("apellido1").value = datos.apellido1;
+			document.getElementById("apellido2").value = datos.apellido2;
+			document.getElementById("telefono").value = datos.telefono;
+			document.getElementById("email").value = datos.email;
+			document.getElementById("dni").value = datos.dni;
+			document.getElementById("carnet").value = datos.carnet;
+			document.getElementById("direccion").value = datos.direccion;
+		}
+		
+		
+		
+		window.onload = function(){
+			let id = getParameterByName("id_Usuario");
+			llamada(id);
+			
+		}
+		</script>
+    
+</head>
+
+  <!-- Creo una clase para el body, para la cual aplicaré 
+    en su página de estilos un grid y le daré forma responsive.
+    Divido el body en 4 apartados principales:
+        header
+        navbar
+        contenido
+        footer
+    -->
+<body class="gridContainer">
+
+    <header class="header">
+        <!--Pongo este div para que el enlace se ajuste exactamente al logo-->
+        <div>
+        <a href="index.html"><img src="images/logo1.jpg" alt="Logo Alca-Ride"></a>
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <a href="index.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="condic.html">Condiciones</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="login.html">Iniciar Sesión</a>
+    </nav>
+    
+    <article class="contenido">
+        <div class="formRegistro">			
+            <h1>Formulario modificar user</h1>  
+
+            <form action="ServletModificarUsuario" method="post">
+
+			<input type="hidden" name="id_Usuario" id="id_Usuario">
+            <p>
+                <label for="nombre" class="colocar_nombre">Nombre
+                <span class="obligatorio">*</span>
+                </label>
+                <input type="nombre" name="nombre" id="nombre" required="obligatorio" placeholder="Escribe tu nombre">
+            </p>
+
+            <p>
+                <label for="apellido1" class="colocar_apellido1">Primer apellido
+                <span class="obligatorio">*</span>
+                </label>
+                <input type="apellido1" name="apellido1" id="apellido1" required="obligatorio" placeholder="Escribe tu primer apellido">
+            </p>
+
+            <p>
+                <label for="apellido2" class="colocar_apellido2">Segundo apellido
+                </label>
+                <input type="apellido2" name="apellido2" id="apellido2" placeholder="Escribe tu segundo apellido">
+            </p>
+
+            <p>
+                <label for="telefono" class="colocar_telefono">Telefono
+                <span class="obligatorio">*</span>
+                </label>
+                <input type="telefono" name="telefono" id="telefono" required="obligatorio" placeholder="Escribe tu teléfono">
+            </p>
+
+            <p>
+                <label for="email" class="colocar_email">Correo electrónico
+                <span class="obligatorio">*</span>
+                </label>
+                <input type="email" name="email" id="email" required="obligatorio" placeholder="Escribe tu email">
+            </p>
+
+            <p>
+                <label for="dni" class="colocar_dni">DNI
+                <span class="obligatorio">*</span>
+                </label>
+                <input type="dni" name="dni" id="dni" required="obligatorio" placeholder="Escribe tu DNI">
+            </p>
+
+            <!--Menú desplegable para seleccionar carnet,
+            la primera opción está deshabilitada para que obligue
+            a elegir una de las otras dos antes de enviar--> 
+            <p>
+                <label for="carnet" class="colocar_carnet">Tipo carnet
+                    <span class="obligatorio">*</span>
+                </label>
+                <select name="carnet" id="carnet" required="obligatorio">
+                    <option value="" disabled selected hidden>Selecciona una opción</option>
+                    <option value="A">A</option>
+                    <option value="A2">A2</option>
+                </select>
+            </p>
+                    
+            <p>
+                <label for="direccion" class="colocar_direccion">Dirección
+                <span class="obligatorio">*</span>
+                </label>
+                <input type="direccion" name="direccion" id="direccion" required="obligatorio" placeholder="Escribe tu dirección de residencia">
+            </p>
+
+            <button type="submit" name="enviar_formulario" id="enviar"><p>Enviar</p></button>
+				                            
+            </form>
+           
+        </div>
+    </article>
+
+    <footer class="footer">
+        <a href="privacidad.html" style="color: white;">Política de privacidad</a>
+        <a href="legal.html" style="color: white;">Aviso legal</a>
+        <p style="color: white;">Copyright Alca-Ride 2024 - Developed by Daniel Fernández</p>
+    </footer>
+
+</body>
+
+</html>

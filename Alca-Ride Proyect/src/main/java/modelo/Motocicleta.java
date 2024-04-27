@@ -16,7 +16,6 @@ public class Motocicleta {
 	private String modelo;
 	private String anio;
 	private double precio_Dia;
-	private String url_Foto;
 	
 	
 	public Motocicleta() {
@@ -25,7 +24,7 @@ public class Motocicleta {
 	
 	//Constructor sin id_Moto.
 	public Motocicleta(String tipo, String matricula, String cilindrada, String tipo_Carnet, String marca,
-			String modelo, String anio, double precio_Dia, String url_Foto) {
+			String modelo, String anio, double precio_Dia) {
 		super();
 		this.tipo = tipo;
 		this.matricula = matricula;
@@ -35,12 +34,11 @@ public class Motocicleta {
 		this.modelo = modelo;
 		this.anio = anio;
 		this.precio_Dia = precio_Dia;
-		this.url_Foto = url_Foto;
 	}
 
 	//Constructor completo:
 	public Motocicleta(int id_Moto, String tipo, String matricula, String cilindrada, String tipo_Carnet, String marca,
-			String modelo, String anio, double precio_Dia, String url_Foto) {
+			String modelo, String anio, double precio_Dia) {
 		super();
 		this.id_Moto = id_Moto;
 		this.tipo = tipo;
@@ -51,7 +49,6 @@ public class Motocicleta {
 		this.modelo = modelo;
 		this.anio = anio;
 		this.precio_Dia = precio_Dia;
-		this.url_Foto = url_Foto;
 	}
 
 	//Getters y setters:
@@ -127,20 +124,13 @@ public class Motocicleta {
 		this.precio_Dia = precio_Dia;
 	}
 	
-	public String getUrl_Foto() {
-		return url_Foto;
-	}
-
-	public void setUrl_Foto(String furl_Foto) {
-		this.url_Foto = furl_Foto;
-	}
 
 	//Método toString:
 	@Override
 	public String toString() {
 		return "Motocicleta [id_Moto=" + id_Moto + ", tipo=" + tipo + ", matricula=" + matricula + ", cilindrada="
 				+ cilindrada + ", tipo_Carnet=" + tipo_Carnet + ", marca=" + marca + ", modelo=" + modelo + ", anio="
-				+ anio + ", precio_Dia=" + precio_Dia + ", url_Foto=" + url_Foto + "]";
+				+ anio + ", precio_Dia=" + precio_Dia + "]";
 	}
 	
 	//Método para crear Motocicleta:

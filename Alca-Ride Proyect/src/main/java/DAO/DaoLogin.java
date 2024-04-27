@@ -22,7 +22,7 @@ public class DaoLogin {
 	
 	//Método insertar
 	public void insertar(Login l) throws SQLException {
-		String sql = "INSERT INTO Login (nombre_Usuario, pass, id_Usuario) VALUES (?, ?, ?)";
+		String sql = "INSERT INTO login (nombre_Usuario, pass, id_Usuario) VALUES (?, ?, ?)";
 		
 		PreparedStatement ps = con.prepareStatement(sql);
 		ps.setString(1, l.getNombre_Usuario());
@@ -35,22 +35,47 @@ public class DaoLogin {
 	}
 	
 	//Método leer
-	public Login leer(Login k) throws SQLException {
-		String sql = "SELECT * FROM login WHERE nombre_Usuario = ? AND pass = ?";
-				//+  k.getNombre_Usuario() + "'  AND pass = '" + k.getPass() +"'";
+	public Login leerLogin(Login k) throws SQLException {
+		String sql = "SELECT nombre_Usuario, is_Admin FROM login WHERE nombre_Usuario = ? AND pass = ?";
 		
+		//Variables para almacenar el nombre y password que le pasamos por el formulario.
+		String nombreUs = k.getNombre_Usuario();
+		String passUs = k.getPass();		
+		
+		//Creamos la sentrencia para consultar en BDD por nombre_Usuario y is_Admin
 		PreparedStatement ps = con.prepareStatement(sql);
-		ps.setString(1, k.getNombre_Usuario());
-		ps.setString(2, k.getPass());
+		ps.setString(1, nombreUs);
+		ps.setString(2, passUs);
 		
-		ResultSet filas = ps.executeQuery(sql);
-		
+		//Recogemos el resultado en la variable filas del ResultSet
+		ResultSet filas = ps.executeQuery();
+		//Creamos objeto de la clase Login
 		Login objLogin = new Login();
-		objLogin.setIs_Admin(false);// = true; //filas["is_Admin"];
-				
+		//Inicializamos el objLogin con el nombre_Usuario vacío para validar luego si existe o no
+		objLogin.setNombre_Usuario("");
+		//Leemos el ResultSet mediante un while
+		while(filas.next())
+		{			
+			objLogin.setNombre_Usuario(filas.getString("nombre_Usuario"));
+			objLogin.setIs_Admin(filas.getBoolean("is_Admin"));// = true; //filas["is_Admin"];	
+		}
+						
 		ps.close();
 		
+		//Devolvemos el objLogin relleno o vacío en su caso
 		return objLogin;
 	}
+	
+	//Método eliminar
+		public static void eliminarLog(Login e) throws SQLException {
+			String sql = "DELETE FROM login WHERE id_Usuario = ?";
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, e.getId_Usuario());
+			
+			int filas = ps.executeUpdate();
+			
+			ps.close();
+		}
 	
 }

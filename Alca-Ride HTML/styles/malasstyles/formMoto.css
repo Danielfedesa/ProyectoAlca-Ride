@@ -45,7 +45,7 @@
     display: flex;
     justify-content: center; /* Centrar horizontalmente */
     align-items: center; /* Centrar verticalmente */
-    justify-content: space-evenly; /* Mismo espacio entre elementos */
+    justify-content: space-around; /* Mismo espacio entre elementos */
     background-color: rgb(255, 0, 0);
     padding: 15px;
     text-align: center;

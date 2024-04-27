@@ -24,7 +24,7 @@ public class DaoMotocicleta {
 	public void insertar(Motocicleta m) throws SQLException { //Importo ModeloMotocicleta.
 		
 		//Sentencia sql para insertar en la tabla Motocicleta:
-		String sql = "INSERT INTO Motocicleta (tipo, matricula, cilindrada, tipo_Carnet, marca, modelo, anio, precio_Dia, url_Foto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO Motocicletas (tipo, matricula, cilindrada, tipo_Carnet, marca, modelo, anio, precio_Dia) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		//le pasamos la variable con la sentencia sql que acabamos de meter.
 		PreparedStatement ps = con.prepareStatement(sql); //Importo PreparedStatement y añado excepción.
 		//Al estar usando el preparestatement debemos cargar los datos (En este caso son todos String)
@@ -36,7 +36,6 @@ public class DaoMotocicleta {
 		ps.setString(6, m.getModelo());
 		ps.setString(7, m.getAnio());
 		ps.setDouble(8, m.getPrecio_Dia());
-		ps.setString(9, m.getUrl_Foto());
 		
 	//Hago un update para comprobar:
 	int filas = ps.executeUpdate();

@@ -1,0 +1,88 @@
+package controlador;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import modelo.Usuario;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.SQLException;
+
+/**
+ * Servlet implementation class ServletModificarUsuario
+ */
+public class ServletModificarUsuario extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ServletModificarUsuario() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		PrintWriter out = response.getWriter();
+		
+		//Variable para recibir el id_Usuario que me manda el formulario por JavaScript
+		int id = Integer.parseInt(request.getParameter("id_Usuario"));
+		
+		//Creo el objeto Usuario
+		Usuario u = new Usuario();
+		
+	
+			//Llamo al método actualizarUsuario de la clase Usuario para generar un objeto Dao
+			try {
+				u.recuperarUsuario(id);
+				//Verifico por consola
+				System.out.println(u.toString());
+				//Llamamos al método dameJson de la clase Usuario
+				out.print(u.dameJson());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+
+	
+	}
+
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
+		int id = Integer.parseInt(request.getParameter("id_Usuario"));
+		String nombre = request.getParameter("nombre");
+		String apellido1 = request.getParameter("apellido1");
+		String apellido2 = request.getParameter("apellido2");
+		int telefono = Integer.parseInt(request.getParameter("telefono"));
+		String email = request.getParameter("email");
+		String dni = request.getParameter("dni");
+		String carnet = request.getParameter("carnet");
+		String direccion = request.getParameter("direccion");
+		
+		Usuario user = new Usuario(id, nombre, apellido1, apellido2, telefono, email, dni, carnet, direccion);
+
+		try {
+			boolean respuesta = user.actualizarUsuario();
+			response.sendRedirect("adminUsu.html");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		
+	}
+
+}

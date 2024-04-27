@@ -109,15 +109,10 @@ public class Login {
 	}
 	// Método leerLogin
 	public Login leerLogin() throws SQLException {
-		DaoLogin log = new DaoLogin();
-		/*Login miloginPeticion = new Login();
-		miloginPeticion.setNombre_Usuario("");
-		miloginPeticion.setPass("");*/
-		Login milogin = log.leer(this);
-				
 		//acudir al DAO y leer el login a partir del usuario y la contraseña proporcionadas
-		
-		//milogin.is_Admin = false;
+		DaoLogin log = new DaoLogin();
+		Login milogin = log.leerLogin(this);
+		//Retorna lo leido por el Dao a la variable miLogin
 		return milogin;		
 	}
 		
@@ -125,7 +120,10 @@ public class Login {
 	// Método actualizarLogin
 		
 	// Método eliminarLogin
-	
+	public void eliminarLogin() throws SQLException {
+		DaoLogin borrar = new DaoLogin();
+		borrar.eliminarLog(this);
+	}
 	
 	
 }

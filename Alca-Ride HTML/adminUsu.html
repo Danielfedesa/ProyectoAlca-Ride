@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="styles/tablas.css">
     
     <script>
-    
-    function llamada(SerevletListarUsuarios) {
-    	fetch(SerevletListarUsuarios)
+   /*Función para pintar los datos de la tabla usuarios*/
+    function llamada(ServletListarUsuarios) {
+    	fetch(ServletListarUsuarios)
     	.then(res => res.json())
     	.then(res => pintarResultados(res));
     	
@@ -24,12 +24,13 @@
     	    html += "<th>APELLIDO 1</th>";
     	    html += "<th>APELLIDO 2</th>";
     	    html += "<th>NOMBRE USUARIO</th>";
-    	    html += "<th>CONTRASEÑA</th>";
     	    html += "<th>TELÉFONO</th>";
     	    html += "<th>EMAIL</th>";
     	    html += "<th>DNI</th>";
     	    html += "<th>CARNET</th>";
     	    html += "<th>DIRECCIÓN</th>";
+    	    html += "<th>MODIFICAR</th>";
+    	    html += "<th>ELIMINAR</th>";
     	    html += "</tr>";
     	
     	for(var i=0; i<datos.length; i++) {
@@ -39,12 +40,19 @@
     		<td>${datos[i].apellido1}</td>
     		<td>${datos[i].apellido2}</td>
     		<td>${datos[i].nombre_Usuario}</td>
-    		<td>${datos[i].pass}</td>
     		<td>${datos[i].telefono}</td>
     		<td>${datos[i].email}</td>
     		<td>${datos[i].dni}</td>
     		<td>${datos[i].carnet}</td>
     		<td>${datos[i].direccion}</td>
+    		<td><a href='formUsuarioModif.html?id_Usuario=${datos[i].id_Usuario}'><button type="submit">Modificar</button></a></td>
+    		<td>   	 	
+    	   		<form
+    	   			onsubmit="return confirmarEliminacion();" action="ServletEliminarUsuario" method="post">
+	    	    	<input type="hidden" name="id_Usuario" value="${datos[i].id_Usuario}">
+	    	    	<button type="submit">Eliminar</button>
+    	 		</form>
+    		</td>
     		</tr>`;
     	}
     	
@@ -53,10 +61,25 @@
     	document.getElementById("listadoUsuarios").innerHTML = html;
     }
     
+
+    
     window.onload = function() {
-    	llamada("ServletListarUsuarios");
+        llamada("ServletListarUsuarios");
     }
-    	
+    
+    //Función para confirmar la eliminación del registro
+    function confirmarEliminacion() {
+        return confirm("¿Estás seguro que quieres eliminar el registro?");
+    }
+
+ 	// Obtiene el mensaje del servidor (de la URL)
+    var mensaje = new URLSearchParams(window.location.search).get("mensaje");
+
+    // Si hay un mensaje, muestra una ventana emergente con él
+    if (mensaje) {
+        alert(mensaje);
+    }
+    
     </script>
     
 </head>
@@ -82,7 +105,6 @@
         <a href="index.html">Inicio</a>
         <a href="catalogo.html">Catálogo</a>
         <a href="condic.html">Condiciones</a>
-        <a href="reserva.html">Reserva</a>
         <a href="contacto.html">Contacto</a>
         <a href="login.html">Iniciar Sesión</a>
     </nav>

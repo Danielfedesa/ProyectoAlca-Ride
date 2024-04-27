@@ -38,10 +38,13 @@ public class ServletListarUsuarios extends HttpServlet {
 		try {
 			//Me devuelve el PrintWriter del response que me sirve para enviar cosas
 			PrintWriter out = response.getWriter();
-			//Genero un objeto DaoUsuario llamado dao
-			DaoUsuario dao = new DaoUsuario();
-			//Hago un string del resultado
-			String resultado = dao.listarJson();
+			
+			
+			//Genero un objeto DaoUsuario llamado usuario
+			Usuario usuario = new Usuario();
+			
+						//Hago un string del resultado
+			String resultado = usuario.listarJson();
 			
 			//Imprimimos el resultado
 			out.print(resultado);

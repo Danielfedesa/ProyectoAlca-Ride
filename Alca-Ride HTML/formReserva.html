@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alca-Ride | Formulario de reserva</title>
+    <link rel="stylesheet" href="styles/formularios.css">
+</head>
+
+  <!-- Creo una clase para el body, para la cual aplicaré 
+    en su página de estilos un grid y le daré forma responsive.
+    Divido el body en 4 apartados principales:
+        header
+        navbar
+        contenido
+        footer
+    -->
+<body class="gridContainer">
+
+    <header class="header">
+        <!--Pongo este div para que el enlace se ajuste exactamente al logo-->
+        <div>
+        <a href="index.html"><img src="images/logo1.jpg" alt="Logo Alca-Ride"></a>
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <a href="index.html">Inicio</a>
+        <a href="catalogo.html">Catálogo</a>
+        <a href="condic.html">Condiciones</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="login.html">Iniciar Sesión</a>
+    </nav>
+    
+    <article class="contenido">
+        <div class="formReserva">			
+            <h1>Formulario de reserva</h1>
+            <h3>Alca-Ride estudiará la reserva en base a este formulario y contactará contigo para la confirmación.</h3>
+            
+            <form action="submeter-formulario.php" method="post">
+            
+                <!--Menú desplegable para seleccionar moto,
+            la primera opción está deshabilitada para que obligue
+            a elegir una de las otras antes de enviar--> 
+    
+    
+            <label for="vehiculo">Vehículo:</label>
+            <select id="vehiculo" name="vehiculo" required>
+                <option value="" disabled selected hidden>Selecciona una opción</option>
+                    <option value="1">CUSTOM - Harley Davidson Road King</option>
+                    <option value="2">CUSTOM - Kawasaki Vulcan 900</option>
+                    <option value="3">CUSTOM - Indian Challenger Dark Horse</option>
+                    <option value="4">CUSTOM - KHonda CMX500 Rebel</option>
+    
+                    <option value="5">ADVENTURE - BMW G1250GS Adventure</option>
+                    <option value="6">ADVENTURE - Kawasaki Versys 650</option>
+                    <option value="7">ADVENTURE - Honda Africa Twhin 1100</option>
+                    <option value="8">ADVENTURE - KTM 1290 Super Adventure</option>
+    
+                    <option value="9">TURISMO - BMW R1250RT</option>
+                    <option value="10">TURISMO - Yamaha FJR1300AE</option>
+                    <option value="11">TURISMO - Honda Goldwing Tour</option>
+                    <option value="12">TURISMO - Suzuki Vstrom 1050</option>
+    
+                    <option value="13">NAKED - Yamaha MT-07</option>
+                    <option value="14">NAKED - KTM Super Duke R 1290</option>
+                    <option value="15">NAKED - Suzuki GSX-S 750</option>
+                    <option value="16">NAKED - Honda CB 1000 R</option>
+            </select>
+    
+            <p>
+                <label for="fechaRecogida" class="colocar_fecha_recogida">Fecha de recogida
+                    <span class="obligatorio">*</span>
+                </label>
+                <input type="date" name="introducir_fecha_recogida" id="fecha_recogida" required="obligatorio">
+            </p>
+    
+            <p>
+                <label for="fechaEntrega" class="colocar_fecha_entrega">Fecha de devolucion
+                    <span class="obligatorio">*</span>
+                </label>
+                <input type="date" name="introducir_fecha_devolucion" id="fecha_devolucion" required="obligatorio">
+            </p>
+            
+            <div class="priva">
+                <input type="checkbox" id="privacidad" name="privacidad" required>
+                <label for="confirmacion">Confirmo que he leído y acepto la <a href="/privacidad.html">política de privacidad</a>.</label>
+            </div>
+                                
+            <button type="submit" name="enviar_formulario" id="enviar"><p>Enviar</p></button>
+    
+            <div class="aviso">
+            <span class="obligatorio"> * </span>Los campos son obligatorios.
+            </div>					
+                            
+            </form>
+            </div>
+        </div>
+    </article>
+
+    <footer class="footer">
+        <a href="privacidad.html" style="color: white;">Política de privacidad</a>
+        <a href="legal.html" style="color: white;">Aviso legal</a>
+        <p style="color: white;">Copyright Alca-Ride 2024 - Developed by Daniel Fernández</p>
+    </footer>
+
+</body>
+
+</html>
