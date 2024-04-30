@@ -144,7 +144,7 @@ public class Usuario {
 
 	// Método listarUsuarios
 	//Hago un método que obtiene los elementos del Dao y los convierte en json
-	public String listarJson() throws SQLException {
+	public String listarUsuarios() throws SQLException {
 		String json = "";
 		Gson objetoGson = new Gson();
 		//Meto en el objeto json lo que genere el objetoGson con el método toJson (lo convierte a json)
@@ -152,7 +152,7 @@ public class Usuario {
 		json = objetoGson.toJson(resultado.listar());
 		return json;
 	}
-	// Método leerUsuario
+	// Método recuperarUsuario para modificarlo despues (formulario modificar)
 	public void recuperarUsuario(int id_Usuario) throws SQLException {
 		//Genero un objeto dao
 		DaoUsuario dao = new DaoUsuario();
@@ -168,10 +168,9 @@ public class Usuario {
 		this.setDni(u.getDni());
 		this.setCarnet(u.getCarnet());
 		this.setDireccion(u.getDireccion());
-	}
+	}	
 	
-	
-	//Método para hacer un json con los datos del método modificar.
+	//Método para hacer un json con los datos del método recuperarUsuario.
 	public String dameJson() {
 		//Creo variable con cadena vacía
 		String json = "";
@@ -183,7 +182,7 @@ public class Usuario {
 		return json;
 	}
 	
-	//Metodo actualizar usuario
+	//Metodo actualizar usuario para insertar las modificaciones en la base de datos
 		public boolean actualizarUsuario() throws SQLException {
 			DaoUsuario daoUsuario = new DaoUsuario();
 			return daoUsuario.actualizarUser(this);

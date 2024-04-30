@@ -77,6 +77,8 @@ public class DaoUsuario {
 			result.add(new UsuarioViewModel(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10)));
 		}
 		
+		ps.close();
+		
 		return result;
 		
 	}
@@ -98,6 +100,9 @@ public class DaoUsuario {
 		
 		//Le digo que nos genere un objeto Usuario con los datos que está recibiendo el resukltset
 		Usuario u = new Usuario(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
+		
+		ps.close();
+		
 		//Retornamos el objeto u
 		return u;
 	}
@@ -147,10 +152,5 @@ public class DaoUsuario {
 				
 				ps.close();
 			}
-	
-	
-	
-	
-	
-	
+
 }

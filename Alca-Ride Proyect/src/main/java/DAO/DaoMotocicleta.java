@@ -14,7 +14,7 @@ public class DaoMotocicleta {
 	public static Connection con = null; //Importo Connection.
 	
 	
-	//Nada más se crea el objeto DaoNave le decimos al atributo con que conecte con DBConnection.getConexion() para que
+	//Nada más se crea el objeto DaoMotocicleta le decimos al atributo con que conecte con DBConnection.getConexion() para que
 	//se inicie la conexión nada más se instancie el objeto.
 	public DaoMotocicleta() throws SQLException {
 		this.con = ConexionDB.getConexion(); //Importo y añado excepción.

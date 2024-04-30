@@ -16,7 +16,7 @@
     }
     
     function pintarResultados(datos) {
-    	let html = "<table border=1>";
+    	let html = "<table class='datos-clientes'>";
     	
     	 html += "<tr>";
     	    html += "<th>ID USUARIO</th>";
@@ -110,15 +110,19 @@
     </nav>
     
     <article class="contenido">
-        <div class="usu"><a href="adminArea.html">ADMINISTRADOR</a></div>
-        <div class="usu"><a href="adminUsu.html">Gestión de usuarios</a></div>
-        <div class="res"><a href="adminRes.html">Gestión de reservas</a></div>
-        <div class="pro"><a href="adminPro.html">Gestión de productos</a></div>
+
+        <div class="menu">
+            
+            <div class="adm"><a href="adminArea.html">ADMINISTRADOR</a></div>
+            <div class="usu"><a href="adminUsu.html">Gestión de usuarios</a></div>
+            <div class="res"><a href="adminRes.html">Gestión de reservas</a></div>
+            <div class="pro"><a href="adminPro.html">Gestión de productos</a></div>
+        </div>
+        
         <h1>Tabla Usuarios Registrados</h1>
         
-          <div id="listadoUsuarios">
-        
-        </div>
+          <div id="listadoUsuarios"></div>
+          
     </article>
 
     <footer class="footer">

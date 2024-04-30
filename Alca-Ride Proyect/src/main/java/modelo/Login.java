@@ -107,6 +107,7 @@ public class Login {
 		DaoLogin log = new DaoLogin();
 		log.insertar(this);
 	}
+	
 	// Método leerLogin
 	public Login leerLogin() throws SQLException {
 		//acudir al DAO y leer el login a partir del usuario y la contraseña proporcionadas
@@ -115,9 +116,6 @@ public class Login {
 		//Retorna lo leido por el Dao a la variable miLogin
 		return milogin;		
 	}
-		
-		
-	// Método actualizarLogin
 		
 	// Método eliminarLogin
 	public void eliminarLogin() throws SQLException {

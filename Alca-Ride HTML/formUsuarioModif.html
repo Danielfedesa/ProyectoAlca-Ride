@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alca-Ride | Formulario modificación de usuarios</title>
+    <title>Alca-Ride | Formulario de registro</title>
     <link rel="stylesheet" href="styles/formularios.css">
     
     <script>
@@ -43,9 +43,16 @@
 		
 		window.onload = function(){
 			let id = getParameterByName("id_Usuario");
-			llamada(id);
-			
+			llamada(id);	
 		}
+		
+	 	// Obtiene el mensaje del servidor (de la URL)
+	    var mensaje = new URLSearchParams(window.location.search).get("mensaje");
+
+	    // Si hay un mensaje, muestra una ventana emergente con él
+	    if (mensaje) {
+	        alert(mensaje);
+	    }
 		</script>
     
 </head>
@@ -71,6 +78,7 @@
         <a href="index.html">Inicio</a>
         <a href="catalogo.html">Catálogo</a>
         <a href="condic.html">Condiciones</a>
+        <a href="reserva.html">Reserva</a>
         <a href="contacto.html">Contacto</a>
         <a href="login.html">Iniciar Sesión</a>
     </nav>

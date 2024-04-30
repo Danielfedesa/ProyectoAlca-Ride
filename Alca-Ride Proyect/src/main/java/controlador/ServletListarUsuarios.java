@@ -44,7 +44,7 @@ public class ServletListarUsuarios extends HttpServlet {
 			Usuario usuario = new Usuario();
 			
 						//Hago un string del resultado
-			String resultado = usuario.listarJson();
+			String resultado = usuario.listarUsuarios();
 			
 			//Imprimimos el resultado
 			out.print(resultado);

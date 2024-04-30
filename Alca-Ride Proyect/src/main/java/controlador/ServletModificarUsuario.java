@@ -76,7 +76,12 @@ public class ServletModificarUsuario extends HttpServlet {
 
 		try {
 			boolean respuesta = user.actualizarUsuario();
-			response.sendRedirect("adminUsu.html");
+			
+			//Mando mensaje por ventana emergente a JavaScript
+            response.setContentType("text/plain");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("Usuario modificado correctamente");
+            response.sendRedirect("adminUsu.html?mensaje=Usuario+modificado+correctamente");// Se redirige al usuario a la página 'adminUsu.html' después de modificar el usuario y se muestra mensaje de confirmación
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
