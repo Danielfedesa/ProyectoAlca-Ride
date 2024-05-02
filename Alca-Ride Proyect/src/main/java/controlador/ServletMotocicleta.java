@@ -42,11 +42,11 @@ public class ServletMotocicleta extends HttpServlet {
 		//asignando una variable a cada uno y dando el parametro del nombre del formulario individual.
 		String tipo = request.getParameter("tipo");
 		String matricula = request.getParameter("matricula");
-		String cilindrada = request.getParameter("cilindrada");
+		int cilindrada = Integer.parseInt(request.getParameter("cilindrada"));
 		String tipo_Carnet = request.getParameter("tipo_Carnet");
 		String marca = request.getParameter("marca");
 		String modelo = request.getParameter("modelo");
-		String anio = request.getParameter("anio");
+		int anio = Integer.parseInt(request.getParameter("anio"));
 		double precio_Dia = Integer.parseInt(request.getParameter("precio_Dia"));
 
 		//Creamos un objeto con el constructor que no tiene id.
@@ -58,6 +58,7 @@ public class ServletMotocicleta extends HttpServlet {
 		//Método crearMotocicleta de la clase Motocicleta.
 		try {
 			m1.crearMotocicleta(); //Lo meto en un try catch.
+			response.sendRedirect("adminPro.html");
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

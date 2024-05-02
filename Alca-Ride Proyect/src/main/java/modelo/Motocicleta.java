@@ -2,6 +2,8 @@ package modelo;
 
 import java.sql.SQLException;
 
+import com.google.gson.Gson;
+
 import DAO.DaoMotocicleta;
 
 public class Motocicleta {
@@ -10,11 +12,11 @@ public class Motocicleta {
 	private int id_Moto;
 	private String tipo;
 	private String matricula;
-	private String cilindrada;
+	private int cilindrada;
 	private String tipo_Carnet;
 	private String marca;
 	private String modelo;
-	private String anio;
+	private int anio;
 	private double precio_Dia;
 	
 	
@@ -23,8 +25,8 @@ public class Motocicleta {
 	}
 	
 	//Constructor sin id_Moto.
-	public Motocicleta(String tipo, String matricula, String cilindrada, String tipo_Carnet, String marca,
-			String modelo, String anio, double precio_Dia) {
+	public Motocicleta(String tipo, String matricula, int cilindrada, String tipo_Carnet, String marca,
+			String modelo, int anio, double precio_Dia) {
 		super();
 		this.tipo = tipo;
 		this.matricula = matricula;
@@ -37,8 +39,8 @@ public class Motocicleta {
 	}
 
 	//Constructor completo:
-	public Motocicleta(int id_Moto, String tipo, String matricula, String cilindrada, String tipo_Carnet, String marca,
-			String modelo, String anio, double precio_Dia) {
+	public Motocicleta(int id_Moto, String tipo, String matricula, int cilindrada, String tipo_Carnet, String marca,
+			String modelo, int anio, double precio_Dia) {
 		super();
 		this.id_Moto = id_Moto;
 		this.tipo = tipo;
@@ -76,11 +78,11 @@ public class Motocicleta {
 		this.matricula = matricula;
 	}
 
-	public String getCilindrada() {
+	public int getCilindrada() {
 		return cilindrada;
 	}
 
-	public void setCilindrada(String cilindrada) {
+	public void setCilindrada(int cilindrada) {
 		this.cilindrada = cilindrada;
 	}
 
@@ -108,11 +110,11 @@ public class Motocicleta {
 		this.modelo = modelo;
 	}
 
-	public String getAnio() {
+	public int getAnio() {
 		return anio;
 	}
 
-	public void setAnio(String anio) {
+	public void setAnio(int anio) {
 		this.anio = anio;
 	}
 
@@ -139,7 +141,14 @@ public class Motocicleta {
 			moto.insertar(this);
 		}
 
-	//Método para leer Motocicleta:
+	//Método para listar Motocicletas:
+		public String listarMotos() throws SQLException {
+			String json = "";
+			Gson objetoGson = new Gson();
+			DaoMotocicleta resultado = new DaoMotocicleta();
+			json = objetoGson.toJson(resultado.listar());
+			return json;
+		}
 	
 	//Método para actualizar Motocicleta:
 		

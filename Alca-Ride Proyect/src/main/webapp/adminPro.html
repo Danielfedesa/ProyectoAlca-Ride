@@ -5,6 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alca-Ride | Área privada ADMINISTRADOR | Gestión de productos</title>
     <link rel="stylesheet" href="styles/tablas.css">
+    
+    <script>
+    /*Función para pintar los datos de la tabla Motocicletas*/
+    function llamada(ServletListarMotos) {
+    	fetch(ServletListarMotos)
+    	.then(res => res.json())
+    	.then(res => pintarResultados(res));
+    }
+    
+    function pintarResultados(motos) {
+    	let html = "<table class='datos-motos'>";
+    	
+	    	html += "<tr>";
+		    html += "<th>ID MOTO</th>";
+		    html += "<th>TIPO</th>";
+		    html += "<th>MATRICULA</th>";
+		    html += "<th>CILINDRADA</th>";
+		    html += "<th>CARNET</th>";
+		    html += "<th>MARCA</th>";
+		    html += "<th>MODELO</th>";
+		    html += "<th>AÑO</th>";
+		    html += "<th>PRECIO/DIA</th>";
+		    html += "<th>MODIFICAR</th>";
+		    html += "<th>ELIMINAR</th>";
+		    html += "</tr>";
+	    
+	    for(var i=0; i<motos.length; i++) {
+	    	html += `<tr>
+	    	<td>${motos[i].id_Moto}</td>
+	    	<td>${motos[i].tipo}</td>
+    		<td>${motos[i].matricula}</td>
+    		<td>${motos[i].cilindrada}</td>
+    		<td>${motos[i].carnet}</td>
+    		<td>${motos[i].marca}</td>
+    		<td>${motos[i].modelo}</td>
+    		<td>${motos[i].anio}</td>
+    		<td>${motos[i].precio_Dia}</td>
+    		<td><a href='formMotocicleta.html?id_Moto=${motos[i].id_Moto}'><button type="submit">Modificar</button></a></td>
+    		<td>   	 	
+    	   		<form
+    	   			onsubmit="return confirmarEliminacion();" action="ServletEliminarMoto" method="post">
+	    	    	<input type="hidden" name="id_Moto" value="${motos[i].id_Moto}">
+	    	    	<button type="submit">Eliminar</button>
+    	 		</form>
+    		</td>
+    		</tr>`;
+	    }
+	    
+	    html += "</table>";
+	    
+    	document.getElementById("listadoMotocicletas").innerHTML = html;
+    }
+	    
+    
+    	window.onload = function() {
+    		llamada("ServletListarMotos");
+    	}
+    	
+    	
+    	
+    	
+    
+    </script>
+    
+    
 </head>
 
   <!-- Creo una clase para el body, para la cual aplicaré 
@@ -42,6 +107,8 @@
         </div>
         
         <h1>Tabla Motocicletas</h1>
+       
+       <div id="listadoMotocicletas"></div>
        
     </article>
 

@@ -109,7 +109,7 @@ public class Login {
 	}
 	
 	// Método leerLogin
-	public Login leerLogin() throws SQLException {
+	public Login iniciarSesion() throws SQLException {
 		//acudir al DAO y leer el login a partir del usuario y la contraseña proporcionadas
 		DaoLogin log = new DaoLogin();
 		Login milogin = log.leerLogin(this);

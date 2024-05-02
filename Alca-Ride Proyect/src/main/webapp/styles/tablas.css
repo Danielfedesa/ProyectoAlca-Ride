@@ -97,19 +97,19 @@ h1 {
     padding-top: 25px;
 }
 
-.datos-clientes {
+.datos-clientes, .datos-motos {
     width: 100%;
     border-collapse: collapse;
     max-width: 90%;
 }
 
-.datos-clientes th, .datos-clientes td {
+.datos-clientes th, .datos-clientes td, .datos-motos td {
     border: 3px solid #ddd;
     padding: 5px;
     text-align: left;
 }
 
-.datos-clientes th {
+.datos-clientes th, .datos-motos th {
     background-color: #f2f2f2;
 }
 

@@ -11,8 +11,7 @@
     function llamada(ServletListarUsuarios) {
     	fetch(ServletListarUsuarios)
     	.then(res => res.json())
-    	.then(res => pintarResultados(res));
-    	
+    	.then(res => pintarResultados(res));	
     }
     
     function pintarResultados(datos) {
@@ -60,7 +59,6 @@
     	
     	document.getElementById("listadoUsuarios").innerHTML = html;
     }
-    
 
     
     window.onload = function() {

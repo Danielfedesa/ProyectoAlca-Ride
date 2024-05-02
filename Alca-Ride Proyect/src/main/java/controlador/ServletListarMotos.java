@@ -5,22 +5,25 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import modelo.Usuario;
+import modelo.Motocicleta;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
+import DAO.DaoMotocicleta;
+
 /**
- * Servlet implementation class ServletListarUsuarios
+ * Servlet implementation class ServletListarMotos
  */
-public class ServletListarUsuarios extends HttpServlet {
+@SuppressWarnings("unused")
+public class ServletListarMotos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletListarUsuarios() {
+    public ServletListarMotos() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,27 +33,22 @@ public class ServletListarUsuarios extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-			
+
 		try {
-			//Me devuelve el PrintWriter del response que me sirve para enviar cosas
-			PrintWriter out = response.getWriter();
+		PrintWriter out = response.getWriter();
+		
+		Motocicleta moto = new Motocicleta();
+				
+		String resultado = moto.listarMotos();
 			
-			
-			//Genero un objeto DaoUsuario llamado usuario
-			Usuario usuario = new Usuario();
-			
-						//Hago un string del resultado
-			String resultado = usuario.listarUsuarios();
-			
-			//Imprimimos el resultado
 			out.print(resultado);
 			System.out.println(resultado);
-						
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-	
+		}	
+		
 	}
 
 	/**
@@ -58,8 +56,6 @@ public class ServletListarUsuarios extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		
 		
 	}
 

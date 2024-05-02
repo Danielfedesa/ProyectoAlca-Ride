@@ -50,7 +50,7 @@ public class ServletLogin extends HttpServlet {
 		Login respuesta;
 		//Comprobamos los datos introducidos por respuesta a través de Login
 		try {
-			respuesta = milogin.leerLogin();
+			respuesta = milogin.iniciarSesion();
 			//Comprobamos si el objeto está vacío por no haberse encontrado en la base de datos por el Dao.
 			if(respuesta.getNombre_Usuario()=="") {
 				response.sendRedirect("errorRegistro.html");

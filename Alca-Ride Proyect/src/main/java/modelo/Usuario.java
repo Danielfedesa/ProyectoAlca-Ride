@@ -148,7 +148,7 @@ public class Usuario {
 		String json = "";
 		Gson objetoGson = new Gson();
 		//Meto en el objeto json lo que genere el objetoGson con el método toJson (lo convierte a json)
-		DaoUsuario resultado= new DaoUsuario();
+		DaoUsuario resultado = new DaoUsuario();
 		json = objetoGson.toJson(resultado.listar());
 		return json;
 	}

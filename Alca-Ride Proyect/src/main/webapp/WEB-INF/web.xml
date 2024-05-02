@@ -109,4 +109,14 @@
     <servlet-name>ServletModificarUsuario</servlet-name>
     <url-pattern>/ServletModificarUsuario</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletListarMotos</display-name>
+    <servlet-name>ServletListarMotos</servlet-name>
+    <servlet-class>controlador.ServletListarMotos</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletListarMotos</servlet-name>
+    <url-pattern>/ServletListarMotos</url-pattern>
+  </servlet-mapping>
 </web-app>
