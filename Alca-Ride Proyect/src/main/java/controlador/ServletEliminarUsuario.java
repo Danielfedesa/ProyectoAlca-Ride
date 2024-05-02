@@ -67,6 +67,7 @@ public class ServletEliminarUsuario extends HttpServlet {
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write("Usuario eliminado correctamente");
             response.sendRedirect("adminUsu.html?mensaje=Usuario+eliminado+correctamente");// Se redirige al usuario a la página 'adminUsu.html' después de borrar el usuario y se muestra mensaje de confirmación
+            
         } catch (SQLException e) {
             System.out.println("Error al eliminar el usuario de la tabla usuarios: " + e.getMessage()); // Se imprime un mensaje de error en la consola si ocurre una excepción SQL
         }

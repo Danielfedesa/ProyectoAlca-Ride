@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import com.google.gson.Gson;
 
 import DAO.DaoMotocicleta;
+import DAO.DaoUsuario;
 
 public class Motocicleta {
 	
@@ -149,8 +150,48 @@ public class Motocicleta {
 			json = objetoGson.toJson(resultado.listar());
 			return json;
 		}
+		
+		// Método recuperarUsuario para modificarlo despues (formulario modificar)
+		public void recuperarMoto(int id_Moto) throws SQLException {
+			//Genero un objeto dao
+			DaoMotocicleta dao = new DaoMotocicleta();
+			//Creo una motocicleta auxiliar en base al id_Moto con todos los datos
+			Motocicleta m = dao.leerFormulario(id_Moto);
+			
+			this.setId_Moto(m.getId_Moto());
+			this.setTipo(m.getTipo());
+			this.setMatricula(m.getMatricula());
+			this.setCilindrada(m.getCilindrada());
+			this.setTipo_Carnet(m.getTipo_Carnet());
+			this.setMarca(m.getMarca());
+			this.setModelo(m.getModelo());
+			this.setAnio(m.getAnio());
+			this.setCilindrada(m.getCilindrada());
+			this.setPrecio_Dia(m.getPrecio_Dia());
+		}	
+		
+		//Método para hacer un json con los datos del método recuperarMoto.
+		public String dameJson() {
+			//Creo variable con cadena vacía
+			String json = "";
+			// Creo objeto Gson llamado gson
+			Gson gson = new Gson();
+			//En el json meto lo que devuelve el objeto Gson y le doy de parametro a mi mismo(Usuario)
+			json = gson.toJson(this);
+			//Nos devuelve el json
+			return json;
+		}
 	
-	//Método para actualizar Motocicleta:
+		//Metodo actualizar Moto para insertar las modificaciones en la base de datos
+		public boolean actualizarMoto() throws SQLException {
+			DaoMotocicleta daoMoto = new DaoMotocicleta();
+			return daoMoto.actualizarMoto(this);
+		}
 		
 	//Método para eliminar Motocicleta:
+	
+		public void eliminarMotocicleta() throws SQLException {
+			DaoMotocicleta borrar = new DaoMotocicleta();
+			borrar.eliminarMoto(this);
+		}
 }

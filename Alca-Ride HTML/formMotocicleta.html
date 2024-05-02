@@ -3,8 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alca-Ride | Formulario motocicleta</title>
+    <title>Alca-Ride | Formulario modificar motocicleta</title>
     <link rel="stylesheet" href="styles/formularios.css">
+    <script>
+    
+    function llamada(id_Moto) {
+        fetch('ServletModificarMoto?id_Moto=' + id_Moto)
+        .then(response => response.json())
+        .then(data => pintarFormulario(data));
+    }
+    
+		/* Función para otener el valor de un parametro en el GET */
+ 
+	function getParameterByName(name) {
+		    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+		    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+		    results = regex.exec(location.search);
+		    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
+
+
+   		
+		
+		
+		function pintarFormulario(datos){
+			document.getElementById("id_Moto").value = datos.id_Moto;
+			document.getElementById("tipo").value = datos.tipo;
+			document.getElementById("matricula").value = datos.matricula;
+			document.getElementById("cilindrada").value = datos.cilindrada;
+			document.getElementById("tipo_Carnet").value = datos.tipo_Carnet;
+			document.getElementById("marca").value = datos.marca;
+			document.getElementById("modelo").value = datos.modelo;
+			document.getElementById("anio").value = datos.anio;
+			document.getElementById("precio_Dia").value = datos.precio_Dia;
+		}
+		
+		
+		
+		window.onload = function(){
+			let id = getParameterByName("id_Moto");
+			llamada(id);	
+		}
+		
+	 	// Obtiene el mensaje del servidor (de la URL)
+	    var mensaje = new URLSearchParams(window.location.search).get("mensaje");
+
+	    // Si hay un mensaje, muestra una ventana emergente con él
+	    if (mensaje) {
+	        alert(mensaje);
+	    }
+		</script>
 </head>
 
   <!-- Creo una clase para el body, para la cual aplicaré 
@@ -36,7 +84,16 @@
         <div class="formMoto">			
             <h1>Formulario motocicleta</h1>  
 
-            <form action="#" method="post" enctype="multipart/form-data">
+            <form action="ServletModificarMoto" method="post">
+            
+            <input type="hidden" name="id_Moto" id="id_Moto">
+             <p>
+                <label for="id_Moto" class="colocar_id_Moto">ID Prod
+                <span class="obligatorio">*</span>
+                </label>
+                <input type="id_Moto" name="introducir_id_Moto" id="id_Moto" required="obligatorio" placeholder="Escribe el ID del vehículo">
+            </p>
+            
              <!--Menú desplegable para seleccionar carnet,
             la primera opción está deshabilitada para que obligue
             a elegir una de las otras dos antes de enviar--> 
@@ -74,7 +131,7 @@
                 <label for="carnet" class="colocar_carnet">Tipo carnet
                     <span class="obligatorio">*</span>
                 </label>
-                <select name="introducir_carnet" id="carnet" required="obligatorio">
+                <select name="introducir_carnet" id="tipo_Carnet" required="obligatorio">
                     <option value="" disabled selected hidden>Selecciona una opción</option>
                     <option value="A">A</option>
                     <option value="A2">A2</option>
@@ -106,7 +163,7 @@
                 <label for="precio" class="colocar_precio">Precio por día
                 <span class="obligatorio">*</span>
                 </label>
-                <input type="precio" name="introducir_precio" id="precio" required="obligatorio" placeholder="Escribe el precio por día del vehículo">
+                <input type="precio" name="introducir_precio" id="precio_Dia" required="obligatorio" placeholder="Escribe el precio por día del vehículo">
             </p>
 
             <button type="submit" name="enviar_formulario" id="enviar"><p>Enviar</p></button>

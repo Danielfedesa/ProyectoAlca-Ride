@@ -119,4 +119,24 @@
     <servlet-name>ServletListarMotos</servlet-name>
     <url-pattern>/ServletListarMotos</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletModificarMoto</display-name>
+    <servlet-name>ServletModificarMoto</servlet-name>
+    <servlet-class>controlador.ServletModificarMoto</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletModificarMoto</servlet-name>
+    <url-pattern>/ServletModificarMoto</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletEliminarMoto</display-name>
+    <servlet-name>ServletEliminarMoto</servlet-name>
+    <servlet-class>controlador.ServletEliminarMoto</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletEliminarMoto</servlet-name>
+    <url-pattern>/ServletEliminarMoto</url-pattern>
+  </servlet-mapping>
 </web-app>
