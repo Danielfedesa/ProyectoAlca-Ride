@@ -56,10 +56,14 @@ public class ServletEliminarMoto extends HttpServlet {
             response.setContentType("text/plain");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write("Vehículo eliminado correctamente");
-            response.sendRedirect("adminPro.html?mensaje=Vehículo+eliminado+correctamente");// Se redirige al usuario a la página 'adminPro.html' después de borrar la motocicleta y se muestra mensaje de confirmación
+            response.sendRedirect("adminPro.html?mensaje=Vehiculo+eliminado+correctamente");// Se redirige al usuario a la página 'adminPro.html' después de borrar la motocicleta y se muestra mensaje de confirmación
        
         } catch (SQLException e) {
-            System.out.println("Error al eliminar el vehículo de la tabla motocicletas: " + e.getMessage()); // Se imprime un mensaje de error en la consola si ocurre una excepción SQL
+            System.out.println("Error al eliminar el vehiculo de la tabla motocicletas: " + e.getMessage()); // Se imprime un mensaje de error en la consola si ocurre una excepción SQL
+            response.setContentType("text/plain");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("Error al eliminar el vehiculo de la base de datos");
+            response.sendRedirect("adminPro.html?mensaje=Error+al+eliminar+el+vehiculo.+Existen+reservas+en+la+base+de+datos.");
         }
 	}
 

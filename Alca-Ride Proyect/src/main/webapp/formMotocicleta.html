@@ -87,21 +87,15 @@
             <form action="ServletModificarMoto" method="post">
             
             <input type="hidden" name="id_Moto" id="id_Moto">
-             <p>
-                <label for="id_Moto" class="colocar_id_Moto">ID Prod
-                <span class="obligatorio">*</span>
-                </label>
-                <input type="id_Moto" name="introducir_id_Moto" id="id_Moto" required="obligatorio" placeholder="Escribe el ID del vehículo">
-            </p>
             
              <!--Menú desplegable para seleccionar carnet,
             la primera opción está deshabilitada para que obligue
             a elegir una de las otras dos antes de enviar--> 
             <p>
-                <label for="tipo" class="colocar_tipo">Tipo
+                <label for="tipo" class="tipo">Tipo
                     <span class="obligatorio">*</span>
                 </label>
-                <select name="introducir_tipo" id="tipo" required="obligatorio">
+                <select name="tipo" id="tipo" required="obligatorio">
                     <option value="" disabled selected hidden>Selecciona una opción</option>
                     <option value="Custom">Custom</option>
                     <option value="Adventure">Adventure</option>
@@ -114,14 +108,14 @@
                 <label for="matricula" class="colocar_matricula">Matricula
                 <span class="obligatorio">*</span>
                 </label>
-                <input type="matricula" name="introducir_matricula" id="matricula" required="obligatorio" placeholder="Escribe la matricula del vehículo">
+                <input type="matricula" name="matricula" id="matricula" required="obligatorio" placeholder="Escribe la matricula del vehículo">
             </p>
 
             <p>
                 <label for="cilindrada" class="colocar_cilindrada">Cilindrada
                 <span class="obligatorio">*</span>
                 </label>
-                <input type="cilindrada" name="introducir_cilindrada" id="cilindrada" required="obligatorio" placeholder="Escribe la cilindrada del vehículo">
+                <input type="cilindrada" name="cilindrada" id="cilindrada" required="obligatorio" placeholder="Escribe la cilindrada del vehículo">
             </p>
 
             <!--Menú desplegable para seleccionar carnet,
@@ -131,7 +125,7 @@
                 <label for="carnet" class="colocar_carnet">Tipo carnet
                     <span class="obligatorio">*</span>
                 </label>
-                <select name="introducir_carnet" id="tipo_Carnet" required="obligatorio">
+                <select name="tipo_Carnet" id="tipo_Carnet" required="obligatorio">
                     <option value="" disabled selected hidden>Selecciona una opción</option>
                     <option value="A">A</option>
                     <option value="A2">A2</option>
@@ -142,28 +136,28 @@
                 <label for="marca" class="colocar_marca">Marca
                 <span class="obligatorio">*</span>
                 </label>
-                <input type="marca" name="introducir_marca" id="marca" required="obligatorio" placeholder="Escribe la marca del vehículo">
+                <input type="marca" name="marca" id="marca" required="obligatorio" placeholder="Escribe la marca del vehículo">
             </p>
     
             <p>
                 <label for="modelo" class="colocar_modelo">Modelo
                 <span class="obligatorio">*</span>
                 </label>
-                <input type="modelo" name="introducir_modelo" id="modelo" required="obligatorio" placeholder="Escribe el modelo del vehículo">
+                <input type="modelo" name="modelo" id="modelo" required="obligatorio" placeholder="Escribe el modelo del vehículo">
             </p>
 
             <p>
                 <label for="anio" class="colocar_anio">Año
                 <span class="obligatorio">*</span>
                 </label>
-                <input type="anio" name="introducir_anio" id="anio" required="obligatorio" placeholder="Escribe el año del vehículo">
+                <input type="anio" name="anio" id="anio" required="obligatorio" placeholder="Escribe el año del vehículo">
             </p>
 
             <p>
                 <label for="precio" class="colocar_precio">Precio por día
                 <span class="obligatorio">*</span>
                 </label>
-                <input type="precio" name="introducir_precio" id="precio_Dia" required="obligatorio" placeholder="Escribe el precio por día del vehículo">
+                <input type="precio" name="precio_Dia" id="precio_Dia" required="obligatorio" placeholder="Escribe el precio por día del vehículo">
             </p>
 
             <button type="submit" name="enviar_formulario" id="enviar"><p>Enviar</p></button>

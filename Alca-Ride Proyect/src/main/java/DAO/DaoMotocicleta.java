@@ -100,12 +100,12 @@ public class DaoMotocicleta {
 	            PreparedStatement ps = con.prepareStatement(sql);
 	            ps.setString(1, moto.getTipo());
 	            ps.setString(2, moto.getMatricula());
-	            ps.setInt(2, moto.getCilindrada());
-	            ps.setString(3, moto.getTipo_Carnet());
-	            ps.setString(4, moto.getMarca());
-	            ps.setString(5, moto.getModelo());
-	            ps.setInt(6, moto.getAnio());
-	            ps.setDouble(7, moto.getPrecio_Dia());
+	            ps.setInt(3, moto.getCilindrada());
+	            ps.setString(4, moto.getTipo_Carnet());
+	            ps.setString(5, moto.getMarca());
+	            ps.setString(6, moto.getModelo());
+	            ps.setInt(7, moto.getAnio());
+	            ps.setDouble(8, moto.getPrecio_Dia());
 	            ps.setInt(9, moto.getId_Moto());
 	            
 	            int rs = ps.executeUpdate();

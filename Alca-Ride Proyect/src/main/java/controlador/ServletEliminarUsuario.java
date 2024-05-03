@@ -52,6 +52,10 @@ public class ServletEliminarUsuario extends HttpServlet {
             System.out.println("Usuario borrado correctamente de la tabla login"); // Se imprime un mensaje de éxito en la consola
         } catch (SQLException e) {
             System.out.println("Error al eliminar el usuario de la tabla login: " + e.getMessage()); // Se imprime un mensaje de error en la consola si ocurre una excepción SQL
+            response.setContentType("text/plain");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("Error al eliminar el login de la base de datos");
+            response.sendRedirect("adminUsu.html?mensaje=Error+al+eliminar+el+login+de+la+base+de+datos.");
         }
 
         // Eliminar usuario de la tabla 'usuarios'
@@ -70,6 +74,10 @@ public class ServletEliminarUsuario extends HttpServlet {
             
         } catch (SQLException e) {
             System.out.println("Error al eliminar el usuario de la tabla usuarios: " + e.getMessage()); // Se imprime un mensaje de error en la consola si ocurre una excepción SQL
+            response.setContentType("text/plain");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("Error al eliminar el usuario de la base de datos");
+            response.sendRedirect("adminUsu.html?mensaje=Error+al+eliminar+el+usuario+de+la+base+de+datos.");
         }
     }
 }

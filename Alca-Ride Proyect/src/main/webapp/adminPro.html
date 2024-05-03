@@ -37,7 +37,7 @@
 	    	<td>${motos[i].tipo}</td>
     		<td>${motos[i].matricula}</td>
     		<td>${motos[i].cilindrada}</td>
-    		<td>${motos[i].carnet}</td>
+    		<td>${motos[i].tipo_Carnet}</td>
     		<td>${motos[i].marca}</td>
     		<td>${motos[i].modelo}</td>
     		<td>${motos[i].anio}</td>
@@ -63,7 +63,18 @@
     		llamada("ServletListarMotos");
     	}
     	
-    	
+    	//Función para confirmar la eliminación del registro
+        function confirmarEliminacion() {
+            return confirm("¿Estás seguro que quieres eliminar el vehículo?");
+        }
+
+     	// Obtiene el mensaje del servidor (de la URL)
+        var mensaje = new URLSearchParams(window.location.search).get("mensaje");
+
+        // Si hay un mensaje, muestra una ventana emergente con él
+        if (mensaje) {
+            alert(mensaje);
+        }
     	
     	
     

@@ -68,7 +68,7 @@ public class ServletModificarMoto extends HttpServlet {
 		String marca = request.getParameter("marca");
 		String modelo = request.getParameter("modelo");
 		int anio = Integer.parseInt(request.getParameter("anio"));
-		double precio_Dia = Integer.parseInt(request.getParameter("precio_Dia"));
+		double precio_Dia = Double.parseDouble(request.getParameter("precio_Dia"));
 		
 		Motocicleta moto = new Motocicleta(id, tipo, matricula, cilindrada, tipo_Carnet, marca, modelo, anio, precio_Dia);
 
