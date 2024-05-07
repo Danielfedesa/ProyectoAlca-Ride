@@ -20,7 +20,7 @@
     <header class="header">
         <!--Pongo este div para que el enlace se ajuste exactamente al logo-->
         <div>
-        <a href="index.html"><img src="images/logo1.jpg" alt="Logo Alca-Ride"></a>
+            <a href="index.html"><img src="images/logo1.jpg" alt="Logo Alca-Ride"></a>
         </div>
     </header>
 
@@ -31,65 +31,75 @@
         <a href="contacto.html">Contacto</a>
         <a href="login.html">Iniciar Sesión</a>
     </nav>
-    
+
     <article class="contenido">
-        <div class="formReserva">			
+        <div class="formReserva">
             <h1>Formulario de reserva</h1>
             <h3>Alca-Ride estudiará la reserva en base a este formulario y contactará contigo para la confirmación.</h3>
-            
-            <form action="submeter-formulario.php" method="post">
-            
+
+            <form action="ServletRegistroReserva" method="post">
+
                 <!--Menú desplegable para seleccionar moto,
             la primera opción está deshabilitada para que obligue
-            a elegir una de las otras antes de enviar--> 
-    
-    
-            <label for="vehiculo">Vehículo:</label>
-            <select id="vehiculo" name="vehiculo" required>
-                <option value="" disabled selected hidden>Selecciona una opción</option>
+            a elegir una de las otras antes de enviar-->
+
+
+            <p>
+                <label for="id_Cliente" class="colocar_id_Usuario">ID Usuario
+                <span class="obligatorio">*</span>
+                </label>
+                <input type="id_Cliente" name="id_Cliente" id="id_Cliente" required="obligatorio"
+                    placeholder="Escribe tu ID de usuario">
+            </p>
+
+                <label for="id_Moto">Vehículo:</label>
+                <select id="id_Moto" name="id_Moto" required>
+                    <option value="" disabled selected hidden>Selecciona una opción</option>
                     <option value="1">CUSTOM - Harley Davidson Road King</option>
                     <option value="2">CUSTOM - Kawasaki Vulcan 900</option>
                     <option value="3">CUSTOM - Indian Challenger Dark Horse</option>
                     <option value="4">CUSTOM - KHonda CMX500 Rebel</option>
-    
+
                     <option value="5">ADVENTURE - BMW G1250GS Adventure</option>
                     <option value="6">ADVENTURE - Kawasaki Versys 650</option>
-                    <option value="7">ADVENTURE - Honda Africa Twhin 1100</option>
+                    <option value="7">ADVENTURE - Honda Africa Twin 1100</option>
                     <option value="8">ADVENTURE - KTM 1290 Super Adventure</option>
-    
+
                     <option value="9">TURISMO - BMW R1250RT</option>
                     <option value="10">TURISMO - Yamaha FJR1300AE</option>
                     <option value="11">TURISMO - Honda Goldwing Tour</option>
                     <option value="12">TURISMO - Suzuki Vstrom 1050</option>
-    
+
                     <option value="13">NAKED - Yamaha MT-07</option>
                     <option value="14">NAKED - KTM Super Duke R 1290</option>
                     <option value="15">NAKED - Suzuki GSX-S 750</option>
                     <option value="16">NAKED - Honda CB 1000 R</option>
-            </select>
-    
-            <p>
-                <label for="fechaRecogida" class="colocar_fecha_recogida">Fecha de recogida
-                    <span class="obligatorio">*</span>
-                </label>
-                <input type="date" name="introducir_fecha_recogida" id="fecha_recogida" required="obligatorio">
-            </p>
-    
-            <p>
-                <label for="fechaEntrega" class="colocar_fecha_entrega">Fecha de devolucion
-                    <span class="obligatorio">*</span>
-                </label>
-                <input type="date" name="introducir_fecha_devolucion" id="fecha_devolucion" required="obligatorio">
-            </p>
-                  
-            <button type="submit" name="enviar_formulario" id="enviar"><p>Enviar</p></button>
-    
-            <div class="aviso">
-            <span class="obligatorio"> * </span>Los campos son obligatorios.
-            </div>					
-                            
+                </select>
+
+                <p>
+                    <label for="fecha_Inicio" class="colocar_fecha_recogida">Fecha de recogida
+                        <span class="obligatorio">*</span>
+                    </label>
+                    <input type="date" name="fecha_Inicio" id="fecha_Inicio" required="obligatorio">
+                </p>
+
+                <p>
+                    <label for="fecha_Fin" class="colocar_fecha_entrega">Fecha de devolucion
+                        <span class="obligatorio">*</span>
+                    </label>
+                    <input type="date" name="fecha_Fin" id="fecha_Fin" required="obligatorio">
+                </p>
+
+                <button type="submit" name="enviar_formulario" id="enviar">
+                    <p>Enviar</p>
+                </button>
+
+                <div class="aviso">
+                    <span class="obligatorio"> * </span>Los campos son obligatorios.
+                </div>
+
             </form>
-            </div>
+        </div>
         </div>
     </article>
 
@@ -98,6 +108,24 @@
         <a href="legal.html" style="color: white;">Aviso legal</a>
         <p style="color: white;">Copyright Alca-Ride 2024 - Developed by Daniel Fernández</p>
     </footer>
+
+    <!-- JavaScript para recuperar el ID de la moto de la URL y establecerlo como valor del campo id_Moto -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const motoId = urlParams.get('id_Moto');
+
+            // Seleccionar automáticamente la opción correspondiente en el menú desplegable
+            document.getElementById('id_Moto').value = motoId;
+
+            // Obtener la fecha actual
+            var fechaActual = new Date();
+            // Formatear la fecha como YYYY-MM-DD
+            var formattedFechaActual = fechaActual.toISOString().split('T')[0];
+            // Actualizar el valor del campo oculto
+            document.getElementById('realiza').value = formattedFechaActual;
+        });
+    </script>
 
 </body>
 

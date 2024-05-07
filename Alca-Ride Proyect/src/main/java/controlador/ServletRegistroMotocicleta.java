@@ -14,13 +14,13 @@ import java.sql.SQLException;
  * Servlet implementation class ServletMotocicleta
  */
 @MultipartConfig //Añado la anotación @MultipartConfig para poder insertar fotografias. Importo
-public class ServletMotocicleta extends HttpServlet {
+public class ServletRegistroMotocicleta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletMotocicleta() {
+    public ServletRegistroMotocicleta() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,7 +30,6 @@ public class ServletMotocicleta extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

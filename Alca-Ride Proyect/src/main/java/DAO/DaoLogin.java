@@ -36,7 +36,7 @@ public class DaoLogin {
 	
 	//Método leer
 	public Login leerLogin(Login k) throws SQLException {
-		String sql = "SELECT nombre_Usuario, is_Admin FROM login WHERE nombre_Usuario = ? AND pass = ?";
+		String sql = "SELECT id_Login, nombre_Usuario, is_Admin FROM login WHERE nombre_Usuario = ? AND pass = ?";
 		
 		//Variables para almacenar el nombre y password que le pasamos por el formulario.
 		String nombreUs = k.getNombre_Usuario();
@@ -56,6 +56,7 @@ public class DaoLogin {
 		//Leemos el ResultSet mediante un while
 		while(filas.next())
 		{			
+			objLogin.setId_Login(filas.getInt("id_Login"));
 			objLogin.setNombre_Usuario(filas.getString("nombre_Usuario"));
 			objLogin.setIs_Admin(filas.getBoolean("is_Admin"));// = true; //filas["is_Admin"];	
 		}

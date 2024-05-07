@@ -45,12 +45,13 @@ public class ServletEliminarUsuario extends HttpServlet {
 
         // Eliminar usuario de la tabla 'login'
         try {
-            DaoLogin daoLogin = new DaoLogin(); // Se instancia un objeto DaoLogin para interactuar con la tabla 'login'
             Login login = new Login(); // Se crea un objeto Login para representar al usuario
             login.setId_Usuario(idParaBorrar); // Se establece el ID del usuario a borrar en el objeto Login
-            DaoLogin.eliminarLog(login); // Se llama al método eliminarLog del objeto DaoLogin para eliminar el usuario de la tabla 'login'
+            
+            login.eliminarLogin();
             System.out.println("Usuario borrado correctamente de la tabla login"); // Se imprime un mensaje de éxito en la consola
-        } catch (SQLException e) {
+            
+            } catch (SQLException e) {
             System.out.println("Error al eliminar el usuario de la tabla login: " + e.getMessage()); // Se imprime un mensaje de error en la consola si ocurre una excepción SQL
             response.setContentType("text/plain");
             response.setCharacterEncoding("UTF-8");
@@ -60,10 +61,10 @@ public class ServletEliminarUsuario extends HttpServlet {
 
         // Eliminar usuario de la tabla 'usuarios'
         try {
-            DaoUsuario daoUsuario = new DaoUsuario(); // Se instancia un objeto DaoUsuario para interactuar con la tabla 'usuarios'
             Usuario usuario = new Usuario(); // Se crea un objeto Usuario para representar al usuario
             usuario.setId_Usuario(idParaBorrar); // Se establece el ID del usuario a borrar en el objeto Usuario
-            DaoUsuario.eliminarUser(usuario); // Se llama al método eliminarUser del objeto DaoUsuario para eliminar el usuario de la tabla 'usuarios'
+            
+            usuario.eliminarUsuario();
             System.out.println("Usuario borrado correctamente de la tabla usuarios"); // Se imprime un mensaje de éxito en la consola
             
             //Mando mensaje por ventana emergente a JavaScript

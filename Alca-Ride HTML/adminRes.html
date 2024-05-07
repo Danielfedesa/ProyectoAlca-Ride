@@ -5,6 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alca-Ride | Área privada ADMINISTRADOR | Gestión de reservas</title>
     <link rel="stylesheet" href="styles/tablas.css">
+    <script>
+    /*Función para pintar los datos de la tabla Reservas*/
+    function llamada(ServletListarReservas) {
+    	fetch("ServletListarReservas")
+    	.then(res => res.json())
+    	.then(res => pintarResultados(res));
+    }
+    
+    function pintarResultados(reservas) {
+    	let html = "<table class='datos-motos'>";
+    	
+	    	html += "<tr>";
+		    html += "<th>ID RESERVA</th>";
+		    html += "<th>ID MOTO</th>";
+		    html += "<th>ID CLIENTE</th>";
+		    html += "<th>ID ADMIN</th>";
+		    html += "<th>FECHA REALIZACION</th>";
+		    html += "<th>FECHA INICIO</th>";
+		    html += "<th>FECHA FIN</th>";
+		    html += "<th>ESTADO</th>";
+		    html += "<th>MODIFICAR</th>";
+		    html += "<th>ELIMINAR</th>";
+		    html += "</tr>";
+	    
+	    for(var i=0; i<reservas.length; i++) {
+	    	html += `<tr>
+	    	<td>${reservas[i].id_Reserva}</td>
+	    	<td>${reservas[i].id_Moto}</td>
+    		<td>${reservas[i].id_Cliente}</td>
+    		<td>${reservas[i].id_Admin}</td>
+    		<td>${reservas[i].fecha_Realiza}</td>
+    		<td>${reservas[i].fecha_Inicio}</td>
+    		<td>${reservas[i].fecha_Fin}</td>
+    		<td>${reservas[i].estado}</td>
+    		<td><a href='formModifReserva.html?id_Reserva=${reservas[i].id_Reserva}'><button type="submit">Modificar</button></a></td>
+    		<td>   	 	
+    	   		<form
+    	   			onsubmit="return confirmarEliminacion();" action="ServletEliminarReserva" method="post">
+	    	    	<input type="hidden" name="id_Reserva" value="${reservas[i].id_Reserva}">
+	    	    	<button type="submit">Eliminar</button>
+    	 		</form>
+    		</td>
+    		</tr>`;
+	    }
+	    
+	    html += "</table>";
+	    
+    	document.getElementById("listadoReservas").innerHTML = html;
+    }
+	    
+    
+    	window.onload = function() {
+    		llamada("ServletListarReservas");
+    	}
+    	
+    	//Función para confirmar la eliminación del registro
+        function confirmarEliminacion() {
+            return confirm("¿Estás seguro que quieres eliminar la reserva?");
+        }
+
+     	// Obtiene el mensaje del servidor (de la URL)
+        var mensaje = new URLSearchParams(window.location.search).get("mensaje");
+
+        // Si hay un mensaje, muestra una ventana emergente con él
+        if (mensaje) {
+            alert(mensaje);
+        }
+    	
+    	
+    
+    </script>
 </head>
 
   <!-- Creo una clase para el body, para la cual aplicaré 
@@ -43,6 +114,8 @@
         </div>
 
         <h1>Tabla Reservas</h1>
+        
+          <div id="listadoReservas"></div>
        
     </article>
 

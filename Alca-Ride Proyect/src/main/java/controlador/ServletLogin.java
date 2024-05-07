@@ -30,7 +30,7 @@ public class ServletLogin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	
 	}
 
 	/**
@@ -59,15 +59,15 @@ public class ServletLogin extends HttpServlet {
 			else
 			{
 			
-				//Comprobamos el is_Admin para
+				//Comprobamos el is_Admin para redirigir a un sitio u otro y pasarle el id_Login
 				if(respuesta.isIs_Admin()==true)
 				{
-					response.sendRedirect("adminArea.html");
+					response.sendRedirect("adminArea.html?idLogin=" + respuesta.getId_Login());
 				}
 				else
 				{
 					//le decimos que el login no es correcto
-					response.sendRedirect("clientArea.html");
+					response.sendRedirect("clientArea.html?idLogin=" + respuesta.getId_Login());
 				}
 			}
 		} catch (SQLException e) {

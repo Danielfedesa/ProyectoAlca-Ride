@@ -5,7 +5,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import modelo.Motocicleta;
 import modelo.Reserva;
 
 import java.io.IOException;
@@ -13,15 +12,15 @@ import java.sql.SQLException;
 
 
 /**
- * Servlet implementation class ServletEliminarMoto
+ * Servlet implementation class ServletEliminarReserva
  */
-public class ServletEliminarMoto extends HttpServlet {
+public class ServletEliminarReserva extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletEliminarMoto() {
+    public ServletEliminarReserva() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +30,6 @@ public class ServletEliminarMoto extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -40,28 +38,28 @@ public class ServletEliminarMoto extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// Se obtiene el ID de la moto que se va a borrar desde los parámetros de la solicitud
-        int idParaBorrar = Integer.parseInt(request.getParameter("id_Moto"));
-        
-     // Eliminar moto de la tabla motocicletas'
+        int idParaBorrar = Integer.parseInt(request.getParameter("id_Reserva"));
+
+        // Eliminar reserva de la tabla reservas'
         try {
-            // Crear una instancia de Motocicleta y establecer el ID para borrar
-            Motocicleta moto = new Motocicleta();
-            moto.setId_Moto(idParaBorrar);
+            // Crear una instancia de Reserva y establecer el ID para borrar
+            Reserva reserva = new Reserva();
+            reserva.setId_Reserva(idParaBorrar);
 
             // Llamar al método eliminarReserva() del objeto Reserva
-            moto.eliminarMotocicleta();
+            reserva.eliminarReserva();
 
             // Manejar la respuesta al cliente
             response.setContentType("text/plain");
             response.setCharacterEncoding("UTF-8");
-            response.getWriter().write("Motocicleta eliminada correctamente");
-            response.sendRedirect("adminPro.html?mensaje=Motocicleta+eliminada+correctamente");
+            response.getWriter().write("Reserva eliminada correctamente");
+            response.sendRedirect("adminRes.html?mensaje=Reserva+eliminada+correctamente");
         } catch (SQLException e) {
-            System.out.println("Error al eliminar la motocicleta de la base de datos: " + e.getMessage());
+            System.out.println("Error al eliminar la reserva de la base de datos: " + e.getMessage());
             response.setContentType("text/plain");
             response.setCharacterEncoding("UTF-8");
-            response.getWriter().write("Error al eliminar la motocicleta de la base de datos");
-            response.sendRedirect("adminPro.html?mensaje=Error+al+eliminar+el+vehiculo+al+existir+reservas+en+la+base+de+datos.");
+            response.getWriter().write("Error al eliminar la reserva de la base de datos");
+            response.sendRedirect("adminRes.html?mensaje=Error+al+eliminar+la+reserva.");
         }
     }
 

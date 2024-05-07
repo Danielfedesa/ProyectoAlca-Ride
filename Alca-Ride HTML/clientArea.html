@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alca-Ride | Área privada CLIENTE</title>
     <link rel="stylesheet" href="styles/adminArea.css">
+    <script>
+    // Función para redireccionar con el idLogin adjunto
+    function redireccionarConIdLogin(pagina) {
+        // Obtener el idLogin de la URL
+        var urlParams = new URLSearchParams(window.location.search);
+        var idLogin = urlParams.get('id_Login');
+
+        // Redireccionar a la página con el idLogin adjunto
+        window.location.href = pagina + "?id_Login=" + idLogin;
+    }
+</script>
 </head>
 
   <!-- Creo una clase para el body, para la cual aplicaré 
@@ -32,10 +43,11 @@
         <a href="login.html">Iniciar Sesión</a>
     </nav>
     
-    <article class="contenido">
-        <div class="usu"><a href="clientUsu.html">Gestionar perfil</a></div>
-        <div class="res"><a href="clientRes.html">Gestionar eservas</a></div>
-    </article>
+  <article class="contenido">
+    <!-- Enlaces para gestiones de reserva y perfil que pasan el id_Login de la URL -->
+    <div class="usu"><a href="#" onclick="redireccionarConIdLogin('clientUsu.html')">Gestionar perfil</a></div>
+    <div class="res"><a href="#" onclick="redireccionarConIdLogin('clientRes.html')">Gestionar reservas</a></div>
+</article>
 
     <footer class="footer">
         <a href="privacidad.html" style="color: white;">Política de privacidad</a>

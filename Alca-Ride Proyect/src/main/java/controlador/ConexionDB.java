@@ -37,7 +37,7 @@ public class ConexionDB {
 	//static significa que se extiende fuera del objeto, siendo común para todos los objetos instanciados de ese tipo.
 		//Si cambiamos el atributo static al objeto persona 2 se lo cambio también a la persona 5
 		//final significa que es una constante y no lo podemos modificar.
-		public static final String JDBC_URL = "jdbc:mysql://localhost:3306/alcaride_bd";
+		public static final String JDBC_URL = "jdbc:mysql://localhost:3360/alcaride_bd";
 		//Creamos el atributo estático tipo Connection, que es un tipo de conexión que me da el driver sql.
 		public static Connection instance = null;
 		

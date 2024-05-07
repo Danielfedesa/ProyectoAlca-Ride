@@ -23,7 +23,7 @@ public class DaoMotocicleta {
 		this.con = ConexionDB.getConexion(); //Importo y añado excepción.
 	}
 	
-	//Método público que inserta recibiendo un onjeto Motocicleta.
+	//Método público que inserta recibiendo un objeto Motocicleta.
 	public void insertar(Motocicleta m) throws SQLException { //Importo ModeloMotocicleta.
 		
 		//Sentencia sql para insertar en la tabla Motocicleta:
