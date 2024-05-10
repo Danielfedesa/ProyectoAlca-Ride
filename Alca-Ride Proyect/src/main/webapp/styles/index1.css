@@ -29,7 +29,7 @@
 /* Ajuste del header y el logo*/
 .header {
     grid-area: header;
-    background-image: url(/images/imgheader.jpg);
+    background-image: url(images/imgheader.jpg);
     background-size: cover; /* Redimensiona para ajustar el fondo */
     display: flex;
     align-items: center;

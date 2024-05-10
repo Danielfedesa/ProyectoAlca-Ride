@@ -28,7 +28,7 @@
 /* Ajuste del header y el logo*/
 .header {
     grid-area: header;
-    background-image: url(/images/imgheader.jpg);
+    background-image: url(images/imgheader.jpg);
     background-size: cover; /* Redimensiona para ajustar el fondo */
     display: flex;
     align-items: center; /* Alinea verticalmente*/
@@ -97,20 +97,33 @@ h1 {
     padding-top: 25px;
 }
 
-.datos-clientes, .datos-motos {
+/* Estilos para las tablas */
+.datosTabla {
     width: 100%;
     border-collapse: collapse;
     max-width: 90%;
+    border: 3px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto; /* Centrar la tabla */
 }
 
-.datos-clientes th, .datos-clientes td, .datos-motos td {
-    border: 3px solid #ddd;
+.datosTabla th, .datosTabla td {
+    border: 1px solid #ddd;
     padding: 5px;
     text-align: left;
+    background-color: #f9f9f9;
+    font-size: 15px;
+    transition: background-color 0.3s;
 }
 
-.datos-clientes th, .datos-motos th {
-    background-color: #f2f2f2;
+.datosTabla th {
+    background-color: #e0e0e0;
+    font-size: 14px;
+}
+
+/* Cambio el color al pasar por la fila */
+.datosTabla tr:hover td {
+    background-color: #e0e0e0;
 }
 
 /* Estilos para el footer*/

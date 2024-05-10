@@ -29,18 +29,20 @@ public class DaoReserva {
 		    Connection con = ConexionDB.getConexion();
 
 		    boolean comprobar = false;
-		    
+		  
 		    String sqlFechas = "SELECT COUNT(*) AS count FROM alcaride_bd.reservas \n"
-		                + "WHERE \n"
-		                + "    id_moto = ? \n"
-		                + "    AND \n"
-		                + "    ( \n"
-		                + "        (? >= fecha_Inicio AND ? <= fecha_Fin) \n"
-		                + "        OR \n"
-		                + "        (? >= fecha_Inicio AND ? <= fecha_Fin) \n"
-		                + "    ) \n"
-		                + "    OR \n"
-		                + "    (fecha_Inicio <= ? AND fecha_Fin >= ?);";
+                    + "WHERE \n"
+                    + "    id_moto = ? \n"
+                    + "    AND ( \n"
+                    + "        (? >= fecha_Inicio AND ? <= fecha_Fin) \n"
+                    + "        OR \n"
+                    + "        (? >= fecha_Inicio AND ? <= fecha_Fin) \n"
+                    + "        OR \n"
+                    + "        (fecha_Inicio <= ? AND fecha_Fin >= ?) \n"
+                    + "        OR \n"	
+                    + "		   (fecha_Inicio >= ? AND fecha_Fin <= ?) \n"
+                    + "    ) \n"
+                    + "    AND estado <> 'Cancelada';";
 		    
 		    PreparedStatement psFechas = con.prepareStatement(sqlFechas);
 		    psFechas.setInt(1, reserva.getId_Moto());
@@ -50,6 +52,8 @@ public class DaoReserva {
 		    psFechas.setDate(5, reserva.getFecha_Fin());
 		    psFechas.setDate(6, reserva.getFecha_Inicio());
 		    psFechas.setDate(7, reserva.getFecha_Fin());
+		    psFechas.setDate(8, reserva.getFecha_Inicio());
+		    psFechas.setDate(9, reserva.getFecha_Fin());
 		    ResultSet rs = psFechas.executeQuery();
 
 		    // Compruebo si existen reservas que coincidan con las fechas y vehículos
@@ -106,16 +110,27 @@ public class DaoReserva {
 	}
 	
 	//Método para listar reservas CLIENTE.
-		public ArrayList<Reserva> listarResCliente(String idLogin) throws SQLException {
-		    String sql = "SELECT id_Reserva, id_Moto, id_Cliente, id_Admin, fecha_Realiza, fecha_Inicio, fecha_Fin, estado FROM reservas WHERE id_Cliente = ?";
+	//Le paso como argumento el id_Cliente para que solo me muestre las reservas de la sesion activa
+	//Hago la sentencia SQL para que seleccione los datos de las motos mezclando las tablas, siendo el id_Moto
+	//el dato que determine el resto de parámetros
+		public ArrayList<Reserva> listarResCliente(int id_Cliente) throws SQLException {
+			
+			String sql = "SELECT id_Reserva, id_Moto, id_Cliente, id_Admin, fecha_Realiza, fecha_Inicio, fecha_Fin, estado FROM reservas WHERE id_Cliente = ?";
+			/*
+		    String sql = "SELECT r.id_Reserva, r.id_Moto, r.id_Cliente, r.id_Admin, r.fecha_Realiza, "
+						  + "r.fecha_Inicio, r.fecha_Fin, r.estado, m.marca, m.modelo"
+						  + "FROM reservas r"
+						  + "JOIN motocicletas m ON r.id_Moto = m.id_Moto"
+						  + "WHERE r.id_Cliente = ?";
+		    */
 		    PreparedStatement ps = con.prepareStatement(sql);
+		    ps.setInt(1, id_Cliente); // Estableces el id_Cliente en la consulta SQL
 		    ResultSet rs = ps.executeQuery();
 
 		    ArrayList<Reserva> result = new ArrayList<>();
 		    while (rs.next()) {
 		        int id_Reserva = rs.getInt("id_Reserva");
 		        int id_Moto = rs.getInt("id_Moto");
-		        int id_Cliente = rs.getInt("id_Cliente");
 		        int id_Admin = rs.getInt("id_Admin");
 		        Date fecha_Realiza = rs.getDate("fecha_Realiza");
 		        Date fecha_Inicio = rs.getDate("fecha_Inicio");
@@ -131,7 +146,7 @@ public class DaoReserva {
 		}
 		
 	
-	//Metodo obtener registro por el id PARA LUEGO PODIFICAR LA RESERVA
+	//Metodo obtener registro por el id PARA LUEGO MODIFICAR LA RESERVA
 			public Reserva leerFormulario(int id_Reserva) throws SQLException {
 				System.out.println("Llego al metodo obtenerRegistro del DAO");
 

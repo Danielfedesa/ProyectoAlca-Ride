@@ -6,16 +6,6 @@
     <title>Alca-Ride | Área privada CLIENTE | Mis reservas</title>
     <link rel="stylesheet" href="styles/tablas.css">
       <script>
-      
-      // Función para redireccionar con el idLogin adjunto en los botones de Gestionar perfil y reservas
-      function redireccionarConIdLogin(pagina) {
-          // Obtener el idLogin de la URL
-          var urlParams = new URLSearchParams(window.location.search);
-          var idLogin = urlParams.get('id_Login');
-
-          // Redireccionar a la página con el idLogin adjunto
-          window.location.href = pagina + "?id_Login=" + idLogin;
-      }
 
     /*Función para pintar los datos de la tabla Reservas*/
     function llamada(ServletClienteLeerReservas) {
@@ -25,7 +15,7 @@
     }
     
     function pintarResultados(reservas) {
-    	let html = "<table class='datos-motos'>";
+    	let html = "<table class='datosTabla'>";
     	
 	    	html += "<tr>";
 		    html += "<th>ID RESERVA</th>";
@@ -36,7 +26,6 @@
 		    html += "<th>FECHA INICIO</th>";
 		    html += "<th>FECHA FIN</th>";
 		    html += "<th>ESTADO</th>";
-		    html += "<th>MODIFICAR</th>";
 		    html += "</tr>";
 	    
 	    for(var i=0; i<reservas.length; i++) {
@@ -44,12 +33,11 @@
 	    	<td>${reservas[i].id_Reserva}</td>
 	    	<td>${reservas[i].id_Moto}</td>
     		<td>${reservas[i].id_Cliente}</td>
-    		<td>${reservas[i].id_Admin}</td>
+    		<td>${reservas[i].precio_Dia}</td>
     		<td>${reservas[i].fecha_Realiza}</td>
     		<td>${reservas[i].fecha_Inicio}</td>
     		<td>${reservas[i].fecha_Fin}</td>
     		<td>${reservas[i].estado}</td>
-    		<td><a href='formModifReserva.html?id_Reserva=${reservas[i].id_Reserva}'><button type="submit">Modificar</button></a></td>
     		</tr>`;
 	    }
 	    
@@ -93,11 +81,12 @@
     </nav>
     
     <article class="contenido">
+    
         <div class="menu">
             
-            <!-- Enlaces para gestiones de reserva y perfil que pasan el id_Login de la URL -->
-    		<div class="usu"><a href="#" onclick="redireccionarConIdLogin('clientUsu.html')">Gestionar perfil</a></div>
-   			<div class="res"><a href="#" onclick="redireccionarConIdLogin('clientRes.html')">Gestionar reservas</a></div>
+            <div class="adm"><a href="clientArea.html">AREA PERSONAL</a></div>
+    		<div class="usu"><a href="clientUsu.html">Gestionar perfil</a></div>
+   			<div class="res"><a href="clientRes.html">Gestionar reservas</a></div>
             
         </div>
 

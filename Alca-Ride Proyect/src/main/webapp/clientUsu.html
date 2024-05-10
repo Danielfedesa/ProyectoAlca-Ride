@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alca-Ride | Área privada CLIENTE | Mi perfil</title>
     <link rel="stylesheet" href="styles/tablas.css">
+   <script>
+        // Función para confirmar la eliminación del registro
+        function confirmarEliminacion() {
+            return confirm("¿Estás seguro que quieres eliminar tu cuenta?");
+        }
+    </script>
 </head>
 
   <!-- Creo una clase para el body, para la cual aplicaré 
@@ -33,26 +39,20 @@
     </nav>
     
     <article class="contenido">
-        <div class="usu"><a href="adminArea.html">ADMINISTRADOR</a></div>
-        <div class="usu"><a href="adminUsu.html">Gestión de usuarios</a></div>
-        <div class="res"><a href="adminRes.html">Gestión de reservas</a></div>
-        <div class="pro"><a href="adminPro.html">Gestión de productos</a></div>
-        <h1>Tabla Usuarios Registrados</h1>
-        <table class="datos-clientes">
-            <tr>
-                <th>ID USUARIO</th>
-                <th>NOMBRE USUARIO</th>
-                <th>NOMBRE</th>
-                <th>TELÉFONO</th>
-                <th>CARNET</th>
-                <th>PRIMER APELLIDO</th>
-                <th>SEGUNDO APELLIDO</th>
-                <th>EMAIL</th>
-                <th>APELLIDO 2</th>
-                <th>APELLIDO 2</th>
-                <th>APELLIDO 2</th>
-            </tr>
-        </table>
+    
+ 		<div class="menu">
+            
+            <div class="adm"><a href="clientArea.html">AREA PERSONAL</a></div>
+    		<div class="usu"><a href="clientUsu.html">Gestionar perfil</a></div>
+   			<div class="res"><a href="clientRes.html">Gestionar reservas</a></div>
+            
+        </div>
+        
+        <h1>Seleccione una acción</h1>
+        
+           <div class="modificar"><a href="Servlet">Modificar perfil</a></div>
+           <div class="eliminar"><a href="Servlet">Eliminar cuenta</a></div>
+
     </article>
 
     <footer class="footer">

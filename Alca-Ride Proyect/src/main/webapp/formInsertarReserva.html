@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alca-Ride | Formulario de reserva</title>
     <link rel="stylesheet" href="styles/formularios.css">
+    <script>
+
+ 	// Obtiene el mensaje del servidor (de la URL)
+    var mensaje = new URLSearchParams(window.location.search).get("mensaje");
+
+    // Si hay un mensaje, muestra una ventana emergente con él
+    if (mensaje) {
+        alert(mensaje);
+    }
+    </script>
 </head>
 
   <!-- Creo una clase para el body, para la cual aplicaré 
@@ -42,15 +52,6 @@
                 <!--Menú desplegable para seleccionar moto,
             la primera opción está deshabilitada para que obligue
             a elegir una de las otras antes de enviar-->
-
-
-            <p>
-                <label for="id_Cliente" class="colocar_id_Usuario">ID Usuario
-                <span class="obligatorio">*</span>
-                </label>
-                <input type="id_Cliente" name="id_Cliente" id="id_Cliente" required="obligatorio"
-                    placeholder="Escribe tu ID de usuario">
-            </p>
 
                 <label for="id_Moto">Vehículo:</label>
                 <select id="id_Moto" name="id_Moto" required>

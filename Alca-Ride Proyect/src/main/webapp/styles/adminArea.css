@@ -29,7 +29,7 @@
 /* Ajuste del header y el logo*/
 .header {
     grid-area: header;
-    background-image: url(/images/imgheader.jpg);
+    background-image: url(images/imgheader.jpg);
     background-size: cover; /* Redimensiona para ajustar el fondo */
     display: flex;
     align-items: center; /* Alinea verticalmente*/
@@ -94,6 +94,24 @@ nav a:hover, .usu a:hover, .pro a:hover, .res a:hover {
     padding: 20px;
 }
 
+.cerrar a {
+	background-color: red;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    border-radius: 10px;
+    margin: 0 10px; /* Mantiene el espacio entre botones */
+    border: solid 1px #000000;
+    padding: 5px 15px;
+    width: 160px;
+    margin: 20px;
+    padding: 20px;
+}
+
+.cerrar a:hover {
+    background-color: white;
+    color: black;
+}
 /* Estilos para el footer*/
 
 .footer {

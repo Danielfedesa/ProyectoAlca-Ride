@@ -92,7 +92,7 @@ public class ServletRegistroUsuario extends HttpServlet {
 			l1.crearLogin();
 			
 			//redirigimos al menú login.
-			response.sendRedirect("login.html");
+			response.sendRedirect("login3.html");
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

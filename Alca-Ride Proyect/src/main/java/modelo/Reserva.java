@@ -20,6 +20,7 @@ public class Reserva {
 	private Date fecha_Fin;
 	private String estado;
 	
+	
 	public Reserva() {
 		super();
 	}
@@ -58,6 +59,7 @@ public class Reserva {
 		this.fecha_Fin = fecha_Fin;
 		this.estado = estado;
 	}
+		
 	
 	//Constructor para insertar reserva
 	public Reserva(int id_Moto, int id_Cliente, Date fecha_Realiza, Date fecha_Inicio, Date fecha_Fin) {
@@ -148,7 +150,7 @@ public class Reserva {
 		}
 
 
-		//Método listar reservas Administrador
+		//Método listar reservas Administrador (todas las reservas)
 		//Hago un método que obtiene los elementos del Dao y los convierte en json
 		public String listarReservas() throws SQLException {
 			String json = "";
@@ -161,16 +163,17 @@ public class Reserva {
 		
 		//Método listar reservas Cliente
 		//Hago un método que obtiene los elementos del Dao y los convierte en json
-		public String listarReservasCliente(String idLogin) throws SQLException {
+		//Le paso como argumento el id_Cliente para que solo me recupere el listado de la sesión activa
+		public String listarReservasCliente(int id_Cliente) throws SQLException {
 			String json = "";
 			Gson objetoGson = new Gson();
 			//Meto en el objeto json lo que genere el objetoGson con el método toJson (lo convierte a json)
 			DaoReserva resultado = new DaoReserva();
-			json = objetoGson.toJson(resultado.listarResCliente(idLogin));
+			json = objetoGson.toJson(resultado.listarResCliente(id_Cliente));
 			return json;
 		}
 		
-	//Método modificar reserva
+		//Método modificar reserva
 		// Método recuperarReserva para modificarla despues (formulario modificar)
 				public void recuperarReserva(int id_Reserva) throws SQLException {
 					System.out.println("Llego al metodo recuperarReserva");

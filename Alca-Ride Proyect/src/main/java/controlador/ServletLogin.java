@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import modelo.Login;
 import modelo.LoginCliente;
 
@@ -16,6 +17,8 @@ import java.sql.SQLException;
  */
 public class ServletLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	//Inicializo el objeto Httpsession y la variable como atributo del servlet que voy a utilizar.
+		HttpSession sesion;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -50,15 +53,24 @@ public class ServletLogin extends HttpServlet {
 		Login respuesta;
 		//Comprobamos los datos introducidos por respuesta a través de Login
 		try {
+			System.out.println("Antes de iniciar sesión: " + milogin);
 			respuesta = milogin.iniciarSesion();
+			System.out.println("Después de iniciar sesión: " + respuesta);
 			//Comprobamos si el objeto está vacío por no haberse encontrado en la base de datos por el Dao.
 			if(respuesta.getNombre_Usuario()=="") {
 				response.sendRedirect("errorRegistro.html");
 			}
 			//Si el objeto trae parámetros es porque los ha encontrado correctamente en la BDD.
-			else
-			{
-			
+			else {
+				
+				//AQUÍ INICIAMOS EL MÉTODO PARA GUARDAR LOS DATOS EN LA SESION
+				sesion = request.getSession();
+				
+				//Meto los datos que necesito dentro de la sesion, en este caso el id_Login y el is_Admin
+				sesion.setAttribute("id", respuesta.getId_Login());
+				sesion.setAttribute("admin", respuesta.isIs_Admin());
+				//FINALIZO EL METODO PARA GUARDAR LA SESION
+				System.out.println(respuesta.getId_Login());
 				//Comprobamos el is_Admin para redirigir a un sitio u otro y pasarle el id_Login
 				if(respuesta.isIs_Admin()==true)
 				{
@@ -66,7 +78,7 @@ public class ServletLogin extends HttpServlet {
 				}
 				else
 				{
-					//le decimos que el login no es correcto
+					//Si no es admin le mando a la página de cliente
 					response.sendRedirect("clientArea.html?idLogin=" + respuesta.getId_Login());
 				}
 			}
@@ -74,8 +86,6 @@ public class ServletLogin extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 	}
-
 }
+

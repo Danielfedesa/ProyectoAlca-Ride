@@ -28,7 +28,7 @@
 /* Ajuste del header y el logo*/
 .header {
     grid-area: header;
-    background-image: url(/images/imgheader.jpg);
+    background-image: url(images/imgheader.jpg);
     background-size: cover; /* Redimensiona para ajustar el fondo */
     display: flex;
     align-items: center;
@@ -195,6 +195,35 @@ establecido en el contenedor general*/
 .formReserva a:visited {
     text-decoration: none; /* Quita el subrayado */
     color: inherit; /* Hereda el color del texto del contenedor */
+}
+
+textarea {
+    width: 400px;
+    height: 150px;
+    margin-top: 25px;
+    resize: vertical; /* Permitir que el usuario cambie la altura verticalmente */
+    padding: 5px;
+    border: 1px solid #000000;
+}
+
+.contContacto {
+    display: flex;
+    align-items: center;
+    width: 70%;
+    margin: auto;
+}
+
+.textoContacto img {
+    width: 400px;;
+}
+
+.textoContacto p {
+    font-size: 20px;
+    padding :10px;
+}
+
+.textoContacto h2 {
+    margin-bottom: 30px;
 }
 
 .footer {

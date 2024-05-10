@@ -10,7 +10,6 @@
     <servlet-name>SaludoPrueba</servlet-name>
     <url-pattern>/SaludoPrueba</url-pattern>
   </servlet-mapping>
-  <display-name>NavesTutoria</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -141,6 +140,26 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>ServletCerrarSesion</display-name>
+    <servlet-name>ServletCerrarSesion</servlet-name>
+    <servlet-class>controlador.ServletCerrarSesion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletCerrarSesion</servlet-name>
+    <url-pattern>/ServletCerrarSesion</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletListarCatalogo</display-name>
+    <servlet-name>ServletListarCatalogo</servlet-name>
+    <servlet-class>controlador.ServletListarCatalogo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletListarCatalogo</servlet-name>
+    <url-pattern>/ServletListarCatalogo</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>ServletListarReservas</display-name>
     <servlet-name>ServletListarReservas</servlet-name>
     <servlet-class>controlador.ServletListarReservas</servlet-class>
@@ -151,23 +170,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>SerevletModificarReserva</display-name>
-    <servlet-name>SerevletModificarReserva</servlet-name>
-    <servlet-class>controlador.SerevletModificarReserva</servlet-class>
+    <display-name>ServletClienteLeerReservas</display-name>
+    <servlet-name>ServletClienteLeerReservas</servlet-name>
+    <servlet-class>controlador.ServletClienteLeerReservas</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>SerevletModificarReserva</servlet-name>
-    <url-pattern>/SerevletModificarReserva</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ServletModificarReserva</display-name>
-    <servlet-name>ServletModificarReserva</servlet-name>
-    <servlet-class>controlador.ServletModificarReserva</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ServletModificarReserva</servlet-name>
-    <url-pattern>/ServletModificarReserva</url-pattern>
+    <servlet-name>ServletClienteLeerReservas</servlet-name>
+    <url-pattern>/ServletClienteLeerReservas</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -181,6 +190,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>ServletModificarReserva</display-name>
+    <servlet-name>ServletModificarReserva</servlet-name>
+    <servlet-class>controlador.ServletModificarReserva</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletModificarReserva</servlet-name>
+    <url-pattern>/ServletModificarReserva</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>ServletEliminarReserva</display-name>
     <servlet-name>ServletEliminarReserva</servlet-name>
     <servlet-class>controlador.ServletEliminarReserva</servlet-class>
@@ -188,35 +207,5 @@
   <servlet-mapping>
     <servlet-name>ServletEliminarReserva</servlet-name>
     <url-pattern>/ServletEliminarReserva</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ServletInicioSesion</display-name>
-    <servlet-name>ServletInicioSesion</servlet-name>
-    <servlet-class>controlador.ServletInicioSesion</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ServletInicioSesion</servlet-name>
-    <url-pattern>/ServletInicioSesion</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ServletPaginaProtegida</display-name>
-    <servlet-name>ServletPaginaProtegida</servlet-name>
-    <servlet-class>controlador.ServletPaginaProtegida</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ServletPaginaProtegida</servlet-name>
-    <url-pattern>/ServletPaginaProtegida</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ServletClienteLeerReservas</display-name>
-    <servlet-name>ServletClienteLeerReservas</servlet-name>
-    <servlet-class>controlador.ServletClienteLeerReservas</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ServletClienteLeerReservas</servlet-name>
-    <url-pattern>/ServletClienteLeerReservas</url-pattern>
   </servlet-mapping>
 </web-app>

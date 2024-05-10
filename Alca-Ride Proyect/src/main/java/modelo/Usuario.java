@@ -131,9 +131,6 @@ public class Usuario {
 				+ ", direccion=" + direccion + "]";
 	}
 	
-	// Método iniciar sesión
-	
-	// Método cerrar sesión
 	
 	// Método crearUsuario
 	public int crearUsuario() throws SQLException {
@@ -152,6 +149,7 @@ public class Usuario {
 		json = objetoGson.toJson(resultado.listar());
 		return json;
 	}
+	
 	
 	// Método recuperarUsuario para modificarlo despues (formulario modificar)
 	public void recuperarUsuario(int id_Usuario) throws SQLException {

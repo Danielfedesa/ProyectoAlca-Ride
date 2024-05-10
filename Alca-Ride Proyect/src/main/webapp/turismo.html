@@ -4,7 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alca-Ride | Categoría Turismo</title>
-    <link rel="stylesheet" href="styles/modelos.css">
+    <link rel="stylesheet" href="styles/modelos2.css">
+    <script>
+    
+    /*Función para pintar los datos de la tabla Motocicletas*/
+    function llamada(ServletListarCatalogo) {
+        fetch(ServletListarCatalogo)
+        .then(res => res.json())
+        .then(res => pintarResultados(res));
+    }
+        
+    function pintarResultados(motos) {
+        // Filtrar la moto con id_Moto=5
+        let moto1 = motos.find(moto => moto.id_Moto === 5);
+        if (moto1) {
+            // Relleno el div cont1 con los datos de la moto1
+            let contenedor1 = document.getElementById("cont1");
+            contenedor1.innerHTML = "";
+            let divMoto1 = crearDivMoto(moto1);
+            contenedor1.appendChild(divMoto1);
+        }
+
+        // Repito lo mismo para los cont2, 3 y 4.
+        let moto2 = motos.find(moto => moto.id_Moto === 6);
+        if (moto2) {
+            let contenedor2 = document.getElementById("cont2");
+            contenedor2.innerHTML = "";
+            let divMoto2 = crearDivMoto(moto2);
+            contenedor2.appendChild(divMoto2);
+        }
+
+        let moto3 = motos.find(moto => moto.id_Moto === 7);
+        if (moto3) {
+            let contenedor3 = document.getElementById("cont3");
+            contenedor3.innerHTML = "";
+            let divMoto3 = crearDivMoto(moto3);
+            contenedor3.appendChild(divMoto3);
+        }
+
+        let moto4 = motos.find(moto => moto.id_Moto === 8);
+        if (moto4) {
+            let contenedor4 = document.getElementById("cont4");
+            contenedor4.innerHTML = "";
+            let divMoto4 = crearDivMoto(moto4);
+            contenedor4.appendChild(divMoto4);
+        }
+    }
+      
+    //Creo el div con todos los datos tal y como lo tenía en el html estático antes de la modificación.
+    function crearDivMoto(moto) {
+        let divMoto = document.createElement("div");
+        divMoto.classList.add("cajatexto");
+        divMoto.innerHTML = `
+            <h2>${moto.marca} ${moto.modelo}</h2>
+            <div class="datos">
+                <div>Año: ${moto.anio}</div>
+                <div>Cilindrada: ${moto.cilindrada}</div>
+            </div>
+            <div class="carnet">Tipo de carnet: ${moto.tipo_Carnet}</div>
+            <div class="precio">Precio día: ${moto.precio_Dia} €</div>
+            <a href="formInsertarReserva.html?id_Moto=${moto.id_Moto}"><div class="reser">RESERVAR</div></a>
+        `;
+        return divMoto;
+    }
+
+    window.onload = function() {
+        llamada("ServletListarCatalogo");
+    };
+    
+  	</script>
 </head>
 
   <!-- Creo una clase para el body, para la cual aplicaré 
@@ -39,61 +107,27 @@
             </h3>
          </div>
          
-         <div class="cont1">
-                <img src="/images/T_bmwrt.jpg" alt="Imagen BMW R1250RT">
-            <div class="cajatexto">
-                <h2>BMW R1250RT</h2>
-                <div class="datos">
-                    <div>Año: 2022</div>
-                    <div>Cilindrada: 1.238cc</div>
-            </div>
-                <div class="carnet">Tipo de carnet: A</div>
-                <div class="precio">Precio día: 235<span>´95</span>€</div>
-                <a href="formInsertarReserva.html?id_Moto=5"><div class="reser">RESERVAR</div></a>
-            </div>
+         <div class="contModelo1">
+              <img src="images/T_bmwrt.jpg" alt="Imagen BMW R1250RT"> 
+             <div id="cont1" class="cont1"></div>
+         </div>
+
+
+          <div class="contModelo2">
+             <img src="images/T_yamaha.jpg" alt="Imagen Yamaha FJR1300AE"> 
+             <div id="cont2" class="cont2"></div>
           </div>
-    
-          <div class="cont2">
-                <img src="/images/T_yamaha.jpg" alt="Imagen Yamaha FJR1300AE">
-            <div class="cajatexto">
-                <h2>Yamaha FJR1300AE</h2>
-                <div class="datos">
-                    <div>Año: 2022</div>
-                    <div>Cilindrada: 1.287cc</div>
-            </div>
-                <div class="carnet">Tipo de carnet: A</div>
-                <div class="precio">Precio día: 220<span>´95</span>€</div>
-                <a href="formInsertarReserva.html?id_Moto=6"><div class="reser">RESERVAR</div></a>
-            </div>
+          
+          <div class="contModelo3">
+             <img src="images/T_goldwing.jpg" alt="Imagen Honda CMX500 Rebel"> 
+             <div id="cont3" class="cont3"></div>
           </div>
-    
-          <div class="cont3">
-                <img src="/images/T_goldwing.jpg" alt="Imagen Honda Goldwing">
-            <div class="cajatexto">
-                <h2>Honda Goldwing Tour</h2>
-                <div class="datos">
-                    <div>Año: 2023</div>
-                    <div>Cilindrada: 1.833cc</div>
-            </div>
-                <div class="carnet">Tipo de carnet: A</div>
-                <div class="precio">Precio día: 245<span>´95</span>€</div>
-                <a href="formInsertarReserva.html?id_Moto=7"><div class="reser">RESERVAR</div></a>
-            </div>
+          
+          <div class="contModelo4">
+             <img src="images/T_vstrom.jpg" alt="Imagen Suzuki Vstrom 1050"> 
+             <div id="cont4" class="cont4"></div>
           </div>
-    
-          <div class="cont4">
-                <img src="/images/T_vstrom.jpg" alt="Imagen Suzuki Vstrom 1050">
-            <div class="cajatexto">
-                <h2>Suzuki Vstrom 1050</h2>
-                <div class="datos">
-                    <div>Año: 2020</div>
-                    <div>Cilindrada: 1.047cc</div>
-            </div>
-                <div class="carnet">Tipo de carnet: A2</div>
-                <div class="precio">Precio día: 180<span>´95</span>€</div>
-                <a href="formInsertarReserva.html?id_Moto=8"><div class="reser">RESERVAR</div></a>
-            </div>
-          </div>
+
     </article>
 
     <footer class="footer">

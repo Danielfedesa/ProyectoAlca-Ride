@@ -84,6 +84,7 @@ public class DaoUsuario {
 		
 	}
 	
+	
 	//Método para modificar usuarios.
 	//Metodo obtener registro por el id
 	public Usuario leer(int id_Usuario) throws SQLException {

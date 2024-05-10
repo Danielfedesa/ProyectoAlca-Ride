@@ -4,11 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.google.gson.Gson;
 
 import controlador.ConexionDB;
 import modelo.Login;
+import modelo.UsuarioViewModel;
 
 public class DaoLogin {
 
@@ -34,7 +36,7 @@ public class DaoLogin {
 		ps.close();
 	}
 	
-	//Método leer
+	//Método leer para iniciar esión desde el formilario login.html
 	public Login leerLogin(Login k) throws SQLException {
 		String sql = "SELECT id_Login, nombre_Usuario, is_Admin FROM login WHERE nombre_Usuario = ? AND pass = ?";
 		
@@ -54,18 +56,21 @@ public class DaoLogin {
 		//Inicializamos el objLogin con el nombre_Usuario vacío para validar luego si existe o no
 		objLogin.setNombre_Usuario("");
 		//Leemos el ResultSet mediante un while
+		
 		while(filas.next())
 		{			
 			objLogin.setId_Login(filas.getInt("id_Login"));
 			objLogin.setNombre_Usuario(filas.getString("nombre_Usuario"));
 			objLogin.setIs_Admin(filas.getBoolean("is_Admin"));// = true; //filas["is_Admin"];	
 		}
-						
+		
+		System.out.println(objLogin);
 		ps.close();
 		
 		//Devolvemos el objLogin relleno o vacío en su caso
 		return objLogin;
 	}
+	
 	
 	//Método eliminar
 		public static void eliminarLog(Login e) throws SQLException {

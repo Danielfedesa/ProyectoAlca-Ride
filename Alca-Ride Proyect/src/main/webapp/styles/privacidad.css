@@ -28,7 +28,7 @@
 /* Ajuste del header y el logo*/
 .header {
     grid-area: header;
-    background-image: url(/images/imgheader.jpg);
+    background-image: url(images/imgheader.jpg);
     background-size: cover; /* Redimensiona para ajustar el fondo */
     display: flex;
     align-items: center; /* Alinea verticalmente*/
@@ -113,6 +113,19 @@ nav a:hover {
         top: 40px;
         left: 50%;
         transform: translateX(-50%);
+}
+
+.contenedorCheck h1 {
+    font-size: 34px;
+    margin-top: 50px;
+}
+
+.contenedorCheck p {
+    font-size: 20px;
+}
+
+.contenedorCheck img {
+    padding: 30px;
 }
 
 /* Estilos para el footer*/

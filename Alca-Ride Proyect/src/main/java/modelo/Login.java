@@ -1,6 +1,11 @@
 package modelo;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+
+import com.google.gson.Gson;
 
 import DAO.DaoLogin;
 
@@ -43,6 +48,7 @@ public class Login {
 		this.nombre_Usuario = nombre_Usuario;
 		this.pass = pass;
 	}
+
 
 
 	public int getId_Login() {
@@ -106,16 +112,34 @@ public class Login {
 	public void crearLogin() throws SQLException {
 		DaoLogin log = new DaoLogin();
 		log.insertar(this);
+		
 	}
 	
-	// Método leerLogin
+	public static String getMD5(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] messageDigest = md.digest(input.getBytes());
+            BigInteger number = new BigInteger(1, messageDigest);
+            String hashtext = number.toString(16);
+
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+            return hashtext;
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+	
+	// Método leerLogin para iniciar la sesion
 	public Login iniciarSesion() throws SQLException {
-		//acudir al DAO y leer el login a partir del usuario y la contraseña proporcionadas
+		//acudir al DAO y leer el login a partir del usuario y la contraseña
 		DaoLogin log = new DaoLogin();
 		Login milogin = log.leerLogin(this);
 		//Retorna lo leido por el Dao a la variable miLogin
-		return milogin;		
+		return milogin;
 	}
+	
 		
 	// Método eliminarLogin
 	public void eliminarLogin() throws SQLException {

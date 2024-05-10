@@ -29,7 +29,7 @@
 /* Ajuste del header y el logo*/
 .header {
     grid-area: header;
-    background-image: url(/images/imgheader.jpg);
+    background-image: url(images/imgheader.jpg);
     background-size: cover; /* Redimensiona para ajustar el fondo */
     display: flex;
     align-items: center; /* Alinea verticalmente*/
@@ -100,6 +100,7 @@ nav a:hover {
 }
 
 .cont1 img, .cont2 img, .cont3 img, .cont4 img {
+	display: flex;
     border: 2px solid red;
     border-radius: 10px;
 }

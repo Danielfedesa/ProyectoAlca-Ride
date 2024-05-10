@@ -7,30 +7,21 @@
     <link rel="stylesheet" href="styles/index.css">
 </head>
 
-  <!-- Creo una clase para el body, para la cual aplicaré 
-    en su página de estilos un grid y le daré forma responsive.
-    Divido el body en 4 apartados principales:
-        header
-        navbar
-        contenido
-        footer
-    -->
 <body class="gridContainer">
 
     <header class="header">
-        <!--Pongo este div para que el enlace se ajuste exactamente al logo-->
         <div>
         <a href="index.html"><img src="images/logo1.jpg" alt="Logo Alca-Ride"></a>
         </div>
     </header>
 
-    <nav class="navbar">
+     <nav class="navbar">
         <a href="index.html">Inicio</a>
         <a href="catalogo.html">Catálogo</a>
         <a href="condic.html">Condiciones</a>
         <a href="contacto.html">Contacto</a>
-        <a href="login.html">Iniciar Sesión</a>
-    </nav>
+        <a href="login.html" class="enlace-inicio-sesion">Iniciar Sesión</a>
+		</nav>
     
     <article class="contenido">
         <div class="present">
@@ -93,6 +84,22 @@
         <a href="legal.html" style="color: white;">Aviso legal</a>
         <p style="color: white;">Copyright Alca-Ride 2024 - Developed by Daniel Fernández</p>
     </footer>
+    
+    <script>
+    window.onload = function() {
+    	//Comprobamos si la sesión está iniciada
+    	var sesionIniciada = sessionStorage.getItem('idLogin') !== null;
+    	if (sesionIniciada) {
+        	//alert("sesion iniciada");
+       
+        	//Capturamos el botón
+            var enlaceInicioSesion = document.querySelector('.navbar .enlace-inicio-sesion');
+//DOM  - MODELO DE OBJETO DE DOCUMENTO
+            enlaceInicioSesion.textContent = 'Área personal';
+            enlaceInicioSesion.href = 'clientArea.html'; // Cambiar el enlace según tu lógica
+        }
+    };
+    </script>
 
 </body>
 

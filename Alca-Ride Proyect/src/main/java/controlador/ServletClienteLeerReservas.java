@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import modelo.Reserva;
 
 import java.io.IOException;
@@ -16,6 +17,8 @@ import java.sql.SQLException;
  */
 public class ServletClienteLeerReservas extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	//Inicializo el objeto Httpsession y la variable como atributo del servlet que voy a utilizar.
+	HttpSession sesion;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -31,30 +34,41 @@ public class ServletClienteLeerReservas extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		 // Obtener el id_Login de la URL
-	    String idLogin = request.getParameter("id_Login");
-	    System.out.println(idLogin);
+		//Control de sesión para CLIENTE
+		HttpSession sesion = request.getSession();
+		
+					
+		//Si tengo los datos que necesito, compruebo si son de administrador o de cliente.
+		//Si son de cliente le enseño la tabla.
+		int idSesion = (Integer) sesion.getAttribute("id");
+		boolean isAdmin = (boolean) sesion.getAttribute("admin");
 
-	    // Verificar si id_Login es válido
-	    if (idLogin != null && !idLogin.isEmpty()) {
-	        // Llamar al método listarReservasCliente con el id_Login y escribir el resultado en la respuesta
-	        try {
-				response.getWriter().print(new Reserva().listarReservasCliente(idLogin));
-			} catch (IOException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	    } else {
-	        // Si no se proporcionó el id_Login en la URL, enviar un mensaje de error
-	        response.sendError(HttpServletResponse.SC_BAD_REQUEST, "No se proporcionó el id_Login en la URL");
-	    }
+		if (idSesion != 0 && isAdmin == false) {
+
+		//AQUI VA EL RESTO DE CODIGO QUE PERTENECE AL PERMISO DE CLIENTE
+			try {
+				
+				PrintWriter out = response.getWriter();
+				Reserva res = new Reserva();
+				
+				//Le paso como argumento el idSesion para recuperar unicamente las reservas del idSesion iniciada
+				String resultado = res.listarReservasCliente(idSesion);
+					
+					out.print(resultado);
+					System.out.println(resultado);
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					response.sendRedirect("login2.html");
+				}	
+		}
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }
