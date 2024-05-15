@@ -30,10 +30,12 @@ public class ServletCerrarSesion extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		//Método para cerrar sesión
 		HttpSession sesion = request.getSession();
-		  
+		
+		//Cierro la sesión
 		  sesion.invalidate();
-		  response.sendRedirect("sesionCerrada.html");
+		  response.sendRedirect("sesionCerrada.html");		  		  
 	}
 
 	/**

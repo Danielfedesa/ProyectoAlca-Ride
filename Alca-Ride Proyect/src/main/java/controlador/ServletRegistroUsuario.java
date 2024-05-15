@@ -9,6 +9,9 @@ import modelo.LoginCliente;
 import modelo.Usuario;
 
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -26,6 +29,23 @@ public class ServletRegistroUsuario extends HttpServlet {
     public ServletRegistroUsuario() {
         super();
         // TODO Auto-generated constructor stub
+    }
+    
+    //Código para cifrar password
+    public static String getMD5(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] messageDigest = md.digest(input.getBytes());
+            BigInteger number = new BigInteger(1, messageDigest);
+            String hashtext = number.toString(16);
+
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+            return hashtext;
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 	/**
@@ -79,8 +99,9 @@ public class ServletRegistroUsuario extends HttpServlet {
 		String carnet = request.getParameter("carnet");
 		String direccion = request.getParameter("direccion");
 		
+		//getMD5 para cifrar pass
 		String nombre_Usuario = request.getParameter("nombre_Usuario");
-		String pass = request.getParameter("pass");
+		String pass = getMD5(request.getParameter("pass"));
 	
 		//Creamos un objeto con el constructor que no tiene id.
 		Usuario u1 = new Usuario(nombre, apellido1, apellido2, telefono, email, dni, carnet, direccion); //Importo Modelo.Usuario

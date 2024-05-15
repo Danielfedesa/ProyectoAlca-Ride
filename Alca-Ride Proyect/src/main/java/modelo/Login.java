@@ -115,22 +115,6 @@ public class Login {
 		
 	}
 	
-	public static String getMD5(String input) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] messageDigest = md.digest(input.getBytes());
-            BigInteger number = new BigInteger(1, messageDigest);
-            String hashtext = number.toString(16);
-
-            while (hashtext.length() < 32) {
-                hashtext = "0" + hashtext;
-            }
-            return hashtext;
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
-    }
-	
 	// Método leerLogin para iniciar la sesion
 	public Login iniciarSesion() throws SQLException {
 		//acudir al DAO y leer el login a partir del usuario y la contraseña

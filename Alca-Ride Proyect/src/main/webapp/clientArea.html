@@ -20,7 +20,7 @@
     <header class="header">
         <!--Pongo este div para que el enlace se ajuste exactamente al logo-->
         <div>
-        <a href="index.html"><img src="images/logo1.jpg" alt="Logo Alca-Ride"></a>
+        <a href="index.html"><img src="images/logo1.png" alt="Logo Alca-Ride"></a>
         </div>
     </header>
 
@@ -29,14 +29,14 @@
         <a href="catalogo.html">Catálogo</a>
         <a href="condic.html">Condiciones</a>
         <a href="contacto.html">Contacto</a>
-        <a href="login.html">Iniciar Sesión</a>
+        <div class="cerrar"><a href="ServletCerrarSesion">Cerrar Sesion</a></div>
     </nav>
     
   <article class="contenido">
-    <!-- Enlaces para gestiones de reserva y perfil que pasan el id_Login de la URL -->
+    
     <div class="usu"><a href="clientUsu.html">Gestionar perfil</a></div>
-    <div class="res"><a href="clientRes.html">Gestionar reservas</a></div>
-    <div class="cerrar"><a href="ServletCerrarSesion">Cerrar Sesion</a></div>
+    <div class="res"><a href="clientRes.html">Consultar reservas</a></div>
+    
 </article>
 
     <footer class="footer">
@@ -47,25 +47,37 @@
 
 </body>
 <script>
+
 function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
     results = regex.exec(location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
+//Función para controlar lel botón de Iniciar sesión cuando esté iniciada (Área personal)
 window.onload = function() {
-	//si me deja el servlet entrar entonces controlo el setItem de sessionstorage, si no me deja el servlet entonces no grabo sessionstorage
-    var idLogin = getParameterByName("idLogin");
-    if(idLogin != null)
-   	{
-    	sessionStorage.setItem("idLogin",idLogin);
-    	//Capturamos el botón
-        var enlaceInicioSesion = document.querySelector('.navbar .enlace-inicio-sesion');
-//DOM  - MODELO DE OBJETO DE DOCUMENTO
-        enlaceInicioSesion.textContent = 'Cerrar sesión';
-        enlaceInicioSesion.href = 'clientArea.html';
-    	//alert(sessionStorage.getItem("idLogin"));
-    }
+	//si me deja el servlet entrar entonces controlo el setItem de sessionstorage, 
+	//si no me deja el servlet entonces no grabo sessionstorage
+	
+	//en el caso que se llegue a esta pagina poniendo la direccion manualmente`y sin parametro idLogin
+	// -->  preguntar si tenemos establecido sessionstorage con un dato valido si no volvemos a redirigir a index	    
+	
+    
+    //Comprobamos si la sesión está iniciada    
+    var sesionIniciada = (sessionStorage.getItem('idLogin') != null && sessionStorage.getItem('idLogin') != 'null');
+        
+	var idLogin = getParameterByName("idLogin");
+    if((idLogin != null && idLogin != "") || sesionIniciada == true) {    	
+    	if(idLogin == null || idLogin == 'null') {
+    		idLogin = sessionStorage.getItem('idLogin');
+   		}
+    	sessionStorage.setItem("idLogin",idLogin);    	
+    } else {    	
+    	//Si no tiene parámetros el idLogin, le mandamos directamente al inicio
+    	//para hacer redirect desde javascript hacemos document.location = "index.html"
+    	document.location.href = "index.html";
+   	}
 };
+
 </script>
 </html>

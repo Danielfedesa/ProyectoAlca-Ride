@@ -56,11 +56,6 @@
 	    
     	document.getElementById("listadoMotocicletas").innerHTML = html;
     }
-	    
-    
-    	window.onload = function() {
-    		llamada("ServletListarMotos");
-    	}
     	
     	//Función para confirmar la eliminación del registro
         function confirmarEliminacion() {
@@ -95,7 +90,7 @@
     <header class="header">
         <!--Pongo este div para que el enlace se ajuste exactamente al logo-->
         <div>
-        <a href="index.html"><img src="images/logo1.jpg" alt="Logo Alca-Ride"></a>
+        <a href="index.html"><img src="images/logo1.png" alt="Logo Alca-Ride"></a>
         </div>
     </header>
 
@@ -104,7 +99,7 @@
         <a href="catalogo.html">Catálogo</a>
         <a href="condic.html">Condiciones</a>
         <a href="contacto.html">Contacto</a>
-        <a href="login.html">Iniciar Sesión</a>
+        <div class="cerrar"><a href="ServletCerrarSesion">Cerrar Sesion</a></div>
     </nav>
     
     <article class="contenido">
@@ -130,5 +125,40 @@
     </footer>
 
 </body>
+
+<script>
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+//Función para controlar lel botón de Iniciar sesión cuando esté iniciada (Área personal)
+window.onload = function() {
+	//Llamo a la función para listar las motos
+	llamada("ServletListarMotos");
+	//si me deja el servlet entrar entonces controlo el setItem de sessionstorage, 
+	//si no me deja el servlet entonces no grabo sessionstorage
+	
+	//en el caso que se llegue a esta pagina poniendo la direccion manualmente`y sin parametro idLogin
+	// -->  preguntar si tenemos establecido sessionstorage con un dato valido si no volvemos a redirigir a index	    
+	
+    
+    //Comprobamos si la sesión está iniciada    
+    var sesionIniciada = (sessionStorage.getItem('idLogin') != null && sessionStorage.getItem('idLogin') != 'null');
+        
+	var idLogin = getParameterByName("idLogin");
+    if((idLogin != null && idLogin != "") || sesionIniciada == true) {    	
+    	if(idLogin == null || idLogin == 'null') {
+    		idLogin = sessionStorage.getItem('idLogin');
+   		}
+    	sessionStorage.setItem("idLogin",idLogin);    	
+    } else {    	
+    	//Si no tiene parámetros el idLogin, le mandamos directamente al inicio, así evito que entren en zona de usuarios forzando la URL
+    	//para hacer redirect desde javascript hacemos document.location = "index.html"
+    	document.location.href = "index.html";
+   	}
+};
+</script>
 
 </html>

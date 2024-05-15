@@ -189,7 +189,6 @@ public class Motocicleta {
 		}
 		
 	//Método para eliminar Motocicleta:
-	
 		public void eliminarMotocicleta() throws SQLException {
 			DaoMotocicleta borrar = new DaoMotocicleta();
 			borrar.eliminarMoto(this);

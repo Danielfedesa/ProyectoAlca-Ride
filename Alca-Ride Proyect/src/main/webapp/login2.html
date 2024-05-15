@@ -20,7 +20,7 @@
     <header class="header">
         <!--Pongo este div para que el enlace se ajuste exactamente al logo-->
         <div>
-        <a href="index.html"><img src="images/logo1.jpg" alt="Logo Alca-Ride"></a>
+        <a href="index.html"><img src="images/logo1.png" alt="Logo Alca-Ride"></a>
         </div>
     </header>
 
@@ -29,7 +29,7 @@
         <a href="catalogo.html">Catálogo</a>
         <a href="condic.html">Condiciones</a>
         <a href="contacto.html">Contacto</a>
-        <a href="login.html">Iniciar Sesión</a>
+        <a href="login.html" class="enlace-inicio-sesion">Iniciar Sesión</a>a>
     </nav>
     
     <article class="contenido">
@@ -79,5 +79,30 @@
     </footer>
 
 </body>
+
+ <script>
+  //Función para controlar lel botón de Iniciar sesión cuando esté iniciada (Área personal)
+    window.onload = function() {
+    	//si me deja el servlet entrar entonces controlo el setItem de sessionstorage, si no me deja el servlet entonces no grabo sessionstorage
+        //Comprobamos si la sesión está iniciada       
+        
+    	var sesionIniciada = (sessionStorage.getItem('idLogin') != null && sessionStorage.getItem('idLogin') != 'null');
+    	if (sesionIniciada) {
+        	//alert("sesion iniciada");       	
+        	//Capturamos el botón con la info del arbol del documento.
+            var enlaceInicioSesion = document.querySelector('.navbar .enlace-inicio-sesion');
+			//DOM  - MODELO DE OBJETO DE DOCUMENTO
+            enlaceInicioSesion.textContent = 'Área personal';
+            enlaceInicioSesion.href = 'clientArea.html';
+            //alert(sessionStorage.getItem("idLogin"));
+        } else {
+        	//Si no tengo guardado ningún parámetro en el sessionstorage le redirijo al login
+            var enlaceInicioSesion = document.querySelector('.navbar a[href="login.html"]');
+            enlaceInicioSesion.textContent = 'Iniciar Sesión';
+            enlaceInicioSesion.href = 'login.html';
+        }
+    };
+    
+    </script>
 
 </html>

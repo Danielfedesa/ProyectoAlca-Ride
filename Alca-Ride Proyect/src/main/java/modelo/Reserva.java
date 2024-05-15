@@ -5,7 +5,6 @@ import java.sql.SQLException;
 
 import com.google.gson.Gson;
 
-import DAO.DaoMotocicleta;
 import DAO.DaoReserva;
 
 public class Reserva {
@@ -35,7 +34,7 @@ public class Reserva {
 		this.estado = estado;
 	}
 	
-	//Constructor completo ViewModel para mostrar en listado ADMINISTRADOR Y CLIENTE
+	//Constructor completo para mostrar en listado ADMINISTRADOR Y CLIENTE
 	public Reserva(int id_Reserva, int id_Moto, int id_Cliente, int id_Admin, Date fecha_Realiza, Date fecha_Inicio, Date fecha_Fin,
 			String estado) {
 		super();
@@ -49,7 +48,7 @@ public class Reserva {
 		this.estado = estado;
 	}
 	
-	//Constructor ViewModel para formulario Modificar Reserva
+	//Constructor para formulario Modificar Reserva
 	public Reserva(int id_Reserva, int id_Cliente, int id_Moto, Date fecha_Inicio, Date fecha_Fin, String estado) {
 		super();
 		this.id_Reserva = id_Reserva;
@@ -204,6 +203,12 @@ public class Reserva {
 					System.out.println("He creado el Json");
 
 					return json;
+				}
+				
+				//Metodo actualizar reserva para insertar las modificaciones en la base de datos
+				public boolean actualizarReserva() throws SQLException {
+					DaoReserva daoReserva = new DaoReserva();
+					return daoReserva.actualizarRes(this);
 				}
 	
 				//Método eliminar reserva

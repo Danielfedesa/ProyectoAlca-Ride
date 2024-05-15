@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import controlador.ConexionDB;
 import modelo.Motocicleta;
 import modelo.Reserva;
+import modelo.ReservaViewModel;
 
 public class DaoReserva {
 
@@ -113,31 +114,31 @@ public class DaoReserva {
 	//Le paso como argumento el id_Cliente para que solo me muestre las reservas de la sesion activa
 	//Hago la sentencia SQL para que seleccione los datos de las motos mezclando las tablas, siendo el id_Moto
 	//el dato que determine el resto de parámetros
-		public ArrayList<Reserva> listarResCliente(int id_Cliente) throws SQLException {
+		public ArrayList<ReservaViewModel> listarResCliente(int id_Cliente) throws SQLException {
 			
-			String sql = "SELECT id_Reserva, id_Moto, id_Cliente, id_Admin, fecha_Realiza, fecha_Inicio, fecha_Fin, estado FROM reservas WHERE id_Cliente = ?";
-			/*
+			
 		    String sql = "SELECT r.id_Reserva, r.id_Moto, r.id_Cliente, r.id_Admin, r.fecha_Realiza, "
-						  + "r.fecha_Inicio, r.fecha_Fin, r.estado, m.marca, m.modelo"
-						  + "FROM reservas r"
-						  + "JOIN motocicletas m ON r.id_Moto = m.id_Moto"
+						  + "r.fecha_Inicio, r.fecha_Fin, r.estado, m.marca, m.modelo, m.precio_Dia "
+						  + "FROM reservas r "
+						  + "JOIN motocicletas m ON r.id_Moto = m.id_Moto "
 						  + "WHERE r.id_Cliente = ?";
-		    */
+		    
 		    PreparedStatement ps = con.prepareStatement(sql);
 		    ps.setInt(1, id_Cliente); // Estableces el id_Cliente en la consulta SQL
 		    ResultSet rs = ps.executeQuery();
 
-		    ArrayList<Reserva> result = new ArrayList<>();
+		    ArrayList<ReservaViewModel> result = new ArrayList<>();
 		    while (rs.next()) {
 		        int id_Reserva = rs.getInt("id_Reserva");
-		        int id_Moto = rs.getInt("id_Moto");
-		        int id_Admin = rs.getInt("id_Admin");
+		        String marca = rs.getString("marca");
+		        String modelo = rs.getString("modelo");
+		        double precio = rs.getDouble("precio_Dia");
 		        Date fecha_Realiza = rs.getDate("fecha_Realiza");
 		        Date fecha_Inicio = rs.getDate("fecha_Inicio");
 		        Date fecha_Fin = rs.getDate("fecha_Fin");
 		        String estado = rs.getString("estado");
 
-		        Reserva reserva = new Reserva(id_Reserva, id_Moto, id_Cliente, id_Admin, fecha_Realiza, fecha_Inicio, fecha_Fin, estado);
+		        ReservaViewModel reserva = new ReservaViewModel(id_Reserva, marca, modelo, precio, fecha_Realiza, fecha_Inicio, fecha_Fin, estado);
 		        result.add(reserva);
 		    }
 
@@ -171,6 +172,37 @@ public class DaoReserva {
 				
 				//Retornamos el objeto r
 				return r;
+			}
+			//Metodo para insertar la modificación en BD
+			public boolean actualizarRes(Reserva res) {
+		        
+		        try {
+		        	String sql = "UPDATE reservas SET id_Cliente=?, id_Moto=?, fecha_Inicio=?, fecha_Fin=?, estado=? WHERE id_Reserva=?";
+		            PreparedStatement ps = con.prepareStatement(sql);
+		            ps.setInt(1, res.getId_Cliente());
+		            ps.setInt(2, res.getId_Moto());
+		            ps.setDate(3, res.getFecha_Inicio());
+		            ps.setDate(4, res.getFecha_Fin());
+		            ps.setString(5, res.getEstado());
+		            ps.setInt(6, res.getId_Reserva());
+
+		            
+		            int rs = ps.executeUpdate();
+		            if(rs == 1)
+		            {
+		            	return true;	
+		            }
+		            else
+		            {
+		            	return false;
+		            }
+		            	
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					return false;
+				}
+				
 			}
 
 			public void eliminarRese(Reserva r) throws SQLException {

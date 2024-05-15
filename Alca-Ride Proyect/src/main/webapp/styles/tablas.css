@@ -67,6 +67,11 @@ nav a:hover, .adm a:hover, .usu a:hover, .pro a:hover, .res a:hover {
     color: black;
 }
 
+.cerrar :hover {
+    background-color: red;
+    color: white;
+}
+
 /* Estilo para contenido*/
 
 .contenido {

@@ -66,6 +66,12 @@ nav a {
 nav a:hover, .usu a:hover, .pro a:hover, .res a:hover {
     background-color: #999999;
     color: black;
+    border: solid 2px #000000;
+}
+
+.cerrar :hover {
+    background-color: red;
+    color: white;
 }
 
 /* Estilo para contenido*/
@@ -94,24 +100,7 @@ nav a:hover, .usu a:hover, .pro a:hover, .res a:hover {
     padding: 20px;
 }
 
-.cerrar a {
-	background-color: red;
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    border-radius: 10px;
-    margin: 0 10px; /* Mantiene el espacio entre botones */
-    border: solid 1px #000000;
-    padding: 5px 15px;
-    width: 160px;
-    margin: 20px;
-    padding: 20px;
-}
 
-.cerrar a:hover {
-    background-color: white;
-    color: black;
-}
 /* Estilos para el footer*/
 
 .footer {
