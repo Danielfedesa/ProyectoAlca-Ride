@@ -51,12 +51,14 @@ public class ServletLogin extends HttpServlet {
 		
 		//Variable respuesta que contiene el resultado devuelto de la clase Login
 		Login respuesta;
-		//Comprobamos los datos introducidos por respuesta a través de Login
+		
+		//Comprobamos los datos introducidos por respuesta a través de Login para autenticar al usuario
 		try {
-			System.out.println("Antes de iniciar sesión: " + milogin);
+	        // Llama al método iniciarSesion para autenticar al usuario
 			respuesta = milogin.iniciarSesion();
-			System.out.println("Después de iniciar sesión: " + respuesta);
-			//Comprobamos si el objeto está vacío por no haberse encontrado en la base de datos por el Dao.
+
+			// Comprobamos si el objeto está vacío por no haberse encontrado en la base de datos por el Dao.
+			// Si está vacío redirijo a error
 			if(respuesta.getNombre_Usuario()=="") {
 				response.sendRedirect("errorRegistro.html");
 			}
@@ -64,21 +66,20 @@ public class ServletLogin extends HttpServlet {
 			else {
 				
 				//AQUÍ INICIAMOS EL MÉTODO PARA GUARDAR LOS DATOS EN LA SESION
+				// Obtiene la sesión actual o crea una nueva si no existe
 				sesion = request.getSession();
 				
 				//Meto los datos que necesito dentro de la sesion, en este caso el id_Login y el is_Admin
 				sesion.setAttribute("id", respuesta.getId_Login());
 				sesion.setAttribute("admin", respuesta.isIs_Admin());
 				//FINALIZO EL METODO PARA GUARDAR LA SESION
-				System.out.println(respuesta.getId_Login());
+				
 				//Comprobamos el is_Admin para redirigir a un sitio u otro y pasarle el id_Login
-				if(respuesta.isIs_Admin()==true)
-				{
+				if(respuesta.isIs_Admin()==true) {
+	                // Si es administrador redirige a la página del área de administrador con el ID de inicio de sesión
 					response.sendRedirect("adminArea.html?idLogin=" + respuesta.getId_Login());
-				}
-				else
-				{
-					//Si no es admin le mando a la página de cliente
+				} else {
+	                // Si no es administrador redirige a la página del área de cliente con el ID de inicio de sesión
 					response.sendRedirect("clientArea.html?idLogin=" + respuesta.getId_Login());
 				}
 			}
@@ -88,4 +89,3 @@ public class ServletLogin extends HttpServlet {
 		}
 	}
 }
-

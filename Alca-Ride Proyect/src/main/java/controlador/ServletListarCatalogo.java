@@ -16,42 +16,51 @@ import java.sql.SQLException;
  */
 public class ServletListarCatalogo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletListarCatalogo() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		//Este servlet muestra los datos de las motocicletas del catálogo.
-		try {
-			PrintWriter out = response.getWriter();
-			
-			Motocicleta moto = new Motocicleta();
-					
-			String resultado = moto.listarMotos();
-				
-				out.print(resultado);
-				System.out.println(resultado);
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
-			
-		}
+	public ServletListarCatalogo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
+		// Este servlet muestra los datos de las motocicletas del catálogo en la vista pública
+		try {
+	        // Obtiene el objeto PrintWriter para enviar la respuesta al cliente
+			PrintWriter out = response.getWriter();
+
+	        // Crea una instancia de la clase Motocicleta
+			Motocicleta moto = new Motocicleta();
+
+	        // Llama al método listarMotos() para obtener una lista de todas las motocicletas en formato String
+			String resultado = moto.listarMotos();
+
+	        // Imprime el resultado en la respuesta HTTP para que el cliente lo reciba
+			out.print(resultado);
+			System.out.println(resultado);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
 	}

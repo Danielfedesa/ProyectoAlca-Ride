@@ -13,32 +13,36 @@ import java.sql.SQLException;
 /**
  * Servlet implementation class ServletMotocicleta
  */
-@MultipartConfig //Añado la anotación @MultipartConfig para poder insertar fotografias. Importo
+@MultipartConfig // Añado la anotación @MultipartConfig para poder insertar fotografias. Importo
 public class ServletRegistroMotocicleta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletRegistroMotocicleta() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ServletRegistroMotocicleta() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//En este caso almacenamos los datos del formulario compuesto por varios campos
-		//asignando una variable a cada uno y dando el parametro del nombre del formulario individual.
+		
+	    // Obtiene los parámetros del formulario enviados en la solicitud
 		String tipo = request.getParameter("tipo");
 		String matricula = request.getParameter("matricula");
 		int cilindrada = Integer.parseInt(request.getParameter("cilindrada"));
@@ -48,21 +52,22 @@ public class ServletRegistroMotocicleta extends HttpServlet {
 		int anio = Integer.parseInt(request.getParameter("anio"));
 		double precio_Dia = Integer.parseInt(request.getParameter("precio_Dia"));
 
-		//Creamos un objeto con el constructor que no tiene id.
-		Motocicleta m1 = new Motocicleta(tipo, matricula, cilindrada, tipo_Carnet, marca, modelo, anio, precio_Dia); //Importo Modelo.Motocicleta
-
-		//imprimimos el objeto por pantalla.
-		System.out.println(m1.toString());
+		// Crea un objeto Motocicleta utilizando el constructor sin id
+		// ya que generará uno nuevo autoincremental al insertarse en bse de datos
+		Motocicleta m1 = new Motocicleta(tipo, matricula, cilindrada, tipo_Carnet, marca, modelo, anio, precio_Dia);
+																														
 		
-		//Método crearMotocicleta de la clase Motocicleta.
 		try {
-			m1.crearMotocicleta(); //Lo meto en un try catch.
+	        // Llama al método crearMotocicleta() para insertar los datos de la moto en la base de datos
+			m1.crearMotocicleta();
+			// Redirige a adminPro.html
 			response.sendRedirect("adminPro.html");
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("Error al insertar en la base de datos.");
+			// Si falla la inserción, redirige a errorRegistro.html
+			response.sendRedirect("errorRegistro.html");
 		}
 	}
 

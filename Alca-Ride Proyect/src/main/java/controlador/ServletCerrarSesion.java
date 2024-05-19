@@ -15,36 +15,37 @@ import java.io.IOException;
 public class ServletCerrarSesion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	HttpSession sesion;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletCerrarSesion() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		//Método para cerrar sesión
-		HttpSession sesion = request.getSession();
-		
-		//Cierro la sesión
-		  sesion.invalidate();
-		  response.sendRedirect("sesionCerrada.html");		  		  
+	public ServletCerrarSesion() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
+		HttpSession sesion = request.getSession();
+
+		sesion.invalidate();
+		response.sendRedirect("sesionCerrada.html");
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
 }
-
