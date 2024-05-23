@@ -66,7 +66,7 @@ public class ServletModificarUsuario extends HttpServlet {
 			// Llama al método recuperarUsuario de la clase Usuario para generar un objeto Dao
 			try {
 				u.recuperarUsuario(id);
-				// Llama al método dameJson de la clase Motocicleta
+				// Llama al método dameJson de la clase Usuario
 				out.print(u.dameJson());
 				
 			} catch (SQLException e) {
