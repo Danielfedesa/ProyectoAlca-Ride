@@ -1,38 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alca-Ride | Área privada ADMINISTRADOR | Gestión de productos</title>
-    <link rel="stylesheet" href="styles/tablas.css">
-    
+    <link rel="stylesheet" href="styles/tablas.css" />
+
     <script>
-    /*Función para pintar los datos de la tabla Motocicletas*/
-    function llamada(ServletListarMotos) {
-    	fetch(ServletListarMotos)
-    	.then(res => res.json())
-    	.then(res => pintarResultados(res));
-    }
-    
-    function pintarResultados(motos) {
-    	let html = "<table class='datosTabla'>";
-    	
-	     html += "<tr>";
-		    html += "<th>ID MOTO</th>";
-		    html += "<th>TIPO</th>";
-		    html += "<th>MATRICULA</th>";
-		    html += "<th>CILINDRADA</th>";
-		    html += "<th>CARNET</th>";
-		    html += "<th>MARCA</th>";
-		    html += "<th>MODELO</th>";
-		    html += "<th>AÑO</th>";
-		    html += "<th>PRECIO/DIA</th>";
-		    html += "<th>EDITAR</th>";
-		    html += "<th>BORRAR</th>";
-		    html += "</tr>";
-	    
-	    for(var i=0; i<motos.length; i++) {
-	    	html += `<tr>
+      /*Función para obtener y pintar los datos de la tabla Motocicletas*/
+      function llamada(ServletListarMotos) {
+        // Realiza una petición fetch al servlet que lista las motocicletas
+        fetch(ServletListarMotos)
+          // Convierte la respuesta en formato JSON
+          .then((res) => res.json())
+          // Llama a la función pintarResultados para mostrar los datos obtenidos
+          .then((res) => pintarResultados(res));
+      }
+
+      /* Función para pintar los resultados en la tabla */
+      function pintarResultados(motos) {
+        // Inicia la construcción de la tabla HTML
+        let html = "<table class='datosTabla'>";
+
+        // Añade la fila de encabezados de la tabla
+        html += "<tr>";
+        html += "<th>ID MOTO</th>";
+        html += "<th>TIPO</th>";
+        html += "<th>MATRICULA</th>";
+        html += "<th>CILINDRADA</th>";
+        html += "<th>CARNET</th>";
+        html += "<th>MARCA</th>";
+        html += "<th>MODELO</th>";
+        html += "<th>AÑO</th>";
+        html += "<th>PRECIO/DIA</th>";
+        html += "<th>EDITAR</th>";
+        html += "<th>BORRAR</th>";
+        html += "</tr>";
+
+        // Iteramos sobre cada motocicleta en el array de resultados
+        for (var i = 0; i < motos.length; i++) {
+          // Añade una fila para cada motocicleta con sus respectivos datos
+          html += `<tr>
 	    	<td>${motos[i].id_Moto}</td>
 	    	<td>${motos[i].tipo}</td>
     		<td>${motos[i].matricula}</td>
@@ -50,32 +58,27 @@
     			</form>
     		</td>
     		</tr>`;
-	    }
-	    
-	    html += "</table>";
-	    
-    	document.getElementById("listadoMotocicletas").innerHTML = html;
-    }
-    	
-    	//Función para confirmar la eliminación del registro
-        function confirmarEliminacion() {
-            return confirm("¿Estás seguro que quieres eliminar el vehículo?");
         }
+        // Cerramos la tabla
+        html += "</table>";
+        // Inserta la tabla construida en el elemento con id "listadoMotocicletas"
+        document.getElementById("listadoMotocicletas").innerHTML = html;
+      }
 
-     	// Obtiene el mensaje del servidor (de la URL)
-        var mensaje = new URLSearchParams(window.location.search).get("mensaje");
+      //Función para confirmar la eliminación del registro
+      function confirmarEliminacion() {
+        return confirm("¿Estás seguro que quieres eliminar el vehículo?");
+      }
 
-        // Si hay un mensaje, muestra una ventana emergente con él
-        if (mensaje) {
-            alert(mensaje);
-        }
-    	
-    	
-    
+      // Obtiene el mensaje del servidor (de la URL)
+      var mensaje = new URLSearchParams(window.location.search).get("mensaje");
+
+      // Si hay un mensaje, muestra una ventana emergente con él
+      if (mensaje) {
+        alert(mensaje);
+      }
     </script>
-    
-    
-</head>
+  </head>
 
   <!-- Creo una clase para el body, para la cual aplicaré 
     en su página de estilos un grid y le daré forma responsive.
@@ -85,80 +88,89 @@
         contenido
         footer
     -->
-<body class="gridContainer">
-
+  <body class="gridContainer">
     <header class="header">
-        <!--Pongo este div para que el enlace se ajuste exactamente al logo-->
-        <div>
-        <a href="index.html"><img src="images/logo1.png" alt="Logo Alca-Ride"></a>
-        </div>
+      <!--Pongo este div para que el enlace se ajuste exactamente al logo-->
+      <div>
+        <a href="index.html"
+          ><img src="images/logo1.png" alt="Logo Alca-Ride"
+        /></a>
+      </div>
     </header>
 
+    <!--Apartado del navbar-->
     <nav class="navbar">
-        <a href="index.html">Inicio</a>
-        <a href="catalogo.html">Catálogo</a>
-        <a href="condic.html">Condiciones</a>
-        <a href="contacto.html">Contacto</a>
-        <div class="cerrar"><a href="ServletCerrarSesion">Cerrar Sesion</a></div>
+      <a href="index.html">Inicio</a>
+      <a href="catalogo.html">Catálogo</a>
+      <a href="condic.html">Condiciones</a>
+      <a href="contacto.html">Contacto</a>
+      <div class="cerrar"><a href="ServletCerrarSesion">Cerrar Sesion</a></div>
     </nav>
-    
-    <article class="contenido">
 
-        <div class="menu">
-        
-            <div class="adm"><a href="adminArea.html">ADMINISTRADOR</a></div>
-            <div class="usu"><a href="adminUsu.html">Gestión de usuarios</a></div>
-            <div class="res"><a href="adminRes.html">Gestión de reservas</a></div>
-            <div class="pro"><a href="adminPro.html">Gestión de productos</a></div>
-        </div>
-        
-        <h1>Tabla Motocicletas</h1>
-       
-       <div id="listadoMotocicletas"></div>
-       
+    <!--Contenido general de la página-->
+    <article class="contenido">
+      <div class="menu">
+        <div class="adm"><a href="adminArea.html">ADMINISTRADOR</a></div>
+        <div class="usu"><a href="adminUsu.html">Gestión de usuarios</a></div>
+        <div class="res"><a href="adminRes.html">Gestión de reservas</a></div>
+        <div class="pro"><a href="adminPro.html">Gestión de productos</a></div>
+      </div>
+
+      <h1>Tabla Motocicletas</h1>
+      <!--div para pintar la tabla -->
+      <div id="listadoMotocicletas"></div>
     </article>
 
+    <!--Footer-->
     <footer class="footer">
-        <a href="privacidad.html" style="color: white;">Política de privacidad</a>
-        <a href="legal.html" style="color: white;">Aviso legal</a>
-        <p style="color: white;">Copyright Alca-Ride 2024 - Developed by Daniel Fernández</p>
+      <a href="privacidad.html" style="color: white">Política de privacidad</a>
+      <a href="legal.html" style="color: white">Aviso legal</a>
+      <p style="color: white">
+        Copyright Alca-Ride 2024 - Developed by Daniel Fernández
+      </p>
     </footer>
+  </body>
 
-</body>
+  <script>
 
-<script>
-function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-    results = regex.exec(location.search);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
-//Función para controlar lel botón de Iniciar sesión cuando esté iniciada (Área personal)
-window.onload = function() {
-	//Llamo a la función para listar las motos
-	llamada("ServletListarMotos");
-	//si me deja el servlet entrar entonces controlo el setItem de sessionstorage, 
-	//si no me deja el servlet entonces no grabo sessionstorage
-	
-	//en el caso que se llegue a esta pagina poniendo la direccion manualmente`y sin parametro idLogin
-	// -->  preguntar si tenemos establecido sessionstorage con un dato valido si no volvemos a redirigir a index	    
-	
-    
-    //Comprobamos si la sesión está iniciada    
-    var sesionIniciada = (sessionStorage.getItem('idLogin') != null && sessionStorage.getItem('idLogin') != 'null');
-        
-	var idLogin = getParameterByName("idLogin");
-    if((idLogin != null && idLogin != "") || sesionIniciada == true) {    	
-    	if(idLogin == null || idLogin == 'null') {
-    		idLogin = sessionStorage.getItem('idLogin');
-   		}
-    	sessionStorage.setItem("idLogin",idLogin);    	
-    } else {    	
-    	//Si no tiene parámetros el idLogin, le mandamos directamente al inicio, así evito que entren en zona de usuarios forzando la URL
-    	//para hacer redirect desde javascript hacemos document.location = "index.html"
-    	document.location.href = "index.html";
-   	}
-};
-</script>
+    // Función para obtener el valor de un parámetro de la URL por su nombre
+    function getParameterByName(name) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+      return results === null
+        ? ""
+        : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
 
+    //Función para controlar el botón de Iniciar sesión cuando esté iniciada (Área personal)
+    window.onload = function () {
+      //Llamo a la función para listar las motos
+      llamada("ServletListarMotos");
+      //si me deja el servlet entrar entonces controlo el setItem de sessionstorage,
+      //si no me deja el servlet entonces no grabo sessionstorage
+
+      //en el caso que se llegue a esta pagina poniendo la direccion manualmente`y sin parametro idLogin
+      // -->  preguntar si tenemos establecido sessionstorage con un dato valido si no volvemos a redirigir a index
+
+      //Comprobamos si la sesión está iniciada
+      var sesionIniciada =
+        sessionStorage.getItem("idLogin") != null &&
+        sessionStorage.getItem("idLogin") != "null";
+      // Si idLogin tiene un valor (no es null ni una cadena vacía) o la sesión está iniciada
+      var idLogin = getParameterByName("idLogin");
+      if ((idLogin != null && idLogin != "") || sesionIniciada == true) {
+        // Si idLogin es null o "null", lo reemplaza por el valor almacenado en sessionStorage
+        if (idLogin == null || idLogin == "null") {
+          idLogin = sessionStorage.getItem("idLogin");
+        }
+        // Almacenamos el idLogin en sessionStorage
+        sessionStorage.setItem("idLogin", idLogin);
+      } else {
+        //Si no tiene parámetros el idLogin, le mandamos directamente al inicio, así evito que entren en zona de usuarios forzando la URL
+        //para hacer redirect desde javascript hacemos document.location = "index.html"
+        document.location.href = "index.html";
+      }
+    };
+  </script>
 </html>

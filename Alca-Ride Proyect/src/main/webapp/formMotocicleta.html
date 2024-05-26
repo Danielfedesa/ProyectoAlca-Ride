@@ -1,53 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alca-Ride | Formulario modificar motocicleta</title>
-    <link rel="stylesheet" href="styles/formularios.css">
+    <link rel="stylesheet" href="styles/formularios.css" />
     <script>
-    
-    function llamada(id_Moto) {
-        fetch('ServletModificarMoto?id_Moto=' + id_Moto)
-        .then(response => response.json())
-        .then(data => pintarFormulario(data));
-    }
-    
-		/* Función para otener el valor de un parametro en el GET */
- 
-	function getParameterByName(name) {
-		    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-		    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-		    results = regex.exec(location.search);
-		    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-	}
+      // Función para hacer una llamada al servlet para modificar una moto
+      function llamada(id_Moto) {
+        // Realiza una petición fetch al servlet con el parámetro id_Moto
+        fetch("ServletModificarMoto?id_Moto=" + id_Moto)
+          // Convierte la respuesta en formato JSON
+          .then((response) => response.json())
+          // Llama a la función pintarFormulario para mostrar los datos obtenidos en el formulario
+          .then((data) => pintarFormulario(data));
+      }
 
+      /* Función para otener el valor de un parametro en el GET */
+      function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+        return results === null
+          ? ""
+          : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
 
-   		
-		
-		
-		function pintarFormulario(datos){
-			document.getElementById("id_Moto").value = datos.id_Moto;
-			document.getElementById("tipo").value = datos.tipo;
-			document.getElementById("matricula").value = datos.matricula;
-			document.getElementById("cilindrada").value = datos.cilindrada;
-			document.getElementById("tipo_Carnet").value = datos.tipo_Carnet;
-			document.getElementById("marca").value = datos.marca;
-			document.getElementById("modelo").value = datos.modelo;
-			document.getElementById("anio").value = datos.anio;
-			document.getElementById("precio_Dia").value = datos.precio_Dia;
-		}
+      // Función para pintar los datos en el formulario
+      function pintarFormulario(datos) {
+        // Asigna los valores al campo correspondiente en el formulario
+        document.getElementById("id_Moto").value = datos.id_Moto;
+        document.getElementById("tipo").value = datos.tipo;
+        document.getElementById("matricula").value = datos.matricula;
+        document.getElementById("cilindrada").value = datos.cilindrada;
+        document.getElementById("tipo_Carnet").value = datos.tipo_Carnet;
+        document.getElementById("marca").value = datos.marca;
+        document.getElementById("modelo").value = datos.modelo;
+        document.getElementById("anio").value = datos.anio;
+        document.getElementById("precio_Dia").value = datos.precio_Dia;
+      }
 
-		
-	 	// Obtiene el mensaje del servidor (de la URL)
-	    var mensaje = new URLSearchParams(window.location.search).get("mensaje");
+      // Obtiene el mensaje del servidor (de la URL)
+      var mensaje = new URLSearchParams(window.location.search).get("mensaje");
 
-	    // Si hay un mensaje, muestra una ventana emergente con él
-	    if (mensaje) {
-	        alert(mensaje);
-	    }
-		</script>
-</head>
+      // Si hay un mensaje, muestra una ventana emergente con él
+      if (mensaje) {
+        alert(mensaje);
+      }
+    </script>
+  </head>
 
   <!-- Creo una clase para el body, para la cual aplicaré 
     en su página de estilos un grid y le daré forma responsive.
@@ -57,144 +58,202 @@
         contenido
         footer
     -->
-<body class="gridContainer">
-
+  <body class="gridContainer">
     <header class="header">
-        <!--Pongo este div para que el enlace se ajuste exactamente al logo-->
-        <div>
-        <a href="index.html"><img src="images/logo1.png" alt="Logo Alca-Ride"></a>
-        </div>
+      <!--Pongo este div para que el enlace se ajuste exactamente al logo-->
+      <div>
+        <a href="index.html"
+          ><img src="images/logo1.png" alt="Logo Alca-Ride"
+        /></a>
+      </div>
     </header>
 
+    <!--Apartado del navbar-->
     <nav class="navbar">
-        <a href="index.html">Inicio</a>
-        <a href="catalogo.html">Catálogo</a>
-        <a href="condic.html">Condiciones</a>
-        <a href="contacto.html">Contacto</a>
-        <a href="login.html" class="enlace-inicio-sesion">Iniciar Sesión</a>
+      <a href="index.html">Inicio</a>
+      <a href="catalogo.html">Catálogo</a>
+      <a href="condic.html">Condiciones</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="login.html" class="enlace-inicio-sesion">Iniciar Sesión</a>
     </nav>
-    
+
+    <!--Contenido general de la página-->
     <article class="contenido">
-        <div class="formMoto">			
-            <h1>Formulario motocicleta</h1>  
+      <!--Formulario modificar moto-->
+      <div class="formMoto">
+        <h1>Formulario motocicleta</h1>
 
-            <form action="ServletModificarMoto" method="post">
-            
-            <input type="hidden" name="id_Moto" id="id_Moto">
-            
-             <!--Menú desplegable para seleccionar carnet,
+        <form action="ServletModificarMoto" method="post">
+          <input type="hidden" name="id_Moto" id="id_Moto" />
+
+          <!--Menú desplegable para seleccionar carnet,
             la primera opción está deshabilitada para que obligue
-            a elegir una de las otras dos antes de enviar--> 
-            <p>
-                <label for="tipo" class="tipo">Tipo
-                    <span class="obligatorio">*</span>
-                </label>
-                <select name="tipo" id="tipo" required="obligatorio">
-                    <option value="" disabled selected hidden>Selecciona una opción</option>
-                    <option value="Custom">Custom</option>
-                    <option value="Adventure">Adventure</option>
-                    <option value="Turismo">Turismo</option>
-                    <option value="Naked">Naked</option>
-                </select>
-            </p>
+            a elegir una de las otras dos antes de enviar-->
+          <p>
+            <label for="tipo" class="tipo"
+              >Tipo
+              <span class="obligatorio">*</span>
+            </label>
+            <select name="tipo" id="tipo" required="obligatorio">
+              <option value="" disabled selected hidden>
+                Selecciona una opción
+              </option>
+              <option value="Custom">Custom</option>
+              <option value="Adventure">Adventure</option>
+              <option value="Turismo">Turismo</option>
+              <option value="Naked">Naked</option>
+            </select>
+          </p>
 
-            <p>
-                <label for="matricula" class="colocar_matricula">Matricula
-                <span class="obligatorio">*</span>
-                </label>
-                <input type="matricula" name="matricula" id="matricula" required="obligatorio" placeholder="Escribe la matricula del vehículo">
-            </p>
+          <p>
+            <label for="matricula" class="colocar_matricula"
+              >Matricula
+              <span class="obligatorio">*</span>
+            </label>
+            <input
+              type="matricula"
+              name="matricula"
+              id="matricula"
+              required="obligatorio"
+              placeholder="Escribe la matricula del vehículo"
+            />
+          </p>
 
-            <p>
-                <label for="cilindrada" class="colocar_cilindrada">Cilindrada
-                <span class="obligatorio">*</span>
-                </label>
-                <input type="cilindrada" name="cilindrada" id="cilindrada" required="obligatorio" placeholder="Escribe la cilindrada del vehículo">
-            </p>
+          <p>
+            <label for="cilindrada" class="colocar_cilindrada"
+              >Cilindrada
+              <span class="obligatorio">*</span>
+            </label>
+            <input
+              type="cilindrada"
+              name="cilindrada"
+              id="cilindrada"
+              required="obligatorio"
+              placeholder="Escribe la cilindrada del vehículo"
+            />
+          </p>
 
-            <!--Menú desplegable para seleccionar carnet,
+          <!--Menú desplegable para seleccionar carnet,
             la primera opción está deshabilitada para que obligue
-            a elegir una de las otras dos antes de enviar--> 
-            <p>
-                <label for="carnet" class="colocar_carnet">Tipo carnet
-                    <span class="obligatorio">*</span>
-                </label>
-                <select name="tipo_Carnet" id="tipo_Carnet" required="obligatorio">
-                    <option value="" disabled selected hidden>Selecciona una opción</option>
-                    <option value="A">A</option>
-                    <option value="A2">A2</option>
-                </select>
-            </p>
-                    
-            <p>
-                <label for="marca" class="colocar_marca">Marca
-                <span class="obligatorio">*</span>
-                </label>
-                <input type="marca" name="marca" id="marca" required="obligatorio" placeholder="Escribe la marca del vehículo">
-            </p>
-    
-            <p>
-                <label for="modelo" class="colocar_modelo">Modelo
-                <span class="obligatorio">*</span>
-                </label>
-                <input type="modelo" name="modelo" id="modelo" required="obligatorio" placeholder="Escribe el modelo del vehículo">
-            </p>
+            a elegir una de las otras dos antes de enviar-->
+          <p>
+            <label for="carnet" class="colocar_carnet"
+              >Tipo carnet
+              <span class="obligatorio">*</span>
+            </label>
+            <select name="tipo_Carnet" id="tipo_Carnet" required="obligatorio">
+              <option value="" disabled selected hidden>
+                Selecciona una opción
+              </option>
+              <option value="A">A</option>
+              <option value="A2">A2</option>
+            </select>
+          </p>
 
-            <p>
-                <label for="anio" class="colocar_anio">Año
-                <span class="obligatorio">*</span>
-                </label>
-                <input type="anio" name="anio" id="anio" required="obligatorio" placeholder="Escribe el año del vehículo">
-            </p>
+          <p>
+            <label for="marca" class="colocar_marca"
+              >Marca
+              <span class="obligatorio">*</span>
+            </label>
+            <input
+              type="marca"
+              name="marca"
+              id="marca"
+              required="obligatorio"
+              placeholder="Escribe la marca del vehículo"
+            />
+          </p>
 
-            <p>
-                <label for="precio" class="colocar_precio">Precio por día
-                <span class="obligatorio">*</span>
-                </label>
-                <input type="precio" name="precio_Dia" id="precio_Dia" required="obligatorio" placeholder="Escribe el precio por día del vehículo">
-            </p>
+          <p>
+            <label for="modelo" class="colocar_modelo"
+              >Modelo
+              <span class="obligatorio">*</span>
+            </label>
+            <input
+              type="modelo"
+              name="modelo"
+              id="modelo"
+              required="obligatorio"
+              placeholder="Escribe el modelo del vehículo"
+            />
+          </p>
 
-            <button type="submit" name="enviar_formulario" id="enviar"><p>Enviar</p></button>
-				                            
-            </form>
-            </div>
-      
+          <p>
+            <label for="anio" class="colocar_anio"
+              >Año
+              <span class="obligatorio">*</span>
+            </label>
+            <input
+              type="anio"
+              name="anio"
+              id="anio"
+              required="obligatorio"
+              placeholder="Escribe el año del vehículo"
+            />
+          </p>
+
+          <p>
+            <label for="precio" class="colocar_precio"
+              >Precio por día
+              <span class="obligatorio">*</span>
+            </label>
+            <input
+              type="precio"
+              name="precio_Dia"
+              id="precio_Dia"
+              required="obligatorio"
+              placeholder="Escribe el precio por día del vehículo"
+            />
+          </p>
+
+          <button type="submit" name="enviar_formulario" id="enviar">
+            <p>Enviar</p>
+          </button>
+        </form>
+      </div>
     </article>
 
+    <!--Footer-->
     <footer class="footer">
-        <a href="privacidad.html" style="color: white;">Política de privacidad</a>
-        <a href="legal.html" style="color: white;">Aviso legal</a>
-        <p style="color: white;">Copyright Alca-Ride 2024 - Developed by Daniel Fernández</p>
+      <a href="privacidad.html" style="color: white">Política de privacidad</a>
+      <a href="legal.html" style="color: white">Aviso legal</a>
+      <p style="color: white">
+        Copyright Alca-Ride 2024 - Developed by Daniel Fernández
+      </p>
     </footer>
+  </body>
 
-</body>
+  <script>
+    //Función para controlar el botón de Iniciar sesión cuando esté iniciada (Área personal)
+    window.onload = function () {
+      //Llamo a la función para listar las motos
+      let id = getParameterByName("id_Moto");
+      llamada(id);
+      //si me deja el servlet entrar entonces controlo el setItem de sessionstorage, si no me deja el servlet entonces no grabo sessionstorage
 
-    <script>
-  //Función para controlar lel botón de Iniciar sesión cuando esté iniciada (Área personal)
-    window.onload = function() {
-	  //Llamo a la función para listar las motos
-	  		let id = getParameterByName("id_Moto");
-			llamada(id);
-    	//si me deja el servlet entrar entonces controlo el setItem de sessionstorage, si no me deja el servlet entonces no grabo sessionstorage
-        //Comprobamos si la sesión está iniciada       
-        
-    	var sesionIniciada = (sessionStorage.getItem('idLogin') != null && sessionStorage.getItem('idLogin') != 'null');
-    	if (sesionIniciada) {
-        	//alert("sesion iniciada");       	
-        	//Capturamos el botón con la info del arbol del documento.
-            var enlaceInicioSesion = document.querySelector('.navbar .enlace-inicio-sesion');
-			//DOM  - MODELO DE OBJETO DE DOCUMENTO
-            enlaceInicioSesion.textContent = 'Área personal';
-            enlaceInicioSesion.href = 'clientArea.html';
-            //alert(sessionStorage.getItem("idLogin"));
-        } else {
-        	//Si no tengo guardado ningún parámetro en el sessionstorage le redirijo al login
-            var enlaceInicioSesion = document.querySelector('.navbar a[href="login.html"]');
-            enlaceInicioSesion.textContent = 'Iniciar Sesión';
-            enlaceInicioSesion.href = 'login.html';
-        }
+      //Comprobamos si la sesión está iniciada
+      var sesionIniciada =
+        sessionStorage.getItem("idLogin") != null &&
+        sessionStorage.getItem("idLogin") != "null";
+      if (sesionIniciada) {
+        //Capturamos el botón con la info del arbol del documento.
+        var enlaceInicioSesion = document.querySelector(
+          ".navbar .enlace-inicio-sesion"
+        );
+        // Cambiamos el texto del enlace a "Área personal"
+        enlaceInicioSesion.textContent = "Área personal";
+        // Cambiamos el href del enlace para que redirija a "clientArea.html"
+        enlaceInicioSesion.href = "clientArea.html";
+      } else {
+        //Si no tengo guardado ningún parámetro en el sessionstorage le redirijo al login
+        var enlaceInicioSesion = document.querySelector(
+          '.navbar a[href="login.html"]'
+        );
+        // Cambiamos el texto del enlace a "Iniciar Sesión"
+        enlaceInicioSesion.textContent = "Iniciar Sesión";
+        // Aseguramos que el href del enlace sea "login.html"
+        enlaceInicioSesion.href = "login.html";
+      }
     };
-    
-    </script>
-
+  </script>
 </html>

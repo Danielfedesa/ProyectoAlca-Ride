@@ -1,55 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alca-Ride | Formulario de registro</title>
-    <link rel="stylesheet" href="styles/formularios.css">
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alca-Ride | Formulario modificar usuario</title>
+    <link rel="stylesheet" href="styles/formularios.css" />
+
     <script>
-    
-    function llamada(id_Usuario) {
-        fetch('ServletModificarUsuario?id_Usuario=' + id_Usuario)
-        .then(response => response.json())
-        .then(data => pintarFormulario(data));
-    }
-    
-		/* Función para otener el valor de un parametro en el GET */
- 
-	function getParameterByName(name) {
-		    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-		    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-		    results = regex.exec(location.search);
-		    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-	}
+      // Función para hacer una llamada al servlet para modificar un usuario
+      function llamada(id_Usuario) {
+        // Realiza una petición fetch al servlet con el parámetro id_Usuario
+        fetch("ServletModificarUsuario?id_Usuario=" + id_Usuario)
+          // Convierte la respuesta en formato JSON
+          .then((response) => response.json())
+          // Llama a la función pintarFormulario para mostrar los datos obtenidos en el formulario
+          .then((data) => pintarFormulario(data));
+      }
 
+      /* Función para otener el valor de un parametro en el GET */
+      function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+        return results === null
+          ? ""
+          : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
 
-   		
-		
-		
-		function pintarFormulario(datos){
-			document.getElementById("id_Usuario").value = datos.id_Usuario;
-			document.getElementById("nombre").value = datos.nombre;
-			document.getElementById("apellido1").value = datos.apellido1;
-			document.getElementById("apellido2").value = datos.apellido2;
-			document.getElementById("telefono").value = datos.telefono;
-			document.getElementById("email").value = datos.email;
-			document.getElementById("dni").value = datos.dni;
-			document.getElementById("carnet").value = datos.carnet;
-			document.getElementById("direccion").value = datos.direccion;
-		}
+      // Función para pintar los datos en el formulario
+      function pintarFormulario(datos) {
+        // Asigna los valores al campo correspondiente en el formulario
+        document.getElementById("id_Usuario").value = datos.id_Usuario;
+        document.getElementById("nombre").value = datos.nombre;
+        document.getElementById("apellido1").value = datos.apellido1;
+        document.getElementById("apellido2").value = datos.apellido2;
+        document.getElementById("telefono").value = datos.telefono;
+        document.getElementById("email").value = datos.email;
+        document.getElementById("dni").value = datos.dni;
+        document.getElementById("carnet").value = datos.carnet;
+        document.getElementById("direccion").value = datos.direccion;
+      }
 
-		
-	 	// Obtiene el mensaje del servidor (de la URL)
-	    var mensaje = new URLSearchParams(window.location.search).get("mensaje");
+      // Obtiene el mensaje del servidor (de la URL)
+      var mensaje = new URLSearchParams(window.location.search).get("mensaje");
 
-	    // Si hay un mensaje, muestra una ventana emergente con él
-	    if (mensaje) {
-	        alert(mensaje);
-	    }
-		</script>
-    
-</head>
+      // Si hay un mensaje, muestra una ventana emergente con él
+      if (mensaje) {
+        alert(mensaje);
+      }
+    </script>
+  </head>
 
   <!-- Creo una clase para el body, para la cual aplicaré 
     en su página de estilos un grid y le daré forma responsive.
@@ -59,134 +59,198 @@
         contenido
         footer
     -->
-<body class="gridContainer">
-
+  <body class="gridContainer">
     <header class="header">
-        <!--Pongo este div para que el enlace se ajuste exactamente al logo-->
-        <div>
-        <a href="index.html"><img src="images/logo1.png" alt="Logo Alca-Ride"></a>
-        </div>
+      <!--Pongo este div para que el enlace se ajuste exactamente al logo-->
+      <div>
+        <a href="index.html"
+          ><img src="images/logo1.png" alt="Logo Alca-Ride"
+        /></a>
+      </div>
     </header>
 
+    <!--Apartado del navbar-->
     <nav class="navbar">
-        <a href="index.html">Inicio</a>
-        <a href="catalogo.html">Catálogo</a>
-        <a href="condic.html">Condiciones</a>
-        <a href="reserva.html">Reserva</a>
-        <a href="contacto.html">Contacto</a>
-        <a href="login.html" class="enlace-inicio-sesion">Iniciar Sesión</a>
+      <a href="index.html">Inicio</a>
+      <a href="catalogo.html">Catálogo</a>
+      <a href="condic.html">Condiciones</a>
+      <a href="reserva.html">Reserva</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="login.html" class="enlace-inicio-sesion">Iniciar Sesión</a>
     </nav>
-    
+
+    <!--Contenido general de la página-->
     <article class="contenido">
-        <div class="formRegistro">			
-            <h1>Formulario modificar user</h1>  
+      <!--Formulario modificar usuario-->
+      <div class="formRegistro">
+        <h1>Formulario modificar user</h1>
 
-            <form action="ServletModificarUsuario" method="post">
+        <form action="ServletModificarUsuario" method="post">
+          <input type="hidden" name="id_Usuario" id="id_Usuario" />
+          <p>
+            <label for="nombre" class="colocar_nombre"
+              >Nombre
+              <span class="obligatorio">*</span>
+            </label>
+            <input
+              type="nombre"
+              name="nombre"
+              id="nombre"
+              required="obligatorio"
+              placeholder="Escribe tu nombre"
+            />
+          </p>
 
-			<input type="hidden" name="id_Usuario" id="id_Usuario">
-            <p>
-                <label for="nombre" class="colocar_nombre">Nombre
-                <span class="obligatorio">*</span>
-                </label>
-                <input type="nombre" name="nombre" id="nombre" required="obligatorio" placeholder="Escribe tu nombre">
-            </p>
+          <p>
+            <label for="apellido1" class="colocar_apellido1"
+              >Primer apellido
+              <span class="obligatorio">*</span>
+            </label>
+            <input
+              type="apellido1"
+              name="apellido1"
+              id="apellido1"
+              required="obligatorio"
+              placeholder="Escribe tu primer apellido"
+            />
+          </p>
 
-            <p>
-                <label for="apellido1" class="colocar_apellido1">Primer apellido
-                <span class="obligatorio">*</span>
-                </label>
-                <input type="apellido1" name="apellido1" id="apellido1" required="obligatorio" placeholder="Escribe tu primer apellido">
-            </p>
+          <p>
+            <label for="apellido2" class="colocar_apellido2"
+              >Segundo apellido
+            </label>
+            <input
+              type="apellido2"
+              name="apellido2"
+              id="apellido2"
+              placeholder="Escribe tu segundo apellido"
+            />
+          </p>
 
-            <p>
-                <label for="apellido2" class="colocar_apellido2">Segundo apellido
-                </label>
-                <input type="apellido2" name="apellido2" id="apellido2" placeholder="Escribe tu segundo apellido">
-            </p>
+          <p>
+            <label for="telefono" class="colocar_telefono"
+              >Telefono
+              <span class="obligatorio">*</span>
+            </label>
+            <input
+              type="telefono"
+              name="telefono"
+              id="telefono"
+              required="obligatorio"
+              placeholder="Escribe tu teléfono"
+            />
+          </p>
 
-            <p>
-                <label for="telefono" class="colocar_telefono">Telefono
-                <span class="obligatorio">*</span>
-                </label>
-                <input type="telefono" name="telefono" id="telefono" required="obligatorio" placeholder="Escribe tu teléfono">
-            </p>
+          <p>
+            <label for="email" class="colocar_email"
+              >Correo electrónico
+              <span class="obligatorio">*</span>
+            </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              required="obligatorio"
+              placeholder="Escribe tu email"
+            />
+          </p>
 
-            <p>
-                <label for="email" class="colocar_email">Correo electrónico
-                <span class="obligatorio">*</span>
-                </label>
-                <input type="email" name="email" id="email" required="obligatorio" placeholder="Escribe tu email">
-            </p>
+          <p>
+            <label for="dni" class="colocar_dni"
+              >DNI
+              <span class="obligatorio">*</span>
+            </label>
+            <input
+              type="dni"
+              name="dni"
+              id="dni"
+              required="obligatorio"
+              placeholder="Escribe tu DNI"
+            />
+          </p>
 
-            <p>
-                <label for="dni" class="colocar_dni">DNI
-                <span class="obligatorio">*</span>
-                </label>
-                <input type="dni" name="dni" id="dni" required="obligatorio" placeholder="Escribe tu DNI">
-            </p>
-
-            <!--Menú desplegable para seleccionar carnet,
+          <!--Menú desplegable para seleccionar carnet,
             la primera opción está deshabilitada para que obligue
-            a elegir una de las otras dos antes de enviar--> 
-            <p>
-                <label for="carnet" class="colocar_carnet">Tipo carnet
-                    <span class="obligatorio">*</span>
-                </label>
-                <select name="carnet" id="carnet" required="obligatorio">
-                    <option value="" disabled selected hidden>Selecciona una opción</option>
-                    <option value="A">A</option>
-                    <option value="A2">A2</option>
-                </select>
-            </p>
-                    
-            <p>
-                <label for="direccion" class="colocar_direccion">Dirección
-                <span class="obligatorio">*</span>
-                </label>
-                <input type="direccion" name="direccion" id="direccion" required="obligatorio" placeholder="Escribe tu dirección de residencia">
-            </p>
+            a elegir una de las otras dos antes de enviar-->
+          <p>
+            <label for="carnet" class="colocar_carnet"
+              >Tipo carnet
+              <span class="obligatorio">*</span>
+            </label>
+            <select name="carnet" id="carnet" required="obligatorio">
+              <option value="" disabled selected hidden>
+                Selecciona una opción
+              </option>
+              <option value="A">A</option>
+              <option value="A2">A2</option>
+            </select>
+          </p>
 
-            <button type="submit" name="enviar_formulario" id="enviar"><p>Enviar</p></button>
-				                            
-            </form>
-           
-        </div>
+          <p>
+            <label for="direccion" class="colocar_direccion"
+              >Dirección
+              <span class="obligatorio">*</span>
+            </label>
+            <input
+              type="direccion"
+              name="direccion"
+              id="direccion"
+              required="obligatorio"
+              placeholder="Escribe tu dirección de residencia"
+            />
+          </p>
+
+          <button type="submit" name="enviar_formulario" id="enviar">
+            <p>Enviar</p>
+          </button>
+        </form>
+      </div>
     </article>
 
+    <!--Footer-->
     <footer class="footer">
-        <a href="privacidad.html" style="color: white;">Política de privacidad</a>
-        <a href="legal.html" style="color: white;">Aviso legal</a>
-        <p style="color: white;">Copyright Alca-Ride 2024 - Developed by Daniel Fernández</p>
+      <a href="privacidad.html" style="color: white">Política de privacidad</a>
+      <a href="legal.html" style="color: white">Aviso legal</a>
+      <p style="color: white">
+        Copyright Alca-Ride 2024 - Developed by Daniel Fernández
+      </p>
     </footer>
+  </body>
 
-</body>
+  <script>
+    //Función para controlar lel botón de Iniciar sesión cuando esté iniciada (Área personal)
+    window.onload = function () {
+      //Llamo a la función de listar
+      // Obtiene el valor del parámetro id_Usuario de la URL
+      let id = getParameterByName("id_Usuario");
+      // Llama a la función llamada() pasando el id_Usuario obtenido
+      llamada(id);
+      //si me deja el servlet entrar entonces controlo el setItem de sessionstorage, si no me deja el servlet entonces no grabo sessionstorage
 
- <script>
-  //Función para controlar lel botón de Iniciar sesión cuando esté iniciada (Área personal)
-    window.onload = function() {
-	  //Llamo a la función de listar
-		let id = getParameterByName("id_Usuario");
-		llamada(id);
-    	//si me deja el servlet entrar entonces controlo el setItem de sessionstorage, si no me deja el servlet entonces no grabo sessionstorage
-        //Comprobamos si la sesión está iniciada       
-        
-    	var sesionIniciada = (sessionStorage.getItem('idLogin') != null && sessionStorage.getItem('idLogin') != 'null');
-    	if (sesionIniciada) {
-        	//alert("sesion iniciada");       	
-        	//Capturamos el botón con la info del arbol del documento.
-            var enlaceInicioSesion = document.querySelector('.navbar .enlace-inicio-sesion');
-			//DOM  - MODELO DE OBJETO DE DOCUMENTO
-            enlaceInicioSesion.textContent = 'Área personal';
-            enlaceInicioSesion.href = 'clientArea.html';
-            //alert(sessionStorage.getItem("idLogin"));
-        } else {
-        	//Si no tengo guardado ningún parámetro en el sessionstorage le redirijo al login
-            var enlaceInicioSesion = document.querySelector('.navbar a[href="login.html"]');
-            enlaceInicioSesion.textContent = 'Iniciar Sesión';
-            enlaceInicioSesion.href = 'login.html';
-        }
+      //Comprobamos si la sesión está iniciada
+      var sesionIniciada =
+        sessionStorage.getItem("idLogin") != null &&
+        sessionStorage.getItem("idLogin") != "null";
+      if (sesionIniciada) {
+        //alert("sesion iniciada");
+        //Capturamos el botón con la info del arbol del documento.
+        var enlaceInicioSesion = document.querySelector(
+          ".navbar .enlace-inicio-sesion"
+        );
+        // Cambiamos el texto del enlace a "Área personal"
+        enlaceInicioSesion.textContent = "Área personal";
+        // Cambiamos el href del enlace para que redirija a "clientArea.html"
+        enlaceInicioSesion.href = "clientArea.html";
+      } else {
+        //Si no tengo guardado ningún parámetro en el sessionstorage le redirijo al login
+        var enlaceInicioSesion = document.querySelector(
+          '.navbar a[href="login.html"]'
+        );
+        // Cambiamos el texto del enlace a "Iniciar Sesión"
+        enlaceInicioSesion.textContent = "Iniciar Sesión";
+        // Aseguramos que el href del enlace sea "login.html"
+        enlaceInicioSesion.href = "login.html";
+      }
     };
-    
-    </script>
-
+  </script>
 </html>

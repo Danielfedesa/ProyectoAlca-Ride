@@ -1,58 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alca-Ride | Categoría Adventure</title>
-    <link rel="stylesheet" href="styles/modelos2.css">
-        <script>
-    
-    /*Función para pintar los datos de la tabla Motocicletas*/
-    function llamada(ServletListarCatalogo) {
+    <link rel="stylesheet" href="styles/modelos2.css" />
+    <script>
+
+      /*Función para pintar los datos de la tabla Motocicletas*/
+      function llamada(ServletListarCatalogo) {
+        // Realiza una petición fetch al servlet que lista el catálogo de motocicletas
         fetch(ServletListarCatalogo)
-        .then(res => res.json())
-        .then(res => pintarResultados(res));
-    }
-        
-    function pintarResultados(motos) {
+          // Convierte la respuesta en formato JSON
+          .then((res) => res.json())
+          // Llama a la función pintarResultados para mostrar los datos obtenidos
+          .then((res) => pintarResultados(res));
+      }
+
+      /* Función para pintar los resultados en los contenedores correspondientes */
+      function pintarResultados(motos) {
         // Filtrar la moto con id_Moto=9
-        let moto1 = motos.find(moto => moto.id_Moto === 9);
+        let moto1 = motos.find((moto) => moto.id_Moto === 9);
         if (moto1) {
-            // Relleno el div cont1 con los datos de la moto5
-            let contenedor1 = document.getElementById("cont1");
-            contenedor1.innerHTML = "";
-            let divMoto1 = crearDivMoto(moto1);
-            contenedor1.appendChild(divMoto1);
+          // Relleno el div cont1 con los datos de la moto1
+          let contenedor1 = document.getElementById("cont1");
+          // Limpia el contenido del contenedor, eliminando cualquier HTML previo
+          contenedor1.innerHTML = "";
+          // Crea un nuevo div con los datos de la motocicleta moto1 usando la función crearDivMoto
+          let divMoto1 = crearDivMoto(moto1);
+          // Añade el div creado al contenedor "cont1"
+          contenedor1.appendChild(divMoto1);
         }
 
         // Repito lo mismo para los cont2, 3 y 4.
-        let moto2 = motos.find(moto => moto.id_Moto === 10);
+        let moto2 = motos.find((moto) => moto.id_Moto === 10);
         if (moto2) {
-            let contenedor2 = document.getElementById("cont2");
-            contenedor2.innerHTML = "";
-            let divMoto2 = crearDivMoto(moto2);
-            contenedor2.appendChild(divMoto2);
+          let contenedor2 = document.getElementById("cont2");
+          contenedor2.innerHTML = "";
+          let divMoto2 = crearDivMoto(moto2);
+          contenedor2.appendChild(divMoto2);
         }
 
-        let moto3 = motos.find(moto => moto.id_Moto === 11);
+        let moto3 = motos.find((moto) => moto.id_Moto === 11);
         if (moto3) {
-            let contenedor3 = document.getElementById("cont3");
-            contenedor3.innerHTML = "";
-            let divMoto3 = crearDivMoto(moto3);
-            contenedor3.appendChild(divMoto3);
+          let contenedor3 = document.getElementById("cont3");
+          contenedor3.innerHTML = "";
+          let divMoto3 = crearDivMoto(moto3);
+          contenedor3.appendChild(divMoto3);
         }
 
-        let moto4 = motos.find(moto => moto.id_Moto === 12);
+        let moto4 = motos.find((moto) => moto.id_Moto === 12);
         if (moto4) {
-            let contenedor4 = document.getElementById("cont4");
-            contenedor4.innerHTML = "";
-            let divMoto4 = crearDivMoto(moto4);
-            contenedor4.appendChild(divMoto4);
+          let contenedor4 = document.getElementById("cont4");
+          contenedor4.innerHTML = "";
+          let divMoto4 = crearDivMoto(moto4);
+          contenedor4.appendChild(divMoto4);
         }
-    }
-      
-    //Creo el div con todos los datos tal y como lo tenía en el html estático antes de la modificación.
-    function crearDivMoto(moto) {
+      }
+
+      /* Función para crear un div con todos los datos de una motocicleta 
+   tal y como estaba en el HTML estático antes de la modificación */
+      function crearDivMoto(moto) {
         let divMoto = document.createElement("div");
         divMoto.classList.add("cajatexto");
         divMoto.innerHTML = `
@@ -66,10 +74,10 @@
             <a href="formInsertarReserva.html?id_Moto=${moto.id_Moto}"><div class="reser">RESERVAR</div></a>
         `;
         return divMoto;
-    };
-    
-  	</script>
-</head>
+      }
+
+    </script>
+  </head>
 
   <!-- Creo una clase para el body, para la cual aplicaré 
     en su página de estilos un grid y le daré forma responsive.
@@ -79,85 +87,101 @@
         contenido
         footer
     -->
-<body class="gridContainer">
-
+  <body class="gridContainer">
     <header class="header">
-        <!--Pongo este div para que el enlace se ajuste exactamente al logo-->
-        <div>
-        <a href="index.html"><img src="images/logo1.png" alt="Logo Alca-Ride"></a>
-        </div>
+      <!--Pongo este div para que el enlace se ajuste exactamente al logo-->
+      <div>
+        <a href="index.html"
+          ><img src="images/logo1.png" alt="Logo Alca-Ride"
+        /></a>
+      </div>
     </header>
 
+    <!--Apartado del navbar-->
     <nav class="navbar">
-        <a href="index.html">Inicio</a>
-        <a href="catalogo.html">Catálogo</a>
-        <a href="condic.html">Condiciones</a>
-        <a href="contacto.html">Contacto</a>
-        <a href="login.html" class="enlace-inicio-sesion">Iniciar Sesión</a>
+      <a href="index.html">Inicio</a>
+      <a href="catalogo.html">Catálogo</a>
+      <a href="condic.html">Condiciones</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="login.html" class="enlace-inicio-sesion">Iniciar Sesión</a>
     </nav>
-    
+
+    <!--Contenido general de la página-->
     <article class="contenido">
-        <div class="present">
+      <div class="present">
         <h3>
-            Vive una auténtica aventura con nuestros modelos trail con los que podrás viajar a cualquier lugar de la Tierra Media por lejano que sea. Si Frodo hubiese tenido una de estas, la trilogía hubiera sido un cortometraje.
+          Vive una auténtica aventura con nuestros modelos trail con los que
+          podrás viajar a cualquier lugar de la Tierra Media por lejano que sea.
+          Si Frodo hubiese tenido una de estas, la trilogía hubiera sido un
+          cortometraje.
         </h3>
-         </div>
-         
-         <div class="contModelo1">
-              <img src="images/A_bmw.jpg" alt="Imagen BMW G1250GS Adventure"> 
-             <div id="cont1" class="cont1"></div>
-         </div>
+      </div>
 
+      <!--Contenedores para pintar los resultados del script con los datos de la base de datos-->
+      <div class="contModelo1">
+        <img src="images/A_bmw.jpg" alt="Imagen BMW G1250GS Adventure" />
+        <div id="cont1" class="cont1"></div>
+      </div>
 
-          <div class="contModelo2">
-             <img src="images/A_versys.jpg" alt="Imagen Kawasaki Versys 650"> 
-             <div id="cont2" class="cont2"></div>
-          </div>
-          
-          <div class="contModelo3">
-             <img src="images/A_africa.jpg" alt="Imagen Honda Africa Twin"> 
-             <div id="cont3" class="cont3"></div>
-          </div>
-          
-          <div class="contModelo4">
-             <img src="images/A_ktm.jpg" alt="Imagen KTM 1290 Super Adventure"> 
-             <div id="cont4" class="cont4"></div>
-          </div>
+      <div class="contModelo2">
+        <img src="images/A_versys.jpg" alt="Imagen Kawasaki Versys 650" />
+        <div id="cont2" class="cont2"></div>
+      </div>
 
+      <div class="contModelo3">
+        <img src="images/A_africa.jpg" alt="Imagen Honda Africa Twin" />
+        <div id="cont3" class="cont3"></div>
+      </div>
+
+      <div class="contModelo4">
+        <img src="images/A_ktm.jpg" alt="Imagen KTM 1290 Super Adventure" />
+        <div id="cont4" class="cont4"></div>
+      </div>
     </article>
 
+    <!--Footer-->
     <footer class="footer">
-        <a href="privacidad.html" style="color: white;">Política de privacidad</a>
-        <a href="legal.html" style="color: white;">Aviso legal</a>
-        <p style="color: white;">Copyright Alca-Ride 2024 - Developed by Daniel Fernández</p>
+      <a href="privacidad.html" style="color: white">Política de privacidad</a>
+      <a href="legal.html" style="color: white">Aviso legal</a>
+      <p style="color: white">
+        Copyright Alca-Ride 2024 - Developed by Daniel Fernández
+      </p>
     </footer>
+  </body>
 
-</body>
-    <script>
-    	//Función para controlar lel botón de Iniciar sesión cuando esté iniciada (Área personal)
-        window.onload = function() {
-    	  //Meto la llamada a la función para listar los datos del catálogo
-        	llamada("ServletListarCatalogo");
-    	//si me deja el servlet entrar entonces controlo el setItem de sessionstorage, si no me deja el servlet entonces no grabo sessionstorage
-        //Comprobamos si la sesión está iniciada       
-        
-    	var sesionIniciada = (sessionStorage.getItem('idLogin') != null && sessionStorage.getItem('idLogin') != 'null');
-    	if (sesionIniciada) {
-        	//alert("sesion iniciada");       	
-        	//Capturamos el botón con la info del arbol del documento.
-            var enlaceInicioSesion = document.querySelector('.navbar .enlace-inicio-sesion');
-			//DOM  - MODELO DE OBJETO DE DOCUMENTO
-            enlaceInicioSesion.textContent = 'Área personal';
-            enlaceInicioSesion.href = 'clientArea.html';
-            //alert(sessionStorage.getItem("idLogin"));
-        } else {
-        	//Si no tengo guardado ningún parámetro en el sessionstorage le redirijo al login
-            var enlaceInicioSesion = document.querySelector('.navbar a[href="login.html"]');
-            enlaceInicioSesion.textContent = 'Iniciar Sesión';
-            enlaceInicioSesion.href = 'login.html';
-        }
+  <script>
+
+    //Función para controlar el botón de Iniciar sesión cuando esté iniciada (Área personal)
+    window.onload = function () {
+      // Meto la llamada a la función para listar los datos del catálogo
+      llamada("ServletListarCatalogo");
+      // si me deja el servlet entrar entonces controlo el setItem de sessionstorage, si no me deja el servlet entonces no grabo sessionstorage
+
+      // Comprobamos si la sesión está iniciada
+      var sesionIniciada =
+        sessionStorage.getItem("idLogin") != null &&
+        sessionStorage.getItem("idLogin") != "null";
+      if (sesionIniciada) {
+        // Capturamos el botón con la info del arbol del documento.
+        var enlaceInicioSesion = document.querySelector(
+          ".navbar .enlace-inicio-sesion"
+        );
+        // Cambiamos el texto del enlace a "Área personal"
+        enlaceInicioSesion.textContent = "Área personal";
+        // Cambiamos el href del enlace para que redirija a "clientArea.html"
+        enlaceInicioSesion.href = "clientArea.html";
+      } else {
+        // Si no tengo guardado ningún parámetro en el sessionstorage le redirijo al login
+        var enlaceInicioSesion = document.querySelector(
+          '.navbar a[href="login.html"]'
+        );
+        // Cambiamos el texto del enlace a "Iniciar Sesión"
+        enlaceInicioSesion.textContent = "Iniciar Sesión";
+        // Aseguramos que el href del enlace sea "login.html"
+        enlaceInicioSesion.href = "login.html";
+      }
     };
-    
-    </script>
 
+  </script>
+  
 </html>

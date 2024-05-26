@@ -1,17 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alca-Ride | Área privada CLIENTE | Mi perfil</title>
-    <link rel="stylesheet" href="styles/tablas.css">
-   <script>
-        // Función para confirmar la eliminación del registro
-        function confirmarEliminacion() {
-            return confirm("¿Estás seguro que quieres eliminar tu cuenta?");
-        }
-    </script>
-</head>
+    <link rel="stylesheet" href="styles/tablas.css" />
+  </head>
 
   <!-- Creo una clase para el body, para la cual aplicaré 
     en su página de estilos un grid y le daré forma responsive.
@@ -21,79 +15,85 @@
         contenido
         footer
     -->
-<body class="gridContainer">
-
+  <body class="gridContainer">
     <header class="header">
-        <!--Pongo este div para que el enlace se ajuste exactamente al logo-->
-        <div>
-        <a href="index.html"><img src="images/logo1.png" alt="Logo Alca-Ride"></a>
-        </div>
+      <!--Pongo este div para que el enlace se ajuste exactamente al logo-->
+      <div>
+        <a href="index.html"
+          ><img src="images/logo1.png" alt="Logo Alca-Ride"
+        /></a>
+      </div>
     </header>
 
+    <!--Apartado del navbar-->
     <nav class="navbar">
-        <a href="index.html">Inicio</a>
-        <a href="catalogo.html">Catálogo</a>
-        <a href="condic.html">Condiciones</a>
-        <a href="contacto.html">Contacto</a>
-        <div class="cerrar"><a href="ServletCerrarSesion">Cerrar Sesion</a></div>
+      <a href="index.html">Inicio</a>
+      <a href="catalogo.html">Catálogo</a>
+      <a href="condic.html">Condiciones</a>
+      <a href="contacto.html">Contacto</a>
+      <div class="cerrar"><a href="ServletCerrarSesion">Cerrar Sesion</a></div>
     </nav>
-    
-    <article class="contenido">
-    
- 		<div class="menu">
-            
-            <div class="adm"><a href="clientArea.html">AREA PERSONAL</a></div>
-    		<div class="usu"><a href="clientUsu.html">Gestionar perfil</a></div>
-   			<div class="res"><a href="clientRes.html">Consultar reservas</a></div>
-            
-        </div>
-        
-        <h1>PÁGINA NO DISPONIBLE</h1>
-        
-           <div class="modificar"><a href="Servlet">Modificar perfil</a></div>
-           <div class="eliminar"><a href="Servlet">Eliminar cuenta</a></div>
 
+    <!--Contenido general de la página-->
+    <article class="contenido">
+      <div class="menu">
+        <div class="adm"><a href="clientArea.html">AREA PERSONAL</a></div>
+        <div class="usu"><a href="clientUsu.html">Gestionar perfil</a></div>
+        <div class="res"><a href="clientRes.html">Consultar reservas</a></div>
+      </div>
+
+      <h1>PÁGINA NO DISPONIBLE</h1>
+
+      <div class="modificar"><a href="Servlet">Modificar perfil</a></div>
+      <div class="eliminar"><a href="Servlet">Eliminar cuenta</a></div>
     </article>
 
+    <!--Footer-->
     <footer class="footer">
-        <a href="privacidad.html" style="color: white;">Política de privacidad</a>
-        <a href="legal.html" style="color: white;">Aviso legal</a>
-        <p style="color: white;">Copyright Alca-Ride 2024 - Developed by Daniel Fernández</p>
+      <a href="privacidad.html" style="color: white">Política de privacidad</a>
+      <a href="legal.html" style="color: white">Aviso legal</a>
+      <p style="color: white">
+        Copyright Alca-Ride 2024 - Developed by Daniel Fernández
+      </p>
     </footer>
+  </body>
 
-</body>
+  <script>
+    // Función para obtener el valor de un parámetro de la URL por su nombre
+    function getParameterByName(name) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+      return results === null
+        ? ""
+        : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+    //Función para controlar lel botón de Iniciar sesión cuando esté iniciada (Área personal)
+    window.onload = function () {
+      //si me deja el servlet entrar entonces controlo el setItem de sessionstorage,
+      //si no me deja el servlet entonces no grabo sessionstorage
 
-<script>
-function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-    results = regex.exec(location.search);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
-//Función para controlar lel botón de Iniciar sesión cuando esté iniciada (Área personal)
-window.onload = function() {
-	//si me deja el servlet entrar entonces controlo el setItem de sessionstorage, 
-	//si no me deja el servlet entonces no grabo sessionstorage
-	
-	//en el caso que se llegue a esta pagina poniendo la direccion manualmente`y sin parametro idLogin
-	// -->  preguntar si tenemos establecido sessionstorage con un dato valido si no volvemos a redirigir a index	    
-	
-    
-    //Comprobamos si la sesión está iniciada    
-    var sesionIniciada = (sessionStorage.getItem('idLogin') != null && sessionStorage.getItem('idLogin') != 'null');
-        
-	var idLogin = getParameterByName("idLogin");
-    if((idLogin != null && idLogin != "") || sesionIniciada == true) {    	
-    	if(idLogin == null || idLogin == 'null') {
-    		idLogin = sessionStorage.getItem('idLogin');
-   		}
-    	sessionStorage.setItem("idLogin",idLogin);    	
-    } else {    	
-    	//Si no tiene parámetros el idLogin, le mandamos directamente al inicio, así evito que entren en zona de usuarios forzando la URL
-    	//para hacer redirect desde javascript hacemos document.location = "index.html"
-    	document.location.href = "index.html";
-   	}
-};
-</script>
+      //en el caso que se llegue a esta pagina poniendo la direccion manualmente`y sin parametro idLogin
+      // -->  preguntar si tenemos establecido sessionstorage con un dato valido si no volvemos a redirigir a index
 
+      //Comprobamos si la sesión está iniciada
+      var sesionIniciada =
+        sessionStorage.getItem("idLogin") != null &&
+        sessionStorage.getItem("idLogin") != "null";
+      // Si idLogin tiene un valor (no es null ni una cadena vacía) o la sesión está iniciada
+      var idLogin = getParameterByName("idLogin");
+      if ((idLogin != null && idLogin != "") || sesionIniciada == true) {
+        // Si idLogin es null o "null", lo reemplaza por el valor almacenado en sessionStorage
+        if (idLogin == null || idLogin == "null") {
+          // Almacenamos el idLogin en sessionStorage
+          idLogin = sessionStorage.getItem("idLogin");
+        }
+        sessionStorage.setItem("idLogin", idLogin);
+      } else {
+        //Si no tiene parámetros el idLogin, le mandamos directamente al inicio, así evito que entren en zona de usuarios forzando la URL
+        //para hacer redirect desde javascript hacemos document.location = "index.html"
+        document.location.href = "index.html";
+      }
+    };
+  </script>
 </html>

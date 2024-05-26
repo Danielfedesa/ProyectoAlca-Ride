@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alca-Ride | Aviso legal</title>
-    <link rel="stylesheet" href="styles/privacidad.css">
-</head>
+    <link rel="stylesheet" href="styles/privacidad.css" />
+  </head>
 
   <!-- Creo una clase para el body, para la cual aplicaré 
     en su página de estilos un grid y le daré forma responsive.
@@ -15,50 +15,48 @@
         contenido
         footer
     -->
-<body class="gridContainer">
-
+  <body class="gridContainer">
     <header class="header">
-        <!--Pongo este div para que el enlace se ajuste exactamente al logo-->
-        <div>
-        <a href="index.html"><img src="images/logo1.png" alt="Logo Alca-Ride"></a>
-        </div>
+      <!--Pongo este div para que el enlace se ajuste exactamente al logo-->
+      <div>
+        <a href="index.html"
+          ><img src="images/logo1.png" alt="Logo Alca-Ride"
+        /></a>
+      </div>
     </header>
 
+    <!--Apartado del navbar-->
     <nav class="navbar">
-        <a href="index.html">Inicio</a>
-        <a href="catalogo.html">Catálogo</a>
-        <a href="condic.html">Condiciones</a>
-        <a href="contacto.html">Contacto</a>
-        <a href="login.html" class="enlace-inicio-sesion">Iniciar Sesión</a>
+      <a href="index.html">Inicio</a>
+      <a href="catalogo.html">Catálogo</a>
+      <a href="condic.html">Condiciones</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="login.html" class="enlace-inicio-sesion">Iniciar Sesión</a>
     </nav>
-    
-    <article class="contenido">
-        <div class="contenedorCheck">
-            <h1>SESION FINALIZADA CORRECTAMENTE</h1>
-              
-            <img src="images/check-150x150.png" alt="Imagen de check verde">
 
-            <P>¡Esperamos verte pronto!</P>
-		</div>
-		
+    <!--Contenido general de la página-->
+    <article class="contenido">
+      <div class="contenedorCheck">
+        <h1>SESION FINALIZADA CORRECTAMENTE</h1>
+
+        <img src="images/check-150x150.png" alt="Imagen de check verde" />
+
+        <p>¡Esperamos verte pronto!</p>
+      </div>
     </article>
 
     <footer class="footer">
-        <a href="privacidad.html" style="color: white;">Política de privacidad</a>
-        <a href="legal.html" style="color: white;">Aviso legal</a>
-        <p style="color: white;">Copyright Alca-Ride 2024 - Developed by Daniel Fernández</p>
+      <a href="privacidad.html" style="color: white">Política de privacidad</a>
+      <a href="legal.html" style="color: white">Aviso legal</a>
+      <p style="color: white">
+        Copyright Alca-Ride 2024 - Developed by Daniel Fernández
+      </p>
     </footer>
-
-</body>
-<script>
-
-window.onload = function() {
-	//Le indico al html que hemos cerrado la sisión (eliminando en idLogin)
-    sessionStorage.removeItem("idLogin");
-	
-};
-
-
-</script>
-
+  </body>
+  <script>
+    window.onload = function () {
+      // Le indico al html que hemos cerrado la sesión (eliminando el idLogin)
+      sessionStorage.removeItem("idLogin");
+    };
+  </script>
 </html>

@@ -1,54 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alca-Ride | Formulario modificar reserva</title>
+    <link rel="stylesheet" href="styles/formularios.css" />
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Alca-Ride | Formulario modificar reserva</title>
-	<link rel="stylesheet" href="styles/formularios.css">
-	
-	<script>
-    
-    function llamada(id_Reserva) {
-        fetch('ServletModificarReserva?id_Reserva=' + id_Reserva)
-        .then(response => response.json())
-        .then(data => pintarFormulario(data));
-    }
-    
-		/* Función para otener el valor de un parametro en el GET */
- 
-	function getParameterByName(name) {
-		    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-		    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-		    results = regex.exec(location.search);
-		    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-	}
+    <script>
+      // Función para hacer una llamada al servlet para modificar una reserva
+      function llamada(id_Reserva) {
+        // Realiza una petición fetch al servlet con el parámetro id_Reserva
+        fetch("ServletModificarReserva?id_Reserva=" + id_Reserva)
+          // Convierte la respuesta en formato JSON
+          .then((response) => response.json())
+          // Llama a la función pintarFormulario para mostrar los datos obtenidos en el formulario
+          .then((data) => pintarFormulario(data));
+      }
 
+      /* Función para otener el valor de un parametro en el GET */
+      function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+        return results === null
+          ? ""
+          : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
 
-   		
-		
-		
-		function pintarFormulario(datos){
-			document.getElementById("id_Reserva").value = datos.id_Reserva;
-			document.getElementById("id_Cliente").value = datos.id_Cliente;
-			document.getElementById("id_Moto").value = datos.id_Moto;
-			document.getElementById("fecha_Inicio").value = datos.fecha_Inicio;
-			document.getElementById("fecha_Fin").value = datos.fecha_Fin;
-			document.getElementById("estado").value = datos.estado;
-		}
-		
-		
-	 	// Obtiene el mensaje del servidor (de la URL)
-	    var mensaje = new URLSearchParams(window.location.search).get("mensaje");
+      // Función para pintar los datos en el formulario
+      function pintarFormulario(datos) {
+        // Asigna los valores al campo correspondiente en el formulario
+        document.getElementById("id_Reserva").value = datos.id_Reserva;
+        document.getElementById("id_Cliente").value = datos.id_Cliente;
+        document.getElementById("id_Moto").value = datos.id_Moto;
+        document.getElementById("fecha_Inicio").value = datos.fecha_Inicio;
+        document.getElementById("fecha_Fin").value = datos.fecha_Fin;
+        document.getElementById("estado").value = datos.estado;
+      }
 
-	    // Si hay un mensaje, muestra una ventana emergente con él
-	    if (mensaje) {
-	        alert(mensaje);
-	    }
-		</script>
-</head>
+      // Obtiene el mensaje del servidor (de la URL)
+      var mensaje = new URLSearchParams(window.location.search).get("mensaje");
 
-<!-- Creo una clase para el body, para la cual aplicaré 
+      // Si hay un mensaje, muestra una ventana emergente con él
+      if (mensaje) {
+        alert(mensaje);
+      }
+    </script>
+  </head>
+
+  <!-- Creo una clase para el body, para la cual aplicaré 
     en su página de estilos un grid y le daré forma responsive.
     Divido el body en 4 apartados principales:
         header
@@ -57,144 +57,183 @@
         footer
     -->
 
-<body class="gridContainer">
+  <body class="gridContainer">
+    <header class="header">
+      <!--Pongo este div para que el enlace se ajuste exactamente al logo-->
+      <div>
+        <a href="index.html"
+          ><img src="images/logo1.png" alt="Logo Alca-Ride"
+        /></a>
+      </div>
+    </header>
 
-	<header class="header">
-		<!--Pongo este div para que el enlace se ajuste exactamente al logo-->
-		<div>
-			<a href="index.html"><img src="images/logo1.png" alt="Logo Alca-Ride"></a>
-		</div>
-	</header>
+    <!--Apartado del navbar-->
+    <nav class="navbar">
+      <a href="index.html">Inicio</a>
+      <a href="catalogo.html">Catálogo</a>
+      <a href="condic.html">Condiciones</a>
+      <a href="contacto.html">Contacto</a>
+      <a href="login.html" class="enlace-inicio-sesion">Iniciar Sesión</a>
+    </nav>
 
-	<nav class="navbar">
-		<a href="index.html">Inicio</a>
-		<a href="catalogo.html">Catálogo</a>
-		<a href="condic.html">Condiciones</a>
-		<a href="contacto.html">Contacto</a>
-		<a href="login.html" class="enlace-inicio-sesion">Iniciar Sesión</a>
-	</nav>
+    <!--Contenido general de la página-->
+    <article class="contenido">
+      <!--Formulario modificar reserva-->
+      <div class="formReserva">
+        <h1>Modificación de reserva.</h1>
 
-	<article class="contenido">
-		<div class="formReserva">
-			<h1>Modificación de reserva.</h1>
-		
-
-			<form action="ServletModificarReserva" method="post">
-
-				<!--Menú desplegable para seleccionar moto,
+        <form action="ServletModificarReserva" method="post">
+          <!--Menú desplegable para seleccionar moto,
             la primera opción está deshabilitada para que obligue
             a elegir una de las otras antes de enviar-->
 
-				<p>
-	                <label for="id_Reserva" class="id_Reserva">Identificador reserva
-	                <span class="obligatorio">*</span>
-	                </label>
-	                <input type="id_Reserva" name="id_Reserva" id="id_Reserva" required="obligatorio">
-            	</p>
-            	
-            	<p>
-	                <label for="id_Cliente" class="id_Cliente">Identificador cliente
-	                <span class="obligatorio">*</span>
-	                </label>
-	                <input type="id_Cliente" name="id_Cliente" id="id_Cliente" required="obligatorio">
-            	</p>
+          <p>
+            <label for="id_Reserva" class="id_Reserva"
+              >Identificador reserva
+              <span class="obligatorio">*</span>
+            </label>
+            <input
+              type="id_Reserva"
+              name="id_Reserva"
+              id="id_Reserva"
+              required="obligatorio"
+            />
+          </p>
 
-				<label for="id_Moto">Vehículo:</label>
-				<select id="id_Moto" name="id_Moto" required>
-					<option value="" disabled selected hidden>Selecciona una opción</option>
-					<option value="1">CUSTOM - Harley Davidson Road King</option>
-					<option value="2">CUSTOM - Kawasaki Vulcan 900</option>
-					<option value="3">CUSTOM - Indian Challenger Dark Horse</option>
-					<option value="4">CUSTOM - KHonda CMX500 Rebel</option>
+          <p>
+            <label for="id_Cliente" class="id_Cliente"
+              >Identificador cliente
+              <span class="obligatorio">*</span>
+            </label>
+            <input
+              type="id_Cliente"
+              name="id_Cliente"
+              id="id_Cliente"
+              required="obligatorio"
+            />
+          </p>
 
-					<option value="5">ADVENTURE - BMW G1250GS Adventure</option>
-					<option value="6">ADVENTURE - Kawasaki Versys 650</option>
-					<option value="7">ADVENTURE - Honda Africa Twhin 1100</option>
-					<option value="8">ADVENTURE - KTM 1290 Super Adventure</option>
+          <label for="id_Moto">Vehículo:</label>
+          <select id="id_Moto" name="id_Moto" required>
+            <option value="" disabled selected hidden>
+              Selecciona una opción
+            </option>
+            <option value="1">CUSTOM - Harley Davidson Road King</option>
+            <option value="2">CUSTOM - Kawasaki Vulcan 900</option>
+            <option value="3">CUSTOM - Indian Challenger Dark Horse</option>
+            <option value="4">CUSTOM - KHonda CMX500 Rebel</option>
 
-					<option value="9">TURISMO - BMW R1250RT</option>
-					<option value="10">TURISMO - Yamaha FJR1300AE</option>
-					<option value="11">TURISMO - Honda Goldwing Tour</option>
-					<option value="12">TURISMO - Suzuki Vstrom 1050</option>
+            <option value="5">ADVENTURE - BMW G1250GS Adventure</option>
+            <option value="6">ADVENTURE - Kawasaki Versys 650</option>
+            <option value="7">ADVENTURE - Honda Africa Twhin 1100</option>
+            <option value="8">ADVENTURE - KTM 1290 Super Adventure</option>
 
-					<option value="13">NAKED - Yamaha MT-07</option>
-					<option value="14">NAKED - KTM Super Duke R 1290</option>
-					<option value="15">NAKED - Suzuki GSX-S 750</option>
-					<option value="16">NAKED - Honda CB 1000 R</option>
-				</select>
+            <option value="9">TURISMO - BMW R1250RT</option>
+            <option value="10">TURISMO - Yamaha FJR1300AE</option>
+            <option value="11">TURISMO - Honda Goldwing Tour</option>
+            <option value="12">TURISMO - Suzuki Vstrom 1050</option>
 
-				<p>
-					<label for="fecha_Inicio" class="colocar_fecha_recogida">Fecha de recogida
-						<span class="obligatorio">*</span>
-					</label>
-					<input type="text" name="fecha_Inicio" id="fecha_Inicio" required="obligatorio">
-				</p>
+            <option value="13">NAKED - Yamaha MT-07</option>
+            <option value="14">NAKED - KTM Super Duke R 1290</option>
+            <option value="15">NAKED - Suzuki GSX-S 750</option>
+            <option value="16">NAKED - Honda CB 1000 R</option>
+          </select>
 
-				<p>
-					<label for="fecha_Fin" class="colocar_fecha_entrega">Fecha de devolucion
-						<span class="obligatorio">*</span>
-					</label>
-					<input type="text" name="fecha_Fin" id="fecha_Fin" required="obligatorio">
-				</p>
-				
-				<p>
-                <label for="estado" class="estado">Estado de la reserva
-                    <span class="obligatorio">*</span>
-                </label>
-                <select name="estado" id="estado" required="obligatorio">
-                    <option value="" disabled selected hidden>Selecciona una opción</option>
-                    <option value="Pendiente">Pendiente</option>
-                    <option value="Validada">Validada</option>
-                    <option value="Cancelada">Cancelada</option>
-                </select>
-            </p>
+          <p>
+            <label for="fecha_Inicio" class="colocar_fecha_recogida"
+              >Fecha de recogida
+              <span class="obligatorio">*</span>
+            </label>
+            <input
+              type="text"
+              name="fecha_Inicio"
+              id="fecha_Inicio"
+              required="obligatorio"
+            />
+          </p>
 
-				<button type="submit" name="enviar_formulario" id="enviar">
-					<p>Enviar</p>
-				</button>
+          <p>
+            <label for="fecha_Fin" class="colocar_fecha_entrega"
+              >Fecha de devolucion
+              <span class="obligatorio">*</span>
+            </label>
+            <input
+              type="text"
+              name="fecha_Fin"
+              id="fecha_Fin"
+              required="obligatorio"
+            />
+          </p>
 
-				<div class="aviso">
-					<span class="obligatorio"> * </span>Los campos son obligatorios.
-				</div>
+          <p>
+            <label for="estado" class="estado"
+              >Estado de la reserva
+              <span class="obligatorio">*</span>
+            </label>
+            <select name="estado" id="estado" required="obligatorio">
+              <option value="" disabled selected hidden>
+                Selecciona una opción
+              </option>
+              <option value="Pendiente">Pendiente</option>
+              <option value="Validada">Validada</option>
+              <option value="Cancelada">Cancelada</option>
+            </select>
+          </p>
 
-			</form>
-		</div>
-		
-	</article>
+          <button type="submit" name="enviar_formulario" id="enviar">
+            <p>Enviar</p>
+          </button>
 
-	<footer class="footer">
-		<a href="privacidad.html" style="color: white;">Política de privacidad</a>
-		<a href="legal.html" style="color: white;">Aviso legal</a>
-		<p style="color: white;">Copyright Alca-Ride 2024 - Developed by Daniel Fernández</p>
-	</footer>
+          <div class="aviso">
+            <span class="obligatorio"> * </span>Los campos son obligatorios.
+          </div>
+        </form>
+      </div>
+    </article>
 
-</body>
+    <!--Footer-->
+    <footer class="footer">
+      <a href="privacidad.html" style="color: white">Política de privacidad</a>
+      <a href="legal.html" style="color: white">Aviso legal</a>
+      <p style="color: white">
+        Copyright Alca-Ride 2024 - Developed by Daniel Fernández
+      </p>
+    </footer>
+  </body>
 
-    <script>
-  //Función para controlar lel botón de Iniciar sesión cuando esté iniciada (Área personal)
-    window.onload = function() {
-		let id = getParameterByName("id_Reserva");
-		llamada(id);	
-    	//si me deja el servlet entrar entonces controlo el setItem de sessionstorage, si no me deja el servlet entonces no grabo sessionstorage
-        //Comprobamos si la sesión está iniciada       
-        
-    	var sesionIniciada = (sessionStorage.getItem('idLogin') != null && sessionStorage.getItem('idLogin') != 'null');
-    	if (sesionIniciada) {
-        	//alert("sesion iniciada");       	
-        	//Capturamos el botón con la info del arbol del documento.
-            var enlaceInicioSesion = document.querySelector('.navbar .enlace-inicio-sesion');
-			//DOM  - MODELO DE OBJETO DE DOCUMENTO
-            enlaceInicioSesion.textContent = 'Área personal';
-            enlaceInicioSesion.href = 'clientArea.html';
-            //alert(sessionStorage.getItem("idLogin"));
-        } else {
-        	//Si no tengo guardado ningún parámetro en el sessionstorage le redirijo al login
-            var enlaceInicioSesion = document.querySelector('.navbar a[href="login.html"]');
-            enlaceInicioSesion.textContent = 'Iniciar Sesión';
-            enlaceInicioSesion.href = 'login.html';
-        }
+  <script>
+    //Función para controlar el botón de Iniciar sesión cuando esté iniciada (Área personal)
+    window.onload = function () {
+	  // Llama a la función de listar
+      // Obtiene el valor del parámetro id_Reserva de la URL
+      let id = getParameterByName("id_Reserva");
+      // Llama a la función llamada() pasando el id_Reserva obtenido
+      llamada(id);
+      //si me deja el servlet entrar entonces controlo el setItem de sessionstorage, si no me deja el servlet entonces no grabo sessionstorage
+
+      //Comprobamos si la sesión está iniciada
+      var sesionIniciada =
+        sessionStorage.getItem("idLogin") != null &&
+        sessionStorage.getItem("idLogin") != "null";
+      if (sesionIniciada) {
+        //Capturamos el botón con la info del arbol del documento.
+        var enlaceInicioSesion = document.querySelector(
+          ".navbar .enlace-inicio-sesion"
+        );
+        // Cambiamos el texto del enlace a "Área personal"
+        enlaceInicioSesion.textContent = "Área personal";
+        // Cambiamos el href del enlace para que redirija a "clientArea.html"
+        enlaceInicioSesion.href = "clientArea.html";
+      } else {
+        //Si no tengo guardado ningún parámetro en el sessionstorage le redirijo al login
+        var enlaceInicioSesion = document.querySelector(
+          '.navbar a[href="login.html"]'
+        );
+        // Cambiamos el texto del enlace a "Iniciar Sesión"
+        enlaceInicioSesion.textContent = "Iniciar Sesión";
+        // Aseguramos que el href del enlace sea "login.html"
+        enlaceInicioSesion.href = "login.html";
+      }
     };
-    
-    </script>
-
+  </script>
 </html>

@@ -64,7 +64,7 @@ public class ServletLogin extends HttpServlet {
 			//Si el objeto trae parámetros es porque los ha encontrado correctamente en la BDD.
 			else {
 				
-				//AQUÍ INICIAMOS EL MÉTODO PARA GUARDAR LOS DATOS EN LA SESION
+				// AQUI INICIAMOS EL MÉTODO PARA GUARDAR LOS DATOS EN LA SESION
 				// Obtiene la sesión actual o crea una nueva si no existe
 				sesion = request.getSession();
 				

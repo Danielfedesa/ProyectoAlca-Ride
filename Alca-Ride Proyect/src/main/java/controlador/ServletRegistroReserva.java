@@ -91,7 +91,7 @@ public class ServletRegistroReserva extends HttpServlet {
 					return;
 				}
 
-				// Convierte a “java.sql.Date” ya que es el tipo que necesitamos para trabajar con bases de datos en JDBC.
+				// Convierte a java.sql.Date ya que es el tipo que necesitamos para trabajar con bases de datos en JDBC.
 				java.sql.Date fechaRecogidaSql = new java.sql.Date(fechaRecogidaUtil.getTime());
 				java.sql.Date fechaDevoSql = new java.sql.Date(fechaDevoUtil.getTime());
 
