@@ -158,7 +158,7 @@ public class DaoUsuario {
 	/**
 	 * Metodo para insertar la modificacion de un usuario en la base de datos. 
 	 * @param user Objeto Usuario con los datos actualizados
-	 * @return true si la actualización fue correcta, false esta falla
+	 * @return true si la actualizacion fue correcta, false si esta falla
 	 */
 	public boolean actualizarUser(Usuario user) {
 

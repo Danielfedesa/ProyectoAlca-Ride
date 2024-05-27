@@ -225,7 +225,7 @@ public class DaoReserva {
 	/**
 	 * Metodo para leer una reserva de la base de datos por su ID y modificarla posteriormente.
 	 * @param id_Reserva ID de la Reserva para leer
-	 * @return Objeto Reserva con los datos de la reserva leída
+	 * @return Objeto Reserva con los datos de la reserva leida
 	 * @throws SQLException Si hay un error de lectura en base de datos
 	 */
 	public Reserva leerFormulario(int id_Reserva) throws SQLException {

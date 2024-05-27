@@ -6,7 +6,7 @@ import DAO.DaoUsuario;
 
 /**
  * Clase Usuario que representa la información,
- * constructores y métodos referentes a los
+ * constructores y metodos referentes a los
  * usuarios del sistema.
  * @author Daniel Fernandez Sanchez
  * @version 1.0 04/2024
@@ -25,7 +25,7 @@ public class Usuario {
 	private String direccion;
 	
 	/**
-     * Constructor por defecto (vacío).
+     * Constructor por defecto (vacio).
      */
 	public Usuario() {
 		
@@ -33,15 +33,15 @@ public class Usuario {
 
 	/**
      * Constructor completo Usuario.
-     * @param id_Usuario Identificador único del usuario
+     * @param id_Usuario Identificador unico del usuario
      * @param nombre Nombre del usuario
      * @param apellido1 Primer apellido del usuario
      * @param apellido2 Segundo apellido del usuario
-     * @param telefono Teléfono del usuario
-     * @param email Correo electrónico del usuario
+     * @param telefono Telefono del usuario
+     * @param email Correo electronico del usuario
      * @param dni Documento Nacional de Identidad del usuario
      * @param carnet Tipo de carnet del usuario
-     * @param direccion Dirección del usuario
+     * @param direccion Direccion del usuario
      */
 	public Usuario(int id_Usuario, String nombre, String apellido1, String apellido2, int telefono, String email,
 			String dni, String carnet, String direccion) {
@@ -62,11 +62,11 @@ public class Usuario {
      * @param nombre Nombre del usuario
      * @param apellido1 Primer apellido del usuario
      * @param apellido2 Segundo apellido del usuario
-     * @param telefono Teléfono del usuario
-     * @param email Correo electrónico del usuario
+     * @param telefono Telefono del usuario
+     * @param email Correo electronico del usuario
      * @param dni Documento Nacional de Identidad del usuario
      * @param carnet Tipo de carnet del usuario
-     * @param direccion Dirección del usuario
+     * @param direccion Direccion del usuario
      */
 	public Usuario(String nombre, String apellido1, String apellido2, int telefono, String email, String dni,
 			String carnet, String direccion) {

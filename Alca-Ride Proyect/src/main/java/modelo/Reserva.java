@@ -7,7 +7,7 @@ import DAO.DaoReserva;
 
 /**
  * Clase Reserva que representa la informacion,
- * constructores y métodos referentes a las reservas.
+ * constructores y metodos referentes a las reservas.
  * @author Daniel Fernandez Sanchez
  * @version 1.0 04/2024
  */
@@ -282,7 +282,7 @@ public class Reserva {
 	}
 	  
 	 /**
-	  * Metodo para listar todas las reservas de un cliente específico en formato JSON.
+	  * Metodo para listar todas las reservas de un cliente especifico en formato JSON.
 	  * @param id_Cliente Identificador unico del cliente
 	  * @return Cadena JSON con la lista de reservas del cliente
 	  * @throws SQLException Si ocurre un error en la base de datos
@@ -303,7 +303,7 @@ public class Reserva {
 	 }	  
 		
 	  /**
-	   * Metodo para recuperar los datos de una reserva especifica para modificación posterior.
+	   * Metodo para recuperar los datos de una reserva especifica para modificacion posterior.
 	   * @param id_Reserva Identificador de la reserva
 	   * @throws SQLException Si ocurre un error en la base de datos
 	   */
@@ -340,7 +340,7 @@ public class Reserva {
 	 }
 	  
 	  /**
-	   * Metodo para insertar la actualización de datos de la reserva en la base de datos.
+	   * Metodo para insertar la actualizacion de datos de la reserva en la base de datos.
 	   * @return true si la actualización fue exitosa, false en caso contrario
 	   * @throws SQLException Si ocurre un error en la base de datos
 	   */

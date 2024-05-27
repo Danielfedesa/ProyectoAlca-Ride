@@ -26,7 +26,7 @@ public class DaoLogin {
 	public static Connection con = null;
 
 	/**
-	 * Constructor de la clase DaoLogin para establecer conexión con la base de datos.
+	 * Constructor de la clase DaoLogin para establecer conexion con la base de datos.
 	 * @throws SQLException Si hay un error de conexion
 	 */
 	// Nada más se crea el objeto DaoMotocicleta le decimos al atributo con que

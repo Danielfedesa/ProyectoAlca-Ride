@@ -24,7 +24,7 @@ public class Motocicleta {
 	private double precio_Dia;
 	
 	/**
-     * Constructor por defecto (vacío).
+     * Constructor por defecto (vacio).
      */
 	public Motocicleta() {
 		
