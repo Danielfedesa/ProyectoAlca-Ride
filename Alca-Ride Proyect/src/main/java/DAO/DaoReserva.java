@@ -54,7 +54,7 @@ public class DaoReserva {
 		// Sentencia para comprobar si existen coincidencias de registro en la tabla reservas.
 		// Esta sentencia comprueba que no existan coincidencias entre las fechas de reservas ya
 		// realizadas de un mismo vehículo y que las mismas no tengan el estado de canceladas.
-		String sqlFechas = "SELECT * FROM reservas "
+		String sqlFechas = "SELECT COUNT(*) AS 'cuenta' FROM reservas "
 				+ " WHERE id_Moto = ? "
 				+ " AND ( "
 				+ "     (? >= fecha_Inicio AND ? <= fecha_Fin) "
@@ -86,7 +86,7 @@ public class DaoReserva {
 
 		// Compruebo si existen reservas que coincidan con las fechas y vehículos
 		if (rs.next()) {
-			int count = rs.getInt("count");
+			int count = rs.getInt("cuenta");
 			if (count > 0) {
 				comprobar = true; // Hay conflictos, se debe comprobar
 			}

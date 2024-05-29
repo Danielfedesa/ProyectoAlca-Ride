@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Clase con los atributos para la conexion con la base de datos.
+ */
 public class ConexionDB {
 
 	/*
@@ -36,18 +39,32 @@ public class ConexionDB {
 	 * la ruta que le hemos indicado "jdbc:mysql://localhost:3360/nombreBD;
 	 */
 
+	
 	// static significa que se extiende fuera del objeto, siendo común para todos
 	// los objetos instanciados de ese tipo.
 	// Si cambiamos el atributo static al objeto persona 2 se lo cambio también a la persona 5
 	// final significa que es una constante y no lo podemos modificar.
+	/**
+     * URL de conexión a la base de datos.
+     */
 	public static final String JDBC_URL = "jdbc:mysql://localhost:3306/alcaride_bd";
-	// Creamos el atributo estático tipo Connection, que es un tipo de conexión que
+	
+	// Creamos el atributo estatico tipo Connection, que es un tipo de conexión que
 	// me da el driver sql.
+	/**
+     * Atributo estatico tipo Connection, que es un tipo de conexion que
+     * proporciona el driver SQL.
+     */
 	public static Connection instance = null;
 
 	// Creamos un método público estático para que desde cualquier punto del
 	// programa cuando lo instanciemos nos devuelva
 	// la conexión a la ruta.
+	 /**
+     * Método publico estatico para obtener la conexion a la base de datos.
+     * @return Connection objeto de conexion a la base de datos.
+     * @throws SQLException si ocurre un error al establecer la conexion.
+     */
 	public static Connection getConexion() throws SQLException {
 		// Debemos meterlo en un if por si llamamos a la clase por segunda vez y ya está
 		// conectada.

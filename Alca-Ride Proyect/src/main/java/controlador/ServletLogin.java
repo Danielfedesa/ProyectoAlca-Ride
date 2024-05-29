@@ -9,6 +9,9 @@ import jakarta.servlet.http.HttpSession;
 import modelo.Login;
 
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 /**
@@ -17,6 +20,12 @@ import java.sql.SQLException;
 public class ServletLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	//Inicializo el objeto Httpsession y la variable como atributo del servlet que voy a utilizar.
+	
+	/**
+     * Objeto HttpSession utilizado para gestionar los atributos de la sesión.
+     */
+	// Inicializo el objeto Httpsession y la variable como atributo del servlet que
+	// voy a utilizar.
 		HttpSession sesion;
        
     /**
@@ -26,6 +35,30 @@ public class ServletLogin extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+    // Código para cifrar password
+ 	/**
+ 	 * Metodo para cifrar una contrasenia utilizando el algoritmo MD5.
+ 	 *
+ 	 * @param input La cadena de texto a cifrar.
+ 	 * @return La cadena cifrada en formato hexadecimal.
+ 	 * @throws RuntimeException si ocurre un error al obtener la instancia del algoritmo MD5.
+ 	 */
+ 	public static String getMD5(String input) {
+ 		try {
+ 			MessageDigest md = MessageDigest.getInstance("MD5");
+ 			byte[] messageDigest = md.digest(input.getBytes());
+ 			BigInteger number = new BigInteger(1, messageDigest);
+ 			String hashtext = number.toString(16);
+
+ 			while (hashtext.length() < 32) {
+ 				hashtext = "0" + hashtext;
+ 			}
+ 			return hashtext;
+ 		} catch (NoSuchAlgorithmException e) {
+ 			throw new RuntimeException(e);
+ 		}
+ 	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -43,7 +76,7 @@ public class ServletLogin extends HttpServlet {
 		
 		//Le pasamos los parámetros por el formulario
 		String nombre_Usuario = request.getParameter("nombre_Usuario");
-		String pass = request.getParameter("pass");
+		String pass = getMD5(request.getParameter("pass"));
 		
 		//Creamos objeto miLogin con los parámetros del formulario
 		Login milogin= new Login(nombre_Usuario, pass);

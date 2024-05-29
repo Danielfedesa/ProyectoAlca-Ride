@@ -20,6 +20,9 @@ import java.text.SimpleDateFormat;
  */
 public class ServletModificarReserva extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	/**
+     * Objeto HttpSession utilizado para gestionar los atributos de la sesión.
+     */
 	// Inicializo el objeto Httpsession y la variable como atributo del servlet que
 	// voy a utilizar.
 	HttpSession sesion;

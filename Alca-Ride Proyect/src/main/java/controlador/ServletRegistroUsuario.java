@@ -29,6 +29,13 @@ public class ServletRegistroUsuario extends HttpServlet {
 	}
 
 	// Código para cifrar password
+	/**
+	 * Metodo para cifrar una contrasenia utilizando el algoritmo MD5.
+	 *
+	 * @param input La cadena de texto a cifrar.
+	 * @return La cadena cifrada en formato hexadecimal.
+	 * @throws RuntimeException si ocurre un error al obtener la instancia del algoritmo MD5.
+	 */
 	public static String getMD5(String input) {
 		try {
 			MessageDigest md = MessageDigest.getInstance("MD5");
